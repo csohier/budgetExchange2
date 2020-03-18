@@ -11,6 +11,7 @@ public class DataModel {
     private String password;
     private String university;
     private String country;
+    public static ArrayList<DataModel> students;
 
     public DataModel(String fName, String lName, String zID, String email, String university, String password, String country) {
         this.fName = fName;
@@ -79,7 +80,7 @@ public class DataModel {
     }
 
     public static ArrayList<DataModel> getStudents() {
-        ArrayList<DataModel> students = new ArrayList<>();
+        students = new ArrayList<>();
         students.add(new DataModel("Erica", "Ma", "z5435934", "erica.ma@student.unsw.edu.au", "McGill University","password", "Canada"));
         students.add(new DataModel("Hanson", "Lee", "z5431234", "hanson.lee@student.unsw.edu.au", "Seoul National University","password", "Korea"));
         students.add(new DataModel("Jerry", "Yin", "z5115643", "jerry.yin@student.unsw.edu.au", "University College London", "password","England"));
@@ -98,5 +99,9 @@ public class DataModel {
                 return getStudents().get(i);
             }
         return null;
+    }
+
+    public static void addStudent(DataModel entry){
+        students.add(entry);
     }
 }
