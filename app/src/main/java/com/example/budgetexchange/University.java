@@ -55,7 +55,7 @@ public class University {
         universities.add(new University("Seoul National University","All available disciplines","Korea","Asia"));
         universities.add(new University("Kyoto University","All available disciplines","Japan","Asia"));
         universities.add(new University("University of Amsterdam","All available disciplines","Netherlands","Europe"));
-        universities.add(new University("University College London","Law & Built Environment","United Kingdom","Europe"));
+        universities.add(new University("University College London","Law & Built Environment","England","United Kingdom"));
         universities.add(new University("University of California, Berkeley","All available disciplines","United States", "North America"));
         return universities;
 
