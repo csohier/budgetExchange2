@@ -68,4 +68,4 @@ public class Goal {
     public static void addGoal(Goal entry){
         goals.add(entry);
     }
-    }
+}
