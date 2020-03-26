@@ -1,6 +1,7 @@
 package com.example.budgetexchange;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
-                    txtInLayoutUsername.setError("Username should not be empty");
+                    userNameInput.setError("Username should not be empty");
                 } else {
                     //Here you can write the codes for checking username
                 }
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
-                    txtInLayoutPassword.setError("Password should not be empty");
+                    passwordInput.setError("Password should not be empty");
                 } else {
                     //Here you can write the codes for checking password
                 }
@@ -87,5 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    private void ClickSignUp() {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
 }
