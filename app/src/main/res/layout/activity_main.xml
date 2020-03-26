@@ -51,11 +51,12 @@
         android:id="@+id/tvUserName"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="84dp"
         android:textColorHint="#FFFFFF"
         app:boxStrokeColor="@color/white"
         app:endIconTint="#353535"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:passwordToggleTint="@color/white">
@@ -116,8 +117,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="88dp"
         android:text="Sign In"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rememberMe" />
 
@@ -125,10 +127,11 @@
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
         android:text="SIgn Up"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rememberMe" />
 
