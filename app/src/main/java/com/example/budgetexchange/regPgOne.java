@@ -11,6 +11,7 @@ public class regPgOne extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_pg_reg);
 
+        // need the addition of entry Fields for each variable, id names are as below
 
 
 
