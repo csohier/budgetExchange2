@@ -56,6 +56,8 @@ public class regPgOne extends AppCompatActivity {
                     stDate.getText().toString(),
                     Float.valueOf(wkIncome.getText().toString())
                 );
+
+                //need to fix float value of wkIncome and add scroll view
             }
         })
     ;}
