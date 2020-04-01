@@ -12,65 +12,13 @@
         android:id="@+id/stDate"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:ems="10"
         android:inputType="text"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvStartDate"
-        app:layout_constraintEnd_toEndOf="@+id/region"
-        app:layout_constraintStart_toEndOf="@+id/tvStartDate"
-        app:layout_constraintTop_toTopOf="@+id/tvStartDate" />
-
-    <EditText
-        android:id="@+id/region"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Region"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvRegion"
-        app:layout_constraintEnd_toStartOf="@+id/regPg2Btn"
-        app:layout_constraintStart_toEndOf="@+id/tvRegion"
-        app:layout_constraintTop_toTopOf="@+id/tvRegion" />
-
-    <EditText
-        android:id="@+id/country"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Country"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvCountry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/university"
         app:layout_constraintStart_toStartOf="@+id/university"
-        app:layout_constraintTop_toTopOf="@+id/tvCountry" />
-
-    <EditText
-        android:id="@+id/university"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="University"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvUniversity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/discipline"
-        app:layout_constraintTop_toTopOf="@+id/tvUniversity"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/tvStartDate" />
 
     <EditText
         android:id="@+id/discipline"
@@ -86,21 +34,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/zID"
         app:layout_constraintTop_toTopOf="@+id/tvDiscipline" />
-
-    <EditText
-        android:id="@+id/wkIncome"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:inputType="number|numberDecimal"
-        android:text="Weekly Income (AUD)"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvWkIncome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/zID"
-        app:layout_constraintTop_toTopOf="@+id/tvWkIncome" />
 
     <EditText
         android:id="@+id/email"
@@ -176,7 +109,7 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvLastName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/conPassword"
         app:layout_constraintTop_toTopOf="@+id/tvLastName" />
 
     <TextView
@@ -252,28 +185,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Start Date:"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/tvRegion"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegion" />
-
-    <TextView
-        android:id="@+id/tvRegion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Region:"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/tvCountry"
-        app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
-
-    <TextView
-        android:id="@+id/tvCountry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Exchange Country:"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/tvUniversity"
@@ -362,13 +273,13 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPerDetail" />
 
     <Button
-        android:id="@+id/regPg2Btn"
+        android:id="@+id/insertStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/fName" />
+        app:layout_constraintEnd_toEndOf="@+id/stDate" />
 
     <TextView
         android:id="@+id/tvPerDetail"
@@ -394,7 +305,29 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/lName"
+        app:layout_constraintStart_toStartOf="@+id/conPassword"
         app:layout_constraintTop_toTopOf="@+id/tvFirstName" />
+
+    <AutoCompleteTextView
+        android:id="@+id/university"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="University"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvUniversity"
+        app:layout_constraintEnd_toEndOf="@+id/discipline"
+        app:layout_constraintStart_toStartOf="@+id/discipline"
+        app:layout_constraintTop_toTopOf="@+id/tvUniversity" />
+
+    <EditText
+        android:id="@+id/wkIncome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvWkIncome"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toTopOf="@+id/tvWkIncome" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
