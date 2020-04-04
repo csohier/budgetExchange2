@@ -1,18 +1,17 @@
 package com.example.budgetexchange;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox rememberMe;
     private Button loginBtn;
     private Button signUpBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signUpBtn = findViewById(R.id.signUpBtn);
         rememberMe = findViewById(R.id.rememberMe);
+        List<Students> students;
+
 
         //open register xml
         signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 ClickSignUp();
             }
         });
+
+        ClickLogin();
 
 
     }
@@ -60,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     userNameInput.setError("Username should not be empty");
                 } else {
                     //Here you can write the codes for checking username
+
                 }
 
                 if (passwordInput.getText().toString().trim().isEmpty()) {
@@ -78,6 +83,17 @@ public class MainActivity extends AppCompatActivity {
                     //Here you can write the codes if box is not checked
                 }
 
+                String username = String.valueOf(userNameInput.getText());
+                String password = String.valueOf(passwordInput.getText());
+
+                for (int i = 0; i < username.length(); i++) {
+                    if (Students.getStudents().get(i).getzID().equals(username) && Students.getStudents().get(i).getPassword().equals(password)) {
+                        openHomeActivity();
+                    } else{
+                        // authentication failed
+                    }
+                }
+
             }
 
         });
@@ -86,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void ClickSignUp() {
         Intent intent = new Intent(this, regPgOne.class);
+        startActivity(intent);
+    }
+
+    private void openHomeActivity() {
+        Intent intent = new Intent (this, HomeActivity.class);
         startActivity(intent);
     }
 }

@@ -1,12 +1,7 @@
 package com.example.budgetexchange;
 
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Students {
 
