@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class ExpenseFeed extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ExpenseAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private Button button;
+    private static ArrayList<Expense> expenses;
     //private PieChart pieChart;
 
 
@@ -23,6 +26,15 @@ public class ExpenseFeed extends AppCompatActivity {
         setContentView(R.layout.activity_expense_feed);
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
         recyclerView.setHasFixedSize(true);
+
+        ExpenseAdapter.RecyclerViewClickListener listener = new ExpenseAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+            }
+        };
+                expenses = Expense.getExpenses();
+
+        mAdapter = new ExpenseAdapter(expenses,listener);
         //launchDetailActivity(position);
 
         /*MyAdaptor.RecyclerViewClickListener listener = new MyAdaptor.RecyclerViewClickListener() {
@@ -37,7 +49,7 @@ public class ExpenseFeed extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        button = findViewById(R.id.AddButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
