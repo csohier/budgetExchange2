@@ -1,5 +1,7 @@
 package com.example.budgetexchange;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Expense {
@@ -8,7 +10,7 @@ public class Expense {
     private String type;
     private int week;
     private String date;
-    public static List<Expense> expenses;
+    public static ArrayList<Expense> expenses;
 
     public Expense() {
     }
@@ -50,5 +52,14 @@ public class Expense {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public static ArrayList<Expense> getExpenses (){
+        expenses = new ArrayList<>();
+        expenses.add(new Expense(201.00,"Food",1,"04/04/2020"));
+        expenses.add(new Expense(75.50,"Leisure",2, "11/04/2020"));
+        expenses.add(new Expense(55.50,"Fees",3, "18/04/2020"));
+        return expenses;
+
     }
 }
