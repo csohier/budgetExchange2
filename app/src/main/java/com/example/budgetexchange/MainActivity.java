@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 String username = String.valueOf(userNameInput.getText());
                 String password = String.valueOf(passwordInput.getText());
 
-                for (int i = 0; i < username.length(); i++) {
+                for (int i = 0; i < Students.getStudents().size(); i++) {
+
                     if (Students.getStudents().get(i).getzID().equals(username) && Students.getStudents().get(i).getPassword().equals(password)) {
                         openHomeActivity();
                     } else{

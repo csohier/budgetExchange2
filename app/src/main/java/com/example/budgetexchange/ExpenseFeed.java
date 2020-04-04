@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class ExpenseFeed extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ExpenseAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private Button button;
     //private PieChart pieChart;
 
 
@@ -36,13 +38,28 @@ public class ExpenseFeed extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClickAddExpense();
+            }
+        });
 
     }
+
+
+
 
     /*public void launchDetailActivity(int position){
         Intent intent = new Intent(this,DetaillActivity.class);
         intent.putExtra("message",position);
         startActivity(intent);
     } */
+
+
+    private void ClickAddExpense() {
+        Intent intent = new Intent(this, AddExpense.class);
+        startActivity(intent);
+    }
 }
 
