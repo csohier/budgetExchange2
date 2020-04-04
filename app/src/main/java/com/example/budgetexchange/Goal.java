@@ -9,7 +9,6 @@ public class Goal {
     private int income;
     private int goal;
     private String goalDate;
-    public static ArrayList<Goal> goals;
 
     public Goal(String zID, int income, int goal, String goalDate) {
         this.zID = zID;
@@ -51,10 +50,10 @@ public class Goal {
     }
 
     public static ArrayList<Goal> getGoals (){
-        goals = new ArrayList<>();
-        goals.add(new Goal("z5435934",350,8000,"25/07/2020"));
-        goals.add(new Goal("z5431234",500,7000,"22/09/2020"));
-        return goals;
+        Students.goals = new ArrayList<>();
+        Students.goals.add(new Goal("z5435934",350,8000,"25/07/2020"));
+        Students.goals.add(new Goal("z5431234",500,7000,"22/09/2020"));
+        return Students.goals;
     }
 
     public static Goal searchGoals(int position) {
@@ -66,6 +65,6 @@ public class Goal {
     }
 
     public static void addGoal(Goal entry){
-        goals.add(entry);
+        Students.goals.add(entry);
     }
 }

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signUpBtn;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.signUpBtn);
         rememberMe = findViewById(R.id.rememberMe);
         List<Students> students;
+
 
 
         //open register xml

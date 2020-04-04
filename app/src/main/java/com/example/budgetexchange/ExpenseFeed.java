@@ -9,6 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ExpenseFeed extends AppCompatActivity {
@@ -18,6 +24,7 @@ public class ExpenseFeed extends AppCompatActivity {
     private Button button;
     private static ArrayList<Expense> expenses;
     //private PieChart pieChart;
+    private BarChart barChart;
 
 
     @Override
@@ -57,7 +64,14 @@ public class ExpenseFeed extends AppCompatActivity {
             }
         });
 
+        barChart();
+
+
+
+
     }
+
+
 
 
 
@@ -73,5 +87,25 @@ public class ExpenseFeed extends AppCompatActivity {
         Intent intent = new Intent(this, AddExpense.class);
         startActivity(intent);
     }
+
+    private BarChart barChart(){
+        barChart = findViewById(R.id.barChart);
+        ArrayList<BarEntry> expenses = new ArrayList<>();
+        expenses.add(new BarEntry(0,190));
+        expenses.add(new BarEntry(1,150));
+        BarDataSet data = new BarDataSet(expenses,"data");
+        BarData data2 = new BarData(data);
+         barChart.setData(data2);
+
+        return barChart;
+    }
+
+   // private int weeks(String future, LocalDate current){
+
+        //take in goal date and current date time value to derive weeks
+
+    //}
+
+
 }
 

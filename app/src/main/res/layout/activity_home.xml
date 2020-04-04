@@ -34,7 +34,7 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/Expenses" />
+        app:srcCompat="@drawable/expenses" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -45,7 +45,7 @@
         android:layout_marginRight="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/Savings" />
+        app:srcCompat="@drawable/savings" />
 
     <ImageButton
         android:id="@+id/imageButton6"
@@ -67,6 +67,6 @@
         android:layout_marginRight="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5"
-        app:srcCompat="@drawable/SocialFeed" />
+        app:srcCompat="@drawable/socialeed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
