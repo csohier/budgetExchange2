@@ -1,5 +1,6 @@
 package com.example.budgetexchange;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class Students {
     private String university;
     private String stDate;
     private Float wkIncome;
+    public static ArrayList<Students> students;
 
 
     public Students () {
@@ -93,7 +95,7 @@ public class Students {
     public void setWkIncome(Float wkIncome) { this.wkIncome = wkIncome; }
 
     public static ArrayList<Students> getStudents() {
-        ArrayList <Students> students = new ArrayList<>();
+        students = new ArrayList<>();
 
         students.add(new Students("Corona", "Virus", "COVID-19", "z0000000", "c.virus@student.unsw.edu.au", "Economics", "London School of Economics", "31/03/2020",1000f));
 
