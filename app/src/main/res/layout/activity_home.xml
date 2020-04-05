@@ -67,6 +67,6 @@
         android:layout_marginRight="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton5"
-        app:srcCompat="@drawable/socialeed" />
+        app:srcCompat="@drawable/socialfeed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

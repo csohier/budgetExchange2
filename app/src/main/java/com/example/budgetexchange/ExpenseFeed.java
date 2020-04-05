@@ -5,14 +5,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ColorFormatter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -92,11 +99,41 @@ public class ExpenseFeed extends AppCompatActivity {
         barChart = findViewById(R.id.barChart);
         ArrayList<BarEntry> expenses = new ArrayList<>();
         expenses.add(new BarEntry(0,190));
-        expenses.add(new BarEntry(1,150));
-        BarDataSet data = new BarDataSet(expenses,"data");
-        BarData data2 = new BarData(data);
-         barChart.setData(data2);
+        BarDataSet data = new BarDataSet(expenses,"Max Spend");
+        ArrayList<BarEntry> expenses2 = new ArrayList<>();
+        expenses2.add(new BarEntry(1,150));
+        BarDataSet data4 = new BarDataSet(expenses2,"Total Spend");
+        BarData data2 = new BarData(data,data4);
+        data4.setColors(Color.YELLOW);
+        data.setColors(Color.MAGENTA);
+        barChart.setData(data2);
+        barChart.getBarBounds(expenses.get(0));
+        YAxis yAxis = barChart.getAxisLeft();
+        yAxis.setAxisMinimum(0);
+        //yAxis.setDrawLabels(false);
+        YAxis yAxis2 = barChart.getAxisRight();
+        yAxis2.setDrawGridLines(false);
+        yAxis2.setDrawLabels(false);
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setDrawLabels(false);
+        xAxis.setDrawGridLines(false);
+        yAxis.setDrawGridLines(false);
+        yAxis.disableAxisLineDashedLine();
+        yAxis.setTextColor(Color.WHITE);
+        //barChart.setNoDataTextColor(Color.WHITE);
+        barChart.setDrawBorders(false);
+        barChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
+        barChart.setBorderColor(Color.TRANSPARENT);
+        barChart.getLegend().setTextColor(Color.WHITE);
+        barChart.getLegend().setTextSize(10);
+
+        data4.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.WHITE);
+        data4.setValueTextSize(20);
+        data.setValueTextSize(20);
+
+        yAxis.disableGridDashedLine();
         return barChart;
     }
 
