@@ -46,9 +46,11 @@ public class ExpenseFeed extends AppCompatActivity {
             public void onClick(View view, int position) {
             }
         };
-                expenses = Expense.getExpenses();
+
+        expenses = Expense.getExpenses();
 
         mAdapter = new ExpenseAdapter(expenses,listener);
+
         //launchDetailActivity(position);
 
         /*MyAdaptor.RecyclerViewClickListener listener = new MyAdaptor.RecyclerViewClickListener() {
@@ -60,6 +62,7 @@ public class ExpenseFeed extends AppCompatActivity {
         };
         mAdapter = new ExpenseAdapter(Expense.getExpenses(),listener);
         */
+
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,22 +76,13 @@ public class ExpenseFeed extends AppCompatActivity {
 
         barChart();
 
-
-
-
     }
-
-
-
-
-
 
     /*public void launchDetailActivity(int position){
         Intent intent = new Intent(this,DetaillActivity.class);
         intent.putExtra("message",position);
         startActivity(intent);
     } */
-
 
     private void ClickAddExpense() {
         Intent intent = new Intent(this, AddExpense.class);
