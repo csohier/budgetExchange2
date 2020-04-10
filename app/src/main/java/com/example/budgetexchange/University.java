@@ -9,6 +9,10 @@ public class University {
     private String country;
     private String region;
 
+    public University () {
+        //Empty Constructor
+    }
+
     public University(String name, String discipline, String country, String region) {
         this.name = name;
         this.discipline = discipline;
@@ -16,38 +20,23 @@ public class University {
         this.region=region;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getDiscipline() {
-        return discipline;
-    }
+    public String getDiscipline() { return discipline; }
 
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
+    public void setDiscipline(String discipline) { this.discipline = discipline; }
 
-    public String getCountry() {
-        return country;
-    }
+    public String getCountry() { return country; }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+    public void setCountry(String country) { this.country = country; }
 
-    public String getRegion() {
-        return region;
-    }
+    public String getRegion() { return region; }
 
-    public void setRegion(String region) {
-        this.region = region;
-    }
+    public void setRegion(String region) { this.region = region; }
 
+    //ArrayList for Universities
     public static ArrayList<University> getUniversities (){
         ArrayList<University> universities = new ArrayList<>();
         universities.add(new University("McGill University","Faculty of Law","Canada","North America"));
@@ -61,11 +50,10 @@ public class University {
 
     }
 
-    public static University searchUniversity(int position) {
-        for(int i = 0; i > getUniversities().size(); i++)
-            if(i==position){
-                return getUniversities().get(i);
-            }
+    //Search Function of Universities
+    public static University searchUniversity (String search) {
+        ArrayList<University> universities = getUniversities();
+        for (int i = 0; i < universities.size(); i++) { if (search.equals(universities.get(i).name)) { return universities.get(i);} }
         return null;
     }
 

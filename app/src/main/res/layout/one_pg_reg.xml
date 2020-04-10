@@ -51,11 +51,11 @@
                 android:id="@+id/fName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:ems="10"
+                android:hint="First Name"
                 android:inputType="textPersonName"
-                android:text="First Name"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvLastName"
@@ -71,13 +71,13 @@
                 android:id="@+id/lName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="Last Name"
                 android:inputType="textPersonName"
-                android:text="Last Name"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvPassword"
@@ -93,13 +93,13 @@
                 android:id="@+id/password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="@string/prompt_password"
                 android:inputType="textPassword"
-                android:text="Password"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvConPassword"
@@ -112,14 +112,13 @@
                 android:layout_columnSpan="1"/>
 
             <EditText
-                android:id="@+id/conPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:ems="10"
+                android:hint="Retype Password"
                 android:inputType="textPassword"
-                android:text="Retype Password"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvZID"
@@ -135,11 +134,11 @@
                 android:id="@+id/zID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:ems="10"
+                android:hint="zID"
                 android:inputType="text"
-                android:text="zID"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -155,11 +154,11 @@
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
                 android:ems="10"
+                android:hint="zID@student.unsw.edu.au"
                 android:inputType="textEmailAddress"
-                android:text="email address"
-                android:textSize="12sp"
-                android:layout_columnSpan="2"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvExDetail"
@@ -188,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
-                android:text="University"
+                android:hint="Select University"
                 android:textSize="12sp" />
 
             <TextView
@@ -207,8 +206,8 @@
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
                 android:ems="10"
+                android:hint="Discipline"
                 android:inputType="text"
-                android:text="Discipline"
                 android:textSize="12sp" />
 
             <TextView

@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Filter;
+import android.widget.ListAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class regPgOne extends AppCompatActivity {
 
@@ -26,7 +25,12 @@ public class regPgOne extends AppCompatActivity {
 
         university = (AutoCompleteTextView) findViewById(R.id.university);
 
-        ArrayAdapter<University> adapter = new ArrayAdapter<> (this, android.R.layout.simple_dropdown_item_1line, University.getUniversities());
+
+        //Adapter for holding the data view
+        ArrayAdapter<University> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line,
+                University.getUniversities());
+
         university.setAdapter(adapter);
 
         insertStudent = (Button) findViewById(R.id.insertStudent);
@@ -54,7 +58,7 @@ public class regPgOne extends AppCompatActivity {
                     discipline.getText().toString(),
                     university.getText().toString(),
                     stDate.getText().toString(),
-                    Float.valueOf(wkIncome.getText().toString())
+                    Float.parseFloat(wkIncome.getText().toString())
                 );
 
                 //need to fix float value of wkIncome and add scroll view
