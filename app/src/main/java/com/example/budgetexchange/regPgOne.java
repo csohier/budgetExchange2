@@ -8,28 +8,32 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class regPgOne extends AppCompatActivity {
 
     EditText fName, lName, password, zID, email, discipline, stDate, wkIncome;
     AutoCompleteTextView university;
     Button insertStudent;
+    private List<String> universityList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_pg_reg);
+        universityList = new ArrayList<>();
+        universityList.add(new University().getName());
 
         university = (AutoCompleteTextView) findViewById(R.id.university);
 
 
         //Adapter for holding the data view
-        ArrayAdapter<University> adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line,
-                University.getUniversities());
+                universityList);
 
         university.setAdapter(adapter);
 
