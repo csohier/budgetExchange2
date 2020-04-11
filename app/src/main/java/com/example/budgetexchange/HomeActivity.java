@@ -45,7 +45,12 @@ public class HomeActivity extends AppCompatActivity {
                 openProfileActivity();
             }
         });
-
+        svgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSavingActivity();
+            }
+        });
 
 
     }
@@ -61,8 +66,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         }
         private void openSavingActivity() {
-        // implementation to be completed
-        Intent intent = new Intent (this, HomeActivity.class);
+        Intent intent = new Intent (this, Savings.class);
             Log.d(TAG, "open Saving Activity");
             startActivity(intent);
         }

@@ -12,6 +12,7 @@
         <activity
             android:name=".AddExpense"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Savings" />
         <activity android:name=".ExpenseFeed" />
         <activity android:name=".SocialFeedDetailActivity" />
         <activity android:name=".ProfileActivity" />
