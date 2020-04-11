@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity {
+    private static final String TAG = "Home Activity";
     private ImageButton expBtn, svgBtn, sclBtn,prfBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +46,23 @@ public class HomeActivity extends AppCompatActivity {
 
         private void openProfileActivity() {
             Intent intent = new Intent (this, ProfileActivity.class);
+            Log.d(TAG, "open Profile Activity");
             startActivity(intent);
         }
         private void openExpenseActivity() {
             Intent intent = new Intent (this, ExpenseFeed.class);
+            Log.d(TAG, "open Expense Activity");
             startActivity(intent);
         }
         private void openSavingActivity() {
         // implementation to be completed
         Intent intent = new Intent (this, HomeActivity.class);
+            Log.d(TAG, "open Saving Activity");
             startActivity(intent);
         }
         private void openSocialActivity() {
             Intent intent = new Intent (this, SocialFeedActivity.class);
+            Log.d(TAG, "open Social Activity");
             startActivity(intent);
         }
 }
