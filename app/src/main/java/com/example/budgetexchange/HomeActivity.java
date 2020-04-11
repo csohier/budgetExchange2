@@ -7,19 +7,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home Activity";
+
     private ImageButton expBtn, svgBtn, sclBtn,prfBtn;
+    private TextView zID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        zID = findViewById(R.id.zID);
         expBtn = findViewById(R.id.imageButton4);
         svgBtn = findViewById(R.id.imageButton5);
         sclBtn = findViewById(R.id.imageButton7);
         prfBtn = findViewById(R.id.imageButton6);
+
+        zID.setText(regPgOne.NEW_USERNAME);
 
         expBtn.setOnClickListener(new View.OnClickListener() {
             @Override
