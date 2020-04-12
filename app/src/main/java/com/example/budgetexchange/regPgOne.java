@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class regPgOne extends AppCompatActivity {
@@ -38,6 +41,7 @@ public class regPgOne extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         discipline = (EditText) findViewById(R.id.discipline);
         stDate = (EditText) findViewById(R.id.stDate);
+
         wkIncome = (EditText) findViewById(R.id.wkIncome);
 
         //Adapter for holding the data view
@@ -60,8 +64,8 @@ public class regPgOne extends AppCompatActivity {
                 email.getText().toString(),
                 discipline.getText().toString(),
                 university.getText().toString(),
-                stDate.getText().toString(),
                 Float.parseFloat(wkIncome.getText().toString())
+                startDate();
             )
 
              */
@@ -112,6 +116,22 @@ public class regPgOne extends AppCompatActivity {
     }
 
     public void enterDataToDatabase() {
+
+    }
+
+    private String startDate (String date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = date;
+
+        try {
+            Date startDate = formatter.parse(dateString);
+            startDate = formatter.parse(stDate.getText().toString());
+
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        return date;
 
     }
 
