@@ -18,6 +18,7 @@ public class Students {
     public static ArrayList<Students> students;
     public static String currUser;
     public static ArrayList<Goal> goals;
+    public static ArrayList<Expense> expenses;
 
 
     public Students () {

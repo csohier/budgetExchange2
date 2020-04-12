@@ -102,7 +102,7 @@
                 android:background="@drawable/btn"
                 android:elevation="5dp"
                 android:hint="Date: dd/MM/yyyy"
-                android:inputType="date"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColorHint="@android:color/tertiary_text_light" />
 

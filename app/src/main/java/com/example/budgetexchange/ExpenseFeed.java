@@ -35,6 +35,7 @@ public class ExpenseFeed extends AppCompatActivity {
     private BarChart barChart;
     static int counter;
     private int max;
+    private int expenseTotal;
 
 
     @Override
@@ -104,7 +105,7 @@ public class ExpenseFeed extends AppCompatActivity {
 
     private BarChart barChart(){
         barChart = findViewById(R.id.barChart);
-        ArrayList<BarEntry> expenses = new ArrayList<>();
+        ArrayList<BarEntry> maxSpend = new ArrayList<>();
 
         //max spend means maximum amount that can be spent in a week
         //calculation = weekly income - [ savings goal/(end date - start date in weeks) ]
@@ -113,16 +114,30 @@ public class ExpenseFeed extends AppCompatActivity {
                 max=a.getIncome() - (a.getGoal()/(a.getWeeks()));
             }
         }
-        expenses.add(new BarEntry(0,max));
-        BarDataSet data = new BarDataSet(expenses,"Max Spend");
-        ArrayList<BarEntry> expenses2 = new ArrayList<>();
-        expenses2.add(new BarEntry(1,150));
-        BarDataSet data4 = new BarDataSet(expenses2,"Total Spend");
+        maxSpend.add(new BarEntry(0,max));
+        BarDataSet data = new BarDataSet(maxSpend,"Max Spend");
+        ArrayList<BarEntry> actualSpend = new ArrayList<>();
+
+        //actual spend means how much has been spent in total in the current week based on current expenses
+        // requires a for loop to iterate through all expenses
+        // check for condition returning expenses made in the current week
+        // sum all expenses
+        expenseTotal = 0;
+        for(Expense a: Expense.expenses){
+            System.out.println("Current Week :" + Expense.currentWeek);
+            if(a.getzID().equals(Students.currUser) && Expense.currentWeek==a.getWeek()){
+                expenseTotal = expenseTotal + (int)a.getAmount();
+
+            }
+        }
+
+        actualSpend.add(new BarEntry(1,expenseTotal));
+        BarDataSet data4 = new BarDataSet(actualSpend,"Total Spend");
         BarData data2 = new BarData(data,data4);
         data4.setColors(Color.YELLOW);
         data.setColors(Color.MAGENTA);
         barChart.setData(data2);
-        barChart.getBarBounds(expenses.get(0));
+        barChart.getBarBounds(maxSpend.get(0));
         YAxis yAxis = barChart.getAxisLeft();
         yAxis.setAxisMinimum(0);
         //yAxis.setDrawLabels(false);

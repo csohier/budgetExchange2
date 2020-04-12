@@ -1,6 +1,7 @@
 package com.example.budgetexchange;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +12,14 @@ import java.util.List;
 
 public class Expense {
 
+    private String zID;
     private double amount;
     private String type;
     private int week;
     private String date;
     private String description;
     public static ArrayList<Expense> expenses;
+    public static int currentWeek;
 
     public Expense() {
     }
@@ -26,6 +29,7 @@ public class Expense {
         this.type = type;
         this.date = date;
         week = weekCreate(date);
+        zID = Students.currUser;
     }
 
     public Expense(double amount, String type, String date, String description) {
@@ -34,6 +38,9 @@ public class Expense {
         this.date = date;
         this.description = description;
         week = weekCreate(date);
+        zID=Students.currUser;
+
+
     }
 
     public double getAmount() {
@@ -76,12 +83,22 @@ public class Expense {
         this.date = date;
     }
 
+    public String getzID() {
+        return zID;
+    }
+
+    public void setzID(String zID) {
+        this.zID = zID;
+    }
+
     public static ArrayList<Expense> getExpenses (){
         expenses = new ArrayList<>();
         expenses.add(new Expense(201.00,"Food","04/04/2020"));
         expenses.add(new Expense(75.50,"Leisure", "11/04/2020"));
         expenses.add(new Expense(55.50,"Fees","18/04/2020"));
+
         return expenses;
+
 
     }
 
@@ -103,5 +120,25 @@ public class Expense {
             e.printStackTrace();
         }
         return week;
+    }
+
+    private int currentWeek() throws ParseException {
+        Calendar calendar = new GregorianCalendar();
+        //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        int currentWeek;
+        Date newDate = new Date();
+        //Date newDate = df.parse(df.format(new Date()));
+        //String dateString = df.format(newDate);
+        //Date finalDate = df.parse(dateString);
+        Calendar cl = Calendar.getInstance();
+        cl.setTime(newDate);
+        System.out.println("Week CURRENT :" +
+                cl.get(Calendar.WEEK_OF_YEAR));
+        currentWeek =  cl.get(Calendar.WEEK_OF_YEAR);
+        return currentWeek;
+
+
+
+
     }
 }
