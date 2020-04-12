@@ -16,7 +16,7 @@ public class Students {
     private String stDate;
     private Float wkIncome;
     public static ArrayList<Students> students;
-    public static Students currUser;
+    public static String currUser;
     public static ArrayList<Goal> goals;
 
 

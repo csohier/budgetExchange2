@@ -34,6 +34,7 @@ public class ExpenseFeed extends AppCompatActivity {
     //private PieChart pieChart;
     private BarChart barChart;
     static int counter;
+    private int max;
 
 
     @Override
@@ -42,6 +43,10 @@ public class ExpenseFeed extends AppCompatActivity {
         setContentView(R.layout.activity_expense_feed);
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
         recyclerView.setHasFixedSize(true);
+
+        for(Goal a: Students.goals){
+            System.out.println("WEEKS :" + a.getWeeks());
+        }
 
         ExpenseAdapter.RecyclerViewClickListener listener = new ExpenseAdapter.RecyclerViewClickListener() {
             @Override
@@ -100,7 +105,15 @@ public class ExpenseFeed extends AppCompatActivity {
     private BarChart barChart(){
         barChart = findViewById(R.id.barChart);
         ArrayList<BarEntry> expenses = new ArrayList<>();
-        expenses.add(new BarEntry(0,190));
+
+        //max spend means maximum amount that can be spent in a week
+        //calculation = weekly income - [ savings goal/(end date - start date in weeks) ]
+        for(Goal a: Students.goals){
+            if(a.getzID().equals(Students.currUser)){
+                max=a.getIncome() - (a.getGoal()/(a.getWeeks()));
+            }
+        }
+        expenses.add(new BarEntry(0,max));
         BarDataSet data = new BarDataSet(expenses,"Max Spend");
         ArrayList<BarEntry> expenses2 = new ArrayList<>();
         expenses2.add(new BarEntry(1,150));
