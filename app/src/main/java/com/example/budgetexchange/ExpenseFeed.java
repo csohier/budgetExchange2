@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.ColorFormatter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ExpenseFeed extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -32,6 +33,7 @@ public class ExpenseFeed extends AppCompatActivity {
     private static ArrayList<Expense> expenses;
     //private PieChart pieChart;
     private BarChart barChart;
+    static int counter;
 
 
     @Override
@@ -47,9 +49,14 @@ public class ExpenseFeed extends AppCompatActivity {
             }
         };
 
-        expenses = Expense.getExpenses();
 
-        mAdapter = new ExpenseAdapter(expenses,listener);
+        if(counter==0) {
+            mAdapter = new ExpenseAdapter(Expense.getExpenses(), listener);
+        } else {
+            mAdapter = new ExpenseAdapter(Expense.expenses,listener);
+
+        }
+
 
         //launchDetailActivity(position);
 
@@ -70,6 +77,7 @@ public class ExpenseFeed extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                counter++;
                 ClickAddExpense();
             }
         });

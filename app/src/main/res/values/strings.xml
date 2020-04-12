@@ -12,6 +12,13 @@
     <string name="invalid_type">"Invalid Type"</string>
     <string name="invalid_date">"Invalid Format: Try "DD/MM/YYYY"</string>
     <string name="invalid_week">"Invalid Number"</string>
+    <string-array name="category">
+        <item>Food</item>
+        <item>Transport</item>
+        <item>Utilities</item>
+        <item>Miscellaneous</item>
+        <item>Personal</item>
+    </string-array>
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -33,7 +33,7 @@ dependencies {
     implementation 'com.basgeekball:awesome-validation:4.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "androidx.cardview:cardview:1.0.0"
-
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
 
 
 

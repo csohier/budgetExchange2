@@ -85,17 +85,14 @@
                 android:paddingLeft="15dp"
                 android:textColorHint="@android:color/tertiary_text_light" />
 
-            <EditText
-                android:id="@+id/exType"
+            <Spinner
+                android:id="@+id/spinner"
                 android:layout_width="280dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn"
-                android:elevation="5dp"
                 android:hint="Type"
-                android:inputType="text"
-                android:paddingLeft="15dp"
-                android:textColorHint="@android:color/tertiary_text_light" />
+                />
 
             <EditText
                 android:id="@+id/exDate"
@@ -104,20 +101,20 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
-                android:hint="Date"
+                android:hint="Date: dd/MM/yyyy"
                 android:inputType="date"
                 android:paddingLeft="15dp"
                 android:textColorHint="@android:color/tertiary_text_light" />
 
             <EditText
-                android:id="@+id/exWeek"
+                android:id="@+id/description"
                 android:layout_width="280dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn"
                 android:elevation="5dp"
-                android:hint="Week"
-                android:inputType="textPassword"
+                android:hint="Optional description"
+                android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textColorHint="@android:color/tertiary_text_light" />
 
