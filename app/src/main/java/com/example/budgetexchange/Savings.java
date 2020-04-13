@@ -20,10 +20,8 @@ HorizontalBarChart chart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_savings);
+        setContentView(R.layout.savings);
         //Weeks to go, Saved so far, Saved this week
-
-        chart = (HorizontalBarChart) findViewById(R.id.chart1);
 
         setData(5, 50000);
     }
