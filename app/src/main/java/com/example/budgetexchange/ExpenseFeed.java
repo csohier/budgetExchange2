@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -19,11 +20,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.ColorFormatter;
-
-import java.time.LocalDate;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ExpenseFeed extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -31,11 +29,11 @@ public class ExpenseFeed extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button button;
     private static ArrayList<Expense> expenses;
-    //private PieChart pieChart;
     private BarChart barChart;
     static int counter;
     private int max;
     private int expenseTotal;
+    private TextView spendInfo;
 
 
     @Override
@@ -44,11 +42,11 @@ public class ExpenseFeed extends AppCompatActivity {
         setContentView(R.layout.activity_expense_feed);
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
         recyclerView.setHasFixedSize(true);
+        spendInfo = findViewById(R.id.spendInfo);
 
         for(Goal a: Students.goals){
             System.out.println("WEEKS :" + a.getWeeks());
         }
-
         ExpenseAdapter.RecyclerViewClickListener listener = new ExpenseAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -88,7 +86,14 @@ public class ExpenseFeed extends AppCompatActivity {
             }
         });
 
-        barChart();
+        try {
+            barChart();
+            setText();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 
@@ -103,7 +108,7 @@ public class ExpenseFeed extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private BarChart barChart(){
+    private BarChart barChart() throws ParseException {
         barChart = findViewById(R.id.barChart);
         ArrayList<BarEntry> maxSpend = new ArrayList<>();
 
@@ -124,8 +129,9 @@ public class ExpenseFeed extends AppCompatActivity {
         // sum all expenses
         expenseTotal = 0;
         for(Expense a: Expense.expenses){
-            System.out.println("Current Week :" + Expense.currentWeek);
-            if(a.getzID().equals(Students.currUser) && Expense.currentWeek==a.getWeek()){
+            System.out.println("Current Week :" + Expense.currentWeek());
+            if(a.getzID().equals(Students.currUser) && Expense.currentWeek()==a.getWeek()){
+                //sum all expenses
                 expenseTotal = expenseTotal + (int)a.getAmount();
 
             }
@@ -172,6 +178,17 @@ public class ExpenseFeed extends AppCompatActivity {
         //take in goal date and current date time value to derive weeks
 
     //}
+
+    public void setText(){
+        if(expenseTotal>max) {
+            spendInfo.setText("You are over budget by $" + (max-expenseTotal));
+        } else if (expenseTotal==max){
+            spendInfo.setText("Spend any more and you'll be over budget.");
+
+        }else {
+            spendInfo.setText("You have $" + (max-expenseTotal) + " to spend until you're over budget.");
+        }
+    }
 
 
 }

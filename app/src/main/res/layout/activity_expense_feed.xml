@@ -17,14 +17,26 @@
 
     </ScrollView>
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="257dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="194dp"
-        >
+        android:orientation="horizontal">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="236dp"
+            android:layout_height="194dp">
 
 
-    </com.github.mikephil.charting.charts.BarChart>
+        </com.github.mikephil.charting.charts.BarChart>
+
+        <TextView
+            android:id="@+id/spendInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/AddBar"

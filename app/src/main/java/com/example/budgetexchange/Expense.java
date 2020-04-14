@@ -18,7 +18,7 @@ public class Expense {
     private int week;
     private String date;
     private String description;
-    public static ArrayList<Expense> expenses;
+    public static ArrayList<Expense> expenses = new ArrayList<>();
     public static int currentWeek;
 
     public Expense() {
@@ -38,7 +38,7 @@ public class Expense {
         this.date = date;
         this.description = description;
         week = weekCreate(date);
-        zID=Students.currUser;
+        zID = Students.currUser;
 
 
     }
@@ -91,11 +91,11 @@ public class Expense {
         this.zID = zID;
     }
 
-    public static ArrayList<Expense> getExpenses (){
+    public static ArrayList<Expense> getExpenses() {
         expenses = new ArrayList<>();
-        expenses.add(new Expense(201.00,"Food","04/04/2020"));
-        expenses.add(new Expense(75.50,"Leisure", "11/04/2020"));
-        expenses.add(new Expense(55.50,"Fees","18/04/2020"));
+        expenses.add(new Expense(201.00, "Food", "04/04/2020"));
+        expenses.add(new Expense(75.50, "Miscellaneous", "11/04/2020"));
+        expenses.add(new Expense(55.50, "Personal", "18/04/2020"));
 
         return expenses;
 
@@ -103,7 +103,7 @@ public class Expense {
     }
 
 
-    private int weekCreate(String date){
+    private int weekCreate(String date) {
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dateString = date;
@@ -113,32 +113,36 @@ public class Expense {
             calendar.setTime(newDate);
             System.out.println("Week number:" +
                     calendar.get(Calendar.WEEK_OF_YEAR));
-            week =  calendar.get(Calendar.WEEK_OF_YEAR);
+            week = calendar.get(Calendar.WEEK_OF_YEAR);
 
 
-        } catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return week;
     }
 
-    private int currentWeek() throws ParseException {
+    public static int currentWeek() throws ParseException {
         Calendar calendar = new GregorianCalendar();
-        //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        int currentWeek;
         Date newDate = new Date();
-        //Date newDate = df.parse(df.format(new Date()));
-        //String dateString = df.format(newDate);
-        //Date finalDate = df.parse(dateString);
         Calendar cl = Calendar.getInstance();
         cl.setTime(newDate);
         System.out.println("Week CURRENT :" +
                 cl.get(Calendar.WEEK_OF_YEAR));
-        currentWeek =  cl.get(Calendar.WEEK_OF_YEAR);
+        currentWeek = cl.get(Calendar.WEEK_OF_YEAR);
         return currentWeek;
 
+    }
 
-
+    public static int getSumOfExpenses(ArrayList<Expense> expenses) {
+        int expenseTotal = 0;
+        for (Expense a : expenses) {
+            if (a.getzID().equals(Students.currUser)) {
+                expenseTotal = expenseTotal + (int) a.getAmount();
+            }
+        }
+        return expenseTotal;
 
     }
+
 }

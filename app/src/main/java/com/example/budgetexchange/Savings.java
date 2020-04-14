@@ -3,8 +3,10 @@ package com.example.budgetexchange;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -17,21 +19,42 @@ import java.util.List;
 
 public class Savings extends AppCompatActivity {
 HorizontalBarChart chart;
+private TextView ttlSaved;
+private TextView leftover;
+private TextView savingGoal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.savings);
-        //Weeks to go, Saved so far, Saved this week
+        setContentView(R.layout.activity_savings);
 
+        savingGoal = findViewById(R.id.savingGoal);
+        leftover = findViewById(R.id.leftover);
+        ttlSaved = findViewById(R.id.ttlSaved);
+        for(Goal a : Students.goals){
+            if(a.getzID().equals(Students.currUser)){
+                savingGoal.setText("$" + Integer.toString(a.getGoal()));
+                int totalSaved = (a.getIncome()*a.getWeeksIntoGoal())-Expense.getSumOfExpenses(Expense.expenses);
+                System.out.println("testttttt"+ a.getWeeksIntoGoal());
+                ttlSaved.setText("$" +Integer.toString(totalSaved));
+                leftover.setText("$" + Integer.toString(a.getGoal()-totalSaved));
+
+            }
+            //leftover = overall goal - total saved
+            //ttlSaved = income to date - total sum of expenses
+        }
+
+
+        //Weeks to go, Saved so far, Saved this week
+        chart = findViewById(R.id.chart1);
         setData(5, 50000);
     }
 
     private void setData(int count, int range){
-        //current week
         Date currentDate = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(currentDate);
         int currentWeek = calendar.get(Calendar.WEEK_OF_YEAR);
+        System.out.println("current week is " + currentWeek);
 
         //create a counter for each category
         float[] categoryValues = new float[5];
@@ -46,7 +69,7 @@ HorizontalBarChart chart;
         //BarDataSet data4 = new BarDataSet(expenses2,"Total Spend");
 
         List<List<BarEntry>> expenses = new ArrayList<>();
-        BarDataSet[] dataSet = new BarDataSet[5];
+        List<BarDataSet> dataSet = new ArrayList<>();
         ArrayList<BarEntry> yValues = new ArrayList<>();
         String[] categories = {"food","utilities","transport","miscellaneous","personal"};
         float barWidth = 9f;
@@ -58,20 +81,22 @@ HorizontalBarChart chart;
             //create a bar for each category
             //calculation for expense in a week
             for(int b = 0; b<Expense.expenses.size();b++){
-                if(Expense.expenses.get(b).getType().equals(categories[i]) && Expense.expenses.get(b).getWeek()==currentWeek){
+                System.out.println(Expense.expenses.get(b).getWeek());
+                if(Expense.expenses.get(b).getType().toLowerCase().equals(categories[i]) && Expense.expenses.get(b).getWeek()==currentWeek){
 
                     categoryValues[i] = categoryValues[i] + (float)Expense.expenses.get(b).getAmount();
-
-
+                    System.out.println("category " + categoryValues[i]);
 
 
                 }
-                BarEntry barD = new BarEntry(i,categoryValues[i]);
-                yValues.clear();
-                yValues.add(barD);
-                dataSet[i] = new BarDataSet(yValues,categories[i]);
 
             }
+
+            BarEntry barD = new BarEntry(i*spaceForBar,categoryValues[i]);
+            yValues.clear();
+            yValues.add(barD);
+            dataSet.add(new BarDataSet(yValues,categories[i]));
+            System.out.println("yvalues AT "  + i + yValues);
 
 
             //name bar based on category
@@ -79,10 +104,19 @@ HorizontalBarChart chart;
 
         }
 
-        BarData data2 = new BarData(dataSet[0],dataSet[1],dataSet[2],dataSet[3],dataSet[4]);
+        BarData data2 = new BarData(dataSet.get(0),dataSet.get(1),dataSet.get(2),dataSet.get(3),dataSet.get(4));
+        dataSet.get(0).setColor(R.color.green);
+        dataSet.get(1).setColor(R.color.yellow);
+        dataSet.get(2).setColor(R.color.red);
+        dataSet.get(3).setColor(R.color.medium);
+        dataSet.get(4).setColor(R.color.medium);
 
         data2.setBarWidth(barWidth);
         chart.setData(data2);
+        chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
+        chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        chart.getLegend().setWordWrapEnabled(true);
+
 
 
 
