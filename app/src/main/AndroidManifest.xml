@@ -15,7 +15,17 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Savings" />
         <activity android:name=".ExpenseFeed" />
-        <activity android:name=".SocialFeedDetailActivity" />
+        <activity android:name=".SocialFeedDetailActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:host="www.reddit.com"
+                android:scheme="https"
+                />
+        </intent-filter>
+        </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SocialFeedActivity" />
         <activity android:name=".HomeActivity" />
