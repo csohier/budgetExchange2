@@ -10,48 +10,54 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.SocialFeedViewHolder> {
-   private ArrayList<SocialFeed> mDataset;
-    private OnNoteListener mOnNoteListener;
+public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.MyViewHolder> {
+    private RecyclerViewClickListener mListener;
 
-    public SocialFeedAdapter(ArrayList<SocialFeed> myDataset, OnNoteListener onNoteListener) {
-        this.mDataset = myDataset;
-        this.mOnNoteListener = onNoteListener;
-    }
-    @NonNull
-    @Override
-    public SocialFeedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list, parent, false);
-        SocialFeedViewHolder SocialFeedViewHolder = new SocialFeedViewHolder(view, mOnNoteListener);
-        return SocialFeedViewHolder;
-    }
-    @Override
-    public void onBindViewHolder(@NonNull SocialFeedViewHolder holder, int position) {
-        SocialFeed currentFeed = mDataset.get(position);
-        holder.textView.setText(currentFeed.getTitle());
-    }
-    @Override
-    public int getItemCount() {
-        return mDataset.size();
+    public SocialFeedAdapter(ArrayList<SocialFeed> myDataset, RecyclerViewClickListener listener) {
+        SocialFeed.socialFeed = myDataset;
+        this.mListener = listener;
     }
 
-    public class SocialFeedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView textView;
-        OnNoteListener onNoteListener;
+    public interface RecyclerViewClickListener {
+        void onClick(View view, int position);
+    }
 
-        public SocialFeedViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
-            super(itemView);
-            textView = itemView.findViewById(R.id.textView);
-            itemView.setOnClickListener(this);
-            this.onNoteListener = onNoteListener;
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView text;
+        private RecyclerViewClickListener mListener;
+
+
+        public MyViewHolder(View v,RecyclerViewClickListener listener) {
+            super(v);
+            mListener = listener;
+            v.setOnClickListener(this);
+            text = v.findViewById(R.id.textView8);
         }
 
         @Override
-        public void onClick(View v) {
-            onNoteListener.onNoteClick(getAdapterPosition());
+        public void onClick(View view){
+            mListener.onClick(view,getAdapterPosition());
         }
+
+
     }
-    public interface OnNoteListener {
-        void onNoteClick(int position);
+
+    @NonNull
+    @Override
+    public SocialFeedAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list, parent, false);
+        MyViewHolder SocialFeedViewHolder = new MyViewHolder(view, mListener);
+        return SocialFeedViewHolder;
     }
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        SocialFeed currentFeed = SocialFeed.socialFeed.get(position);
+        holder.text.setText(currentFeed.getTitle());
+    }
+    @Override
+    public int getItemCount() {
+        return SocialFeed.socialFeed.size();
+    }
+
+
 }

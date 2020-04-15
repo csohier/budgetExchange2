@@ -6,6 +6,7 @@ public class SocialFeed {
     //    name , type, location and rating are required details. The image, price and the search option are just for aesthetics
     private String title;
     private String content;
+    public static ArrayList<SocialFeed> socialFeed = new ArrayList<>();
 
     public SocialFeed() {
     }
@@ -33,9 +34,9 @@ public class SocialFeed {
 
 
     public static ArrayList<SocialFeed> getSocialFeed() {
-        ArrayList<SocialFeed> restC = new ArrayList<>();
-        restC.add(new SocialFeed("Test", "content"));
+        socialFeed = new ArrayList<>();
+        socialFeed.add(new SocialFeed("Test", "content"));
 
-        return restC;
+        return socialFeed;
     }
 }

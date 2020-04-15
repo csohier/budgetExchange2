@@ -2,11 +2,14 @@ package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -111,11 +114,27 @@ private TextView savingGoal;
         dataSet.get(3).setColor(R.color.medium);
         dataSet.get(4).setColor(R.color.medium);
 
+
+
         data2.setBarWidth(barWidth);
         chart.setData(data2);
         chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
         chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         chart.getLegend().setWordWrapEnabled(true);
+        chart.setDrawBorders(false);
+        YAxis yAxis = chart.getAxisLeft();
+        yAxis.setAxisMinimum(0);
+        //yAxis.setDrawLabels(false);
+        YAxis yAxis2 = chart.getAxisRight();
+        yAxis2.setDrawGridLines(false);
+        yAxis2.setDrawLabels(true);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setDrawLabels(false);
+        xAxis.setDrawGridLines(false);
+        yAxis.setDrawGridLines(false);
+        yAxis.disableAxisLineDashedLine();
+        yAxis.setTextColor(Color.WHITE);
+
 
 
 
