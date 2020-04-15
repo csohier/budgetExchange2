@@ -105,19 +105,39 @@ public class regPgOne extends AppCompatActivity {
             for(int i = 0; i < Students.getStudents().size(); i++) {
 
                 if (Students.getStudents().get(i).getzID().equals(String.valueOf(zID))){
-                    Toast.makeText(this, "Username has been taken", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "ID has been taken");
                 }
 
                 else {
                     Log.d(TAG, "Passed validation");
                     // enterDataToDatabase;
-                    openHomeActivity();
+
+                    universityCheck();
+
+
                 }
             }
 
         }
     }
+
+    public void universityCheck() {
+        for(int j = 0; j < University.getUniversities().size(); j++) {
+
+            if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getText()))){
+                Log.d(TAG, "University is in the Arraylist");
+                openLoginActivity();
+
+            }
+
+            else {
+                Log.d(TAG, "University is not on the list");
+                Toast.makeText(this, "University is not on the list", Toast.LENGTH_SHORT).show();
+                // enterDataToDatabase;
+            }
+        }
+    }
+
 
     public void enterDataToDatabase() {
 
@@ -137,8 +157,8 @@ public class regPgOne extends AppCompatActivity {
         return date;
     }
 
-    private void openHomeActivity() {
-        Intent intent = new Intent(this, HomeActivity.class);
+    private void openLoginActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(NEW_USERNAME, zID.getText().toString());
         startActivity(intent);
     }
