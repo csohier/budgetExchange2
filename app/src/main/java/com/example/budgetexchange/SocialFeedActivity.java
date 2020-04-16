@@ -1,9 +1,6 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +11,6 @@ import android.view.View;
 
 import com.example.budgetexchange.Reddit.DataDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,7 +28,7 @@ public class SocialFeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_feed);
-//        Setting up recyclerView:
+        //Setting up recyclerView:
         //ArrayList<SocialFeed> SocialFeedArrayList =
         SocialFeed.getSocialFeed();
         recyclerView = (RecyclerView) findViewById(R.id.rView);
