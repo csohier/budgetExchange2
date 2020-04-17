@@ -134,6 +134,9 @@ private TextView savingGoal;
         yAxis.setDrawGridLines(false);
         yAxis.disableAxisLineDashedLine();
         yAxis.setTextColor(Color.WHITE);
+        chart.setDrawBarShadow(false);
+        chart.setDrawValueAboveBar(true);
+        chart.setDrawGridBackground(true);
 
 
 

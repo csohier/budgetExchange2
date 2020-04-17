@@ -2,13 +2,25 @@ package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+
+import java.util.UUID;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -18,25 +30,33 @@ import okhttp3.RequestBody;
 public class SocialFeedDetailActivity extends AppCompatActivity {
     private TextView title;
     private TextView content;
-    private static final String AUTH_URL =
-            "https://www.reddit.com/api/v1/authorize.compact?client_id=%s" +
-                    "&response_type=code&state=%s&redirect_uri=%s&" +
-                    "duration=permanent&scope=identity";
+    private static String CLIENT_ID = "YOUR CLIENT_ID";
+    private static String CLIENT_SECRET ="";
+    private static String REDIRECT_URI="http://localhost";
+    private static String GRANT_TYPE="https://oauth.reddit.com/grants/installed_client";
+    private static String GRANT_TYPE2="authorization_code";
+    private static String TOKEN_URL ="access_token";
+    private static String OAUTH_URL ="https://www.reddit.com/api/v1/authorize";
+    private static String OAUTH_SCOPE="read";
+    private static String DURATION = "permanent";
 
-    private static final String CLIENT_ID = "ABCDEFGHIJKLM012345-AA";
+    WebView web;
+    Button auth;
+    SharedPreferences pref;
+    TextView Access;
+    Dialog auth_dialog;
+    String DEVICE_ID = UUID.randomUUID().toString();
+    String authCode;
+    boolean authComplete = false;
 
-    private static final String REDIRECT_URI =
-            "http://www.example.com/my_redirect";
+    Intent resultIntent = new Intent();
 
-    private static final String STATE = "MY_RANDOM_STRING_1";
-
-    private static final String ACCESS_TOKEN_URL =
-            "https://www.reddit.com/api/v1/access_token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_feed_detail);
+        auth = findViewById(R.id.button);
         title = findViewById(R.id.textView5);
         content = findViewById(R.id.textView6);
 
@@ -45,6 +65,76 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
         SocialFeed md = SocialFeed.socialFeed.get(position);
         title.setText(md.getTitle());
         content.setText(md.getContent());
+/*
+        pref = getSharedPreferences("AppPref", MODE_PRIVATE);
+        Access =(TextView)findViewById(R.id.Access);
+        auth = (Button)findViewById(R.id.auth);
+        auth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+                auth_dialog = new Dialog(SocialFeedDetailActivity.this);
+                auth_dialog.setContentView(R.layout.auth_dialog);
+                web = (WebView) auth_dialog.findViewById(R.id.webv);
+                web.getSettings().setJavaScriptEnabled(true);
+                String url = OAUTH_URL + "?client_id=" + CLIENT_ID + "&response_type=code&state=TEST&redirect_uri=" + REDIRECT_URI + "&scope=" + OAUTH_SCOPE;
+                web.loadUrl(url);
+                Toast.makeText(getApplicationContext(), "" + url, Toast.LENGTH_LONG).show();
+
+                web.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.loadUrl(url);
+                        return true;
+                    }
+                    @Override
+                    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                        super.onPageStarted(view, url, favicon);
+
+                    }
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+
+                        if (url.contains("?code=") || url.contains("&code=")) {
+
+                            Uri uri = Uri.parse(url);
+                            authCode = uri.getQueryParameter("code");
+                            Log.i("", "CODE : " + authCode);
+                            authComplete = true;
+                            resultIntent.putExtra("code", authCode);
+                            SocialFeedDetailActivity.this.setResult(Activity.RESULT_OK, resultIntent);
+                            setResult(Activity.RESULT_CANCELED, resultIntent);
+                            SharedPreferences.Editor edit = pref.edit();
+                            edit.putString("Code", authCode);
+                            edit.commit();
+                            auth_dialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Authorization Code is: " + pref.getString("Code", ""), Toast.LENGTH_SHORT).show();
+
+                            try {
+                                new RedditRestClient(getApplicationContext()).getToken(TOKEN_URL, GRANT_TYPE2, DEVICE_ID);
+                                Toast.makeText(getApplicationContext(), "Auccess Token: " + pref.getString("token", ""), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        } else if (url.contains("error=access_denied")) {
+                            Log.i("", "ACCESS_DENIED_HERE");
+                            resultIntent.putExtra("code", authCode);
+                            authComplete = true;
+                            setResult(Activity.RESULT_CANCELED, resultIntent);
+                            Toast.makeText(getApplicationContext(), "Error Occured", Toast.LENGTH_SHORT).show();
+
+                            auth_dialog.dismiss();
+                        }
+                    }
+                });
+                auth_dialog.show();
+                auth_dialog.setTitle("Authorize");
+                auth_dialog.setCancelable(true);
+
+            }
+        }); */
     }
 
     /*

@@ -91,6 +91,8 @@ public class Students {
 
     public String getStDate() { return DateFormat.getDateInstance().format(stDate); }
 
+    public String getStDateString() { return stDate; }
+
     public void setStDate(String stDate) { this.stDate = stDate; }
 
     public Float getWkIncome() { return wkIncome; }
@@ -105,13 +107,14 @@ public class Students {
         return students;
     }
 
-    public static Students searchStudents(int position) {
-        for(int i = 0; i > getStudents().size(); i++)
-            if(i==position){
-                return getStudents().get(i);
+    public static Students searchStudents(String zID) {
+        for(int i = 0; i < Students.students.size(); i++)
+            if(Students.students.get(i).zID.equals(zID)){
+                return Students.students.get(i);
             }
         return null;
     }
+
 
     public static void addStudents(String fName, String lName, String password, String zID, String email, String discipline, String university, String stDate, double wkIncome) {
     }

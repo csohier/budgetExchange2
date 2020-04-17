@@ -155,19 +155,22 @@ public class ExpenseFeed extends AppCompatActivity {
         xAxis.setDrawGridLines(false);
         yAxis.setDrawGridLines(false);
         yAxis.disableAxisLineDashedLine();
-        yAxis.setTextColor(Color.WHITE);
+        //yAxis.setTextColor(Color.WHITE);
         //barChart.setNoDataTextColor(Color.WHITE);
         barChart.setDrawBorders(false);
         barChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
         barChart.setBorderColor(Color.TRANSPARENT);
-        barChart.getLegend().setTextColor(Color.WHITE);
+        //barChart.getLegend().setTextColor(Color.WHITE);
         barChart.getLegend().setTextSize(10);
 
         data4.setValueTextColor(Color.WHITE);
         data.setValueTextColor(Color.WHITE);
         data4.setValueTextSize(20);
         data.setValueTextSize(20);
+        barChart.setDrawBarShadow(false);
+        barChart.setDrawValueAboveBar(true);
+        barChart.setDrawGridBackground(true);
 
         yAxis.disableGridDashedLine();
         return barChart;

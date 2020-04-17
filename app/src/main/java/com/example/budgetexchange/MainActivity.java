@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 Students.currUser=username;
                 Students.goals = Goal.getGoals();
                 Expense.getExpenses();
+                Students.getStudents();
                 String password = String.valueOf(passwordInput.getText());
 
                 for (int i = 0; i < Students.getStudents().size(); i++) {
