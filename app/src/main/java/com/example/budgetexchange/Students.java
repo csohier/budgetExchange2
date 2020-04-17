@@ -115,6 +115,24 @@ public class Students {
         return null;
     }
 
+    public static Goal searchGoals(String zID) {
+        for(int i = 0; i < Students.goals.size(); i++)
+            if(Students.goals.get(i).getzID().equals(zID)){
+                return Students.goals.get(i);
+            }
+        return null;
+    }
+
+
+    public boolean goalExists(String zID){
+        for(Goal a: Students.goals){
+            if(a.getzID().equals(Students.currUser)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void addStudents(String fName, String lName, String password, String zID, String email, String discipline, String university, String stDate, double wkIncome) {
     }

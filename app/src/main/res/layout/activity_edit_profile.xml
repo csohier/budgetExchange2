@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/regPgOne"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/random_background"
+    tools:context=".EditProfile">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvSave"
+        app:layout_constraintBottom_toTopOf="@id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/tvSave"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintVertical_bias="1.0">
+
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:columnCount="3"
+            android:rowCount="10">
+
+            <TextView
+                android:id="@+id/tvPerDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Detail"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:layout_columnSpan="3"
+                />
+
+            <TextView
+                android:id="@+id/tvFirstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="First Name:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/fNameE"
+                android:layout_marginTop="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvLastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Last Name:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+            android:id="@+id/lNameE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+
+            android:layout_columnSpan="2"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:ems="10"
+            android:textColorHint="#FFFFFF"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvZID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="zID:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/zIDE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Email:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/emailE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvExDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Exchange Detail"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:layout_columnSpan="3"/>
+
+            <TextView
+                android:id="@+id/tvUniversity"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="University:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"
+                />
+
+            <EditText
+                android:id="@+id/universityE"
+                android:layout_marginTop="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvDiscipline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Discipline:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/disciplineE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Start Date:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/startDateE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColor="#FFFFFF"
+
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvWkIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Weekly Income:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:layout_columnSpan="1"/>
+
+            <EditText
+                android:id="@+id/wkIncomeE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:textColor="#FFFFFF"
+
+                android:ems="10"
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvGoalsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
+                android:layout_marginTop="12dp"
+                android:text="Goals"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvGoals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
+                android:layout_marginTop="10dp"
+                android:text="Saving Goal:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/goalsAmountE"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:textColor="#FFFFFF"
+
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColorHint="#FFFFFF"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvGoalStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
+                android:layout_marginTop="10dp"
+                android:text="Start Date:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/goalStartE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColorHint="@color/details"
+                android:textColor="#FFFFFF"
+
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvGoalEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
+                android:layout_marginTop="10dp"
+                android:text="End Date:"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/goalEndE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:textColorHint="@color/details"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                android:textSize="12sp" />
+
+        </GridLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/tvSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginTop="60dp"
+        android:text="save"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintStart_toEndOf="@+id/logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="79dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="52dp"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="176dp"
+        android:layout_marginRight="176dp"
+        android:layout_marginBottom="4dp"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

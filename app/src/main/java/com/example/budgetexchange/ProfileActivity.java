@@ -2,7 +2,11 @@ package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -14,8 +18,11 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView university;
     private TextView discipline;
     private TextView startDate;
-    private TextView weeklyIncome;
+    private TextView weeklyIncome,goalAmount,goalStart,goalEnd;
+    private Button editBtn;
     private Students user;
+    private Goal goal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +37,29 @@ public class ProfileActivity extends AppCompatActivity {
         discipline = findViewById(R.id.discipline);
         startDate = findViewById(R.id.stDate);
         weeklyIncome = findViewById(R.id.wkIncome);
-        System.out.println(Students.currUser);
-        System.out.println(Students.searchStudents(Students.currUser).toString());
-
+        goalAmount = findViewById(R.id.goalsAmount);
+        goalEnd = findViewById(R.id.goalEnd);
+        goalStart = findViewById(R.id.goalStart);
         user = Students.searchStudents(Students.currUser);
+
+        String indicator, amount, start, end;
+        if(user.goalExists(user.getzID())==true){
+            goal = user.searchGoals(user.getzID());
+            amount = String.valueOf(goal.getGoal());
+            goalAmount.setText("$" + amount);
+            start = goal.getGoalStartDate();
+            goalStart.setText(start);
+            end = goal.getGoalEndDate();
+            goalEnd.setText(end);
+            indicator = "A";
+        } else {
+            amount = "$NULL";
+            start = "dd/MM/yyyy";
+            end = "dd/MM/yyyy";
+            indicator = "B";
+        }
+
+        editBtn = findViewById(R.id.tvEdit);
 
         fName.setText(user.getfName());
         lName.setText(user.getlName());
@@ -44,6 +70,23 @@ public class ProfileActivity extends AppCompatActivity {
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
+            editBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            openEditProfileActivity(indicator,amount,start,end);
+        }
+    });
+
+
+}
+
+    private void openEditProfileActivity(String indicator,String goalAmt, String goalSt, String glEnd) {
+        Intent intent = new Intent(this, EditProfile.class);
+        intent.putExtra("i",indicator);
+        intent.putExtra("amount",goalAmt);
+        intent.putExtra("startDate",goalSt);
+        intent.putExtra("endDate",glEnd);
+        startActivity(intent);
 
     }
 }

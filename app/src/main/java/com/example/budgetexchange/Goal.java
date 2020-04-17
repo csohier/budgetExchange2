@@ -94,13 +94,6 @@ public class Goal {
         return Students.goals;
     }
 
-    public static Goal searchGoals(int position) {
-        for (int i = 0; i > getGoals().size(); i++)
-            if (i == position) {
-                return getGoals().get(i);
-            }
-        return null;
-    }
 
     public static void addGoal(Goal entry) {
         Students.goals.add(entry);
@@ -138,6 +131,8 @@ public class Goal {
         }
 
         return week;    }
+
+
 
 
     }

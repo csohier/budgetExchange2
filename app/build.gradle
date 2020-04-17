@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
-    compile 'joda-time:joda-time:2.9.4'
+    implementation 'joda-time:joda-time:2.9.4'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'com.basgeekball:awesome-validation:4.2'
     implementation 'com.google.code.gson:gson:2.8.6'
