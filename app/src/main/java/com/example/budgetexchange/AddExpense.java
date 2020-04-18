@@ -31,7 +31,6 @@ public class AddExpense extends AppCompatActivity {
 
     AwesomeValidation awesomeValidation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +47,6 @@ public class AddExpense extends AppCompatActivity {
         spinner.setAdapter(myAdapter);
 
         expEnter= findViewById(R.id.enter);
-
-
 
         description.setOnKeyListener(new View.OnKeyListener() {
             @Override
