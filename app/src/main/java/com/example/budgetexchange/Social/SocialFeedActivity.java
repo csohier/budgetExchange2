@@ -1,4 +1,4 @@
-package com.example.budgetexchange;
+package com.example.budgetexchange.Social;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.budgetexchange.R;
 import com.example.budgetexchange.Reddit.DataDetail;
+import com.example.budgetexchange.RedditService;
 
 import java.util.List;
 

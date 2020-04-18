@@ -1,31 +1,18 @@
-package com.example.budgetexchange;
+package com.example.budgetexchange.Social;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONException;
+import com.example.budgetexchange.R;
 
 import java.util.UUID;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 public class SocialFeedDetailActivity extends AppCompatActivity {
     private TextView title;

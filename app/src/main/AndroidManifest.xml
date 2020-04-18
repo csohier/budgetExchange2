@@ -18,7 +18,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Savings" />
         <activity android:name=".ExpenseFeed" />
-        <activity android:name=".SocialFeedDetailActivity">
+        <activity android:name=".Social.SocialFeedDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SocialFeedActivity" />
+        <activity android:name=".Social.SocialFeedActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".regPgOne" />
         <activity android:name=".MainActivity">

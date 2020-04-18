@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.budgetexchange.Social.SocialFeedActivity;
+
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home Activity";
 

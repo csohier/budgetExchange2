@@ -1,4 +1,4 @@
-package com.example.budgetexchange;
+package com.example.budgetexchange.Social;
 
 import java.util.ArrayList;
 
