@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/random_background"
     android:orientation="vertical"
-    tools:context=".AddExpense">
+    tools:context=".Expenses.AddExpense">
 
     <LinearLayout
         android:layout_width="match_parent"

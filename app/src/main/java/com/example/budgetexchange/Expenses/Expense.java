@@ -1,14 +1,13 @@
-package com.example.budgetexchange;
+package com.example.budgetexchange.Expenses;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
+import com.example.budgetexchange.Students;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class Expense {
 

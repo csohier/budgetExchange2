@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.budgetexchange.Expenses.Expense;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -36,7 +37,7 @@ private TextView savingGoal;
         for(Goal a : Students.goals){
             if(a.getzID().equals(Students.currUser)){
                 savingGoal.setText("$" + Integer.toString(a.getGoal()));
-                int totalSaved = (a.getIncome()*a.getWeeksIntoGoal())-Expense.getSumOfExpenses(Expense.expenses);
+                int totalSaved = (a.getIncome()*a.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
                 System.out.println("testttttt"+ a.getWeeksIntoGoal());
                 ttlSaved.setText("$" +Integer.toString(totalSaved));
                 leftover.setText("$" + Integer.toString(a.getGoal()-totalSaved));

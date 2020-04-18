@@ -14,10 +14,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".EditProfile"></activity>
         <activity
-            android:name=".AddExpense"
+            android:name=".Expenses.AddExpense"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Savings" />
-        <activity android:name=".ExpenseFeed" />
+        <activity android:name=".Expenses.ExpenseFeed" />
         <activity android:name=".Social.SocialFeedDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

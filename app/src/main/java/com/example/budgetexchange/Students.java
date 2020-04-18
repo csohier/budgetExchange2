@@ -1,6 +1,7 @@
 package com.example.budgetexchange;
 
-import java.lang.reflect.Array;
+import com.example.budgetexchange.Expenses.Expense;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 

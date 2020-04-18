@@ -1,11 +1,9 @@
-package com.example.budgetexchange;
+package com.example.budgetexchange.Expenses;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,10 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.common.collect.Range;
+import com.example.budgetexchange.R;
 
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
