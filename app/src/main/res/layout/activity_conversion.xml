@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/random_background"
+    android:orientation="vertical"
+    tools:context=".Conversion">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="228dp"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="176dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="128dp"
+                android:id="@+id/convertCurrency"
+                android:text="Convert Currency"
+                android:textSize="26sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/white"
+                />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:text="BudgetExchange"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.722"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="536dp"
+            android:gravity="top|center"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/baseSpinner"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/btn"
+                android:hint="Base Currency"
+                />
+
+            <EditText
+                android:id="@+id/baseAmount"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint="Base Currency Amount"
+                android:inputType="numberDecimal"
+                android:paddingLeft="15dp"
+                android:textColorHint="@android:color/tertiary_text_light" />
+
+            <Spinner
+                android:id="@+id/exSpinner"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:hint="Exchange Currency"
+                />
+
+            <EditText
+                android:id="@+id/exAmount"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn"
+                android:elevation="5dp"
+                android:hint="Exchange Currency Amount"
+                android:inputType="numberDecimal"
+                android:paddingLeft="15dp"
+                android:textColorHint="@android:color/tertiary_text_light" />
+
+            <Button
+                android:id="@+id/exchange"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/enterbtn"
+                android:elevation="5dp"
+                android:text="Exchange"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+
+        <ScrollView
+            android:id="@+id/AddBar"
+            android:layout_width="match_parent"
+            android:layout_height="201dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
