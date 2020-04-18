@@ -1,4 +1,4 @@
-package com.example.budgetexchange.Entities;
+package com.example.budgetexchange.CurrencyConverter;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
