@@ -1,10 +1,12 @@
 package com.example.budgetexchange;
-import com.example.budgetexchange.Entities.Currency;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface CurrencyService {
-    @GET("latest?base=AUD")
-    Call<Currency> getBase ();
+
+    @GET ("latest")
+    Call<CurrencyService> getBase(@Query("base") String base);
+
 }
