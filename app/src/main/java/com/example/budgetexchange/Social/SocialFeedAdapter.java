@@ -25,15 +25,18 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView text;
+        public TextView firstName, lastName, content, date, title;
         private RecyclerViewClickListener mListener;
-
 
         public MyViewHolder(View v,RecyclerViewClickListener listener) {
             super(v);
             mListener = listener;
             v.setOnClickListener(this);
-            text = v.findViewById(R.id.textView8);
+            firstName = v.findViewById(R.id.firstName);
+            lastName = v.findViewById(R.id.surName);
+            content = v.findViewById(R.id.feedText);
+            date = v.findViewById(R.id.date);
+            title = v.findViewById(R.id.feedName);
         }
 
         @Override
@@ -54,7 +57,12 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SocialFeed currentFeed = SocialFeed.socialFeed.get(position);
-        holder.text.setText(currentFeed.getTitle());
+        holder.title.setText(currentFeed.getTitle());
+        holder.firstName.setText(currentFeed.getFirstName());
+        holder.lastName.setText(currentFeed.getLastName());
+        holder.date.setText(currentFeed.getPostDate());
+        holder.content.setText(currentFeed.getContent());
+
     }
     @Override
     public int getItemCount() {

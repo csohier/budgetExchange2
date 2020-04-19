@@ -61,4 +61,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="converted">converted</string>
     <string name="failure">Failed to convert</string>
+    <string name="dialog_text_hint">"What do you want to share?</string>
+    <string name="dialog_title_hint">"What do you want to share?</string>
+    <string name="like"><u>Like</u></string>
+    <string name="comment">Comment</string>
+    <string name="post">Post</string>
+
+    <string name="newfeed">New feed</string>
+    <string name="name"><b>First name</b></string>
+    <string name="l_name"><b>Last name</b></string>
 </resources>
