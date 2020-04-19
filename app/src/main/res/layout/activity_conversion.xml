@@ -92,7 +92,8 @@
                 android:hint="Base Currency Amount"
                 android:inputType="numberDecimal"
                 android:paddingLeft="15dp"
-                android:textColorHint="@android:color/tertiary_text_light" />
+                android:textColorHint="@android:color/tertiary_text_light"
+                android:paddingStart="15dp" />
 
             <Spinner
                 android:id="@+id/exSpinner"

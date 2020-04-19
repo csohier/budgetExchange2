@@ -1,6 +1,5 @@
 package com.example.budgetexchange;
 
-import com.example.budgetexchange.Entities.Currency;
 import com.example.budgetexchange.Reddit.DataDetail;
 
 import java.util.List;

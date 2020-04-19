@@ -1,5 +1,7 @@
 package com.example.budgetexchange.CurrencyConverter;
 
+import android.hardware.camera2.CameraDevice;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -367,6 +369,44 @@ public class Rates {
 
     public void setPLN(Double pLN) {
         this.pLN = pLN;
+    }
+
+    public double getRateFor (String currency) {
+        if (currency.equals("CAD")) return cAD;
+        if (currency.equals("HKD")) return hKD;
+        if (currency.equals("ISK")) return iSK;
+        if (currency.equals("pHP")) return pHP;
+        if (currency.equals("DKK")) return dKK;
+        if (currency.equals("HUF")) return hUF;
+        if (currency.equals("CZK")) return cZK;
+        if (currency.equals("GBP")) return gBP;
+        if (currency.equals("RON")) return rON;
+        if (currency.equals("SEK")) return sEK;
+        if (currency.equals("IDR")) return iDR;
+        if (currency.equals("INR")) return iNR;
+        if (currency.equals("BRL")) return bRL;
+        if (currency.equals("RUB")) return rUB;
+        if (currency.equals("HRK")) return hRK;
+        if (currency.equals("JPY")) return jPY;
+        if (currency.equals("THB")) return tHB;
+        if (currency.equals("CHF")) return cHF;
+        if (currency.equals("EUR")) return eUR;
+        if (currency.equals("MYR")) return mYR;
+        if (currency.equals("BGN")) return bGN;
+        if (currency.equals("TRY")) return tRY;
+        if (currency.equals("CNY")) return cNY;
+        if (currency.equals("NOK")) return nOK;
+        if (currency.equals("NZD")) return nZD;
+        if (currency.equals("ZAR")) return zAR;
+        if (currency.equals("USD")) return uSD;
+        if (currency.equals("MXN")) return mXN;
+        if (currency.equals("SGD")) return sGD;
+        if (currency.equals("AUD")) return aUD;
+        if (currency.equals("ILS")) return iLS;
+        if (currency.equals("KRW")) return kRW;
+        if (currency.equals("PLN")) return pLN;
+
+        return 1;
     }
 
 }

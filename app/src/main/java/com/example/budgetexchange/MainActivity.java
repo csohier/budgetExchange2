@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openHomeActivity() {
         Intent intent = new Intent (this, HomeActivity.class);
+        intent.putExtra("Username", userNameInput.getText().toString());
         startActivity(intent);
     }
 }

@@ -159,7 +159,7 @@ public class regPgOne extends AppCompatActivity {
 
     private void openLoginActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(NEW_USERNAME, zID.getText().toString());
+        intent.putExtra("Username", zID.getText().toString());
         startActivity(intent);
     }
 }
