@@ -33,7 +33,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         zID.setText(i.getStringExtra("Username"));
-
         expBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

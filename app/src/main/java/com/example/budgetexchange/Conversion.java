@@ -41,7 +41,10 @@ public class Conversion extends AppCompatActivity {
         exAmount = findViewById(R.id.exAmount);
         exchange = findViewById(R.id.exchange);
         searchRates = findViewById(R.id.searchRates);
-        ArrayAdapter<String> myAdapter= new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currency));
+        baseSpinner = findViewById(R.id.baseSpinner);
+        exSpinner = findViewById(R.id.exSpinner);
+
+        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currency));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         baseSpinner.setAdapter(myAdapter);
         exSpinner.setAdapter(myAdapter);
@@ -57,7 +60,6 @@ public class Conversion extends AppCompatActivity {
 
                 if (baseCurrency.equals(exCurrency)) {
                     Toast.makeText(Conversion.this, "Same Currency", Toast.LENGTH_SHORT).show();
-
                     return;
                 }
 
@@ -85,7 +87,7 @@ public class Conversion extends AppCompatActivity {
 
     public void convertAmount(final String baseCurrency, final String exCurrency, final double amount){
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://exchangeratesapi.io")
+                .baseUrl("https://api.exchangeratesapi.io")
                 .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
@@ -94,22 +96,29 @@ public class Conversion extends AppCompatActivity {
         service.getExchangeRates(baseCurrency, exCurrency).enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
+                Log.d(TAG, "in OnResponse Method");
                 Currency rate = response.body();
                 double exchangeRate = rate.getRates().getRateFor(exCurrency);
                 double convertedAmount = amount * exchangeRate;
                 String msg = exCurrency + " " + convertedAmount;
                 exAmount.setText(msg);
+                Toast.makeText(Conversion.this, String.valueOf(rate.getRates().getRateFor(exCurrency)), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
+                Log.d(TAG, "in onFailure Method");
                 Toast.makeText(Conversion.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void search() {
-        String url = "https://exchangeratesapi.io/";
+        String url = "https://api.exchangeratesapi.io/api/latest?base="
+                + baseSpinner.getSelectedItem().toString()
+                + "&symbols="
+                + exSpinner.getSelectedItem().toString();
+
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }
