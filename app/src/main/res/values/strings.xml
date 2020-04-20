@@ -56,6 +56,12 @@
         <item>ZAR</item>
     </string-array>
 
+    <string-array name="budget_category">
+        <item>All</item>
+        <item>Budgeting Tips</item>
+        <item>Cheap Eats</item>
+    </string-array>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -64,10 +70,13 @@
     <string name="dialog_text_hint">"What do you want to share?</string>
     <string name="dialog_title_hint">"What do you want to share?</string>
     <string name="like"><u>Like</u></string>
-    <string name="comment">Comment</string>
+    <string name="comments">Comment</string>
     <string name="post">Post</string>
 
     <string name="newfeed">New feed</string>
     <string name="name"><b>First name</b></string>
     <string name="l_name"><b>Last name</b></string>
+
+    <string name="post_image_transition_name" translatable="false">post_image_transition</string>
+
 </resources>

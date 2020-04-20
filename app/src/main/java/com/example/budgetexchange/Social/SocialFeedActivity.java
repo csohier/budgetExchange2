@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,15 +12,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.budgetexchange.R;
 import com.example.budgetexchange.Reddit.DataDetail;
 import com.example.budgetexchange.RedditService;
 import com.example.budgetexchange.Students;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,6 +41,7 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
     private EditText subEditText;
     private Students user;
     private Calendar cal;
+    private Spinner spinner;
 
     public static final String EXTRA_MESSAGE = "position of clicked item";
 
@@ -45,13 +51,16 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         setContentView(R.layout.activity_social_feed);
         //Setting up recyclerView:
         //ArrayList<SocialFeed> SocialFeedArrayList =
-        SocialFeed.getSocialFeed();
         recyclerView = (RecyclerView) findViewById(R.id.rView);
         recyclerView.setHasFixedSize(true);
         cal = Calendar.getInstance();
         postBtn = (Button) findViewById(R.id.createPost);
         postBtn.setOnClickListener(this);
 
+        spinner = (Spinner)findViewById(R.id.categorySpinner);
+        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.budget_category));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(myAdapter);
 
         Retrofit.Builder builder = new Retrofit.Builder().baseUrl("https://www.reddit.com").addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
@@ -138,7 +147,7 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
                 post.setLastName(user.getlName());
                 post.setTitle(subEditName.getText().toString());
                 post.setzID(user.getzID());
-                post.setPostDate(cal.toString());
+                post.setPostDate(format(cal));
 
                 //Add data to the list
                 SocialFeed.socialFeed.add(post);
@@ -167,5 +176,11 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
             case R.id.createPost:
                 openDialog();
         }
+    }
+
+    public static String format (Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(calendar.getTime());
+        return date;
     }
 }

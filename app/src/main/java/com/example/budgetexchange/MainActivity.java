@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetexchange.Expenses.Expense;
+import com.example.budgetexchange.Social.Comments;
+import com.example.budgetexchange.Social.SocialFeed;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -92,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 Students.goals = Goal.getGoals();
                 Expense.getExpenses();
                 Students.getStudents();
+                SocialFeed.getSocialFeed();
+                Comments.getComments();
+
                 String password = String.valueOf(passwordInput.getText());
 
                 for (int i = 0; i < Students.getStudents().size(); i++) {

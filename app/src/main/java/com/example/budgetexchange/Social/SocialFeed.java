@@ -1,12 +1,14 @@
 package com.example.budgetexchange.Social;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class SocialFeed {
     //    name , type, location and rating are required details. The image, price and the search option are just for aesthetics
     private String title;
     private String content;
     private String zID;
+    private String postID;
     private String postDate;
     private String firstName;
     private String lastName;
@@ -27,7 +29,16 @@ public class SocialFeed {
         this.postDate = postDate;
         this.firstName = firstName;
         this.lastName = lastName;
+        postID= UUIDcreate();
 
+    }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
     }
 
     public String getFirstName() {
@@ -85,4 +96,16 @@ public class SocialFeed {
 
         return socialFeed;
     }
-}
+
+    public static SocialFeed searchPosts(int position){
+        return socialFeed.get(position);
+    }
+
+    public static String UUIDcreate(){
+        UUID uuid = UUID.randomUUID();
+            String randomUUIDString = uuid.toString();
+
+           return randomUUIDString;
+        }
+    }
+

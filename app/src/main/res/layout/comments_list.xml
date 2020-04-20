@@ -11,17 +11,9 @@
     android:background="@color/details"
     >
 
-    <TextView
-        android:id="@+id/feedName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:text="Title"
-        android:textSize="16sp"
-        />
 
     <TextView
-        android:id="@+id/firstName"
+        android:id="@+id/firstNamec"
         android:layout_width="wrap_content"
         android:text="@string/name"
         android:layout_height="wrap_content"
@@ -32,38 +24,38 @@
         />
 
     <TextView
-        android:id="@+id/surName"
+        android:id="@+id/surNamec"
         android:layout_width="wrap_content"
         android:text="@string/l_name"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
         android:layout_below="@+id/feedName"
         android:textSize="12sp"
-        android:layout_toRightOf="@+id/firstName"/>
+        android:layout_toRightOf="@+id/firstNamec"/>
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/datec"
         android:layout_width="wrap_content"
         android:text="dd/mm/yyyy"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:textSize="8sp"
-        android:layout_below="@+id/firstName"/>
+        android:layout_below="@+id/firstNamec"/>
 
     <TextView
-        android:id="@+id/feedText"
+        android:id="@+id/feedTextc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_below="@+id/date"/>
+        android:layout_below="@+id/datec"/>
 
 
     <View
         android:id="@+id/viewBottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/feedText"
+        android:layout_below="@+id/feedTextc"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
@@ -110,6 +102,6 @@
         android:layout_toRightOf="@+id/commentButton"
         android:text="@string/comments" />
 
-    </RelativeLayout>
+</RelativeLayout>
 
 
