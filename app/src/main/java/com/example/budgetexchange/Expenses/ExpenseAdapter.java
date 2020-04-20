@@ -64,7 +64,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
         Expense expense = models.get(position);
         holder.amount.setText("$" + String.valueOf(expense.getAmount()));
         holder.date.setText(expense.getDate());
-        holder.week.setText("Expense made in: Week " + String.valueOf(expense.getWeek()) + " of " + Students.searchGoals(Students.currUser).getWeeks());
+        holder.week.setText("Expense made in: Week " + String.valueOf(expense.weekIntoGoal(expense.getDate())) + " of " + Students.searchGoals(Students.currUser).getWeeks());
         holder.type.setText(expense.getType());
 
     }

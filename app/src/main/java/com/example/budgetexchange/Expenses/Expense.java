@@ -111,8 +111,26 @@ public class Expense implements Comparable<Expense>{
 
     }
 
-
     private int weekCreate(String date) {
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = date;
+        int week = 0;
+        try {
+            Date newDate = formatter.parse(dateString);
+            calendar.setTime(newDate);
+            System.out.println("Week number:" +
+                    calendar.get(Calendar.WEEK_OF_YEAR));
+            week = calendar.get(Calendar.WEEK_OF_YEAR);
+
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return week;
+    }
+
+    public static int weekIntoGoal(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week = 0;
         try {
