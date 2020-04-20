@@ -19,9 +19,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class regPgOne extends AppCompatActivity {
-
+    private DateValidator dateValidator;
     private static final String TAG = "Student Reg Status";
     EditText fName, lName, password, conPassword, zID, email, discipline, stDate, wkIncome;
     AutoCompleteTextView university;
@@ -66,6 +68,7 @@ public class regPgOne extends AppCompatActivity {
         insertStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (fName.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
@@ -101,17 +104,24 @@ public class regPgOne extends AppCompatActivity {
                     snackbar.show();
                     password.setError("Passwords do not match");
                     conPassword.setError("Passwords do not match");
+
                 } else if (zID.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     zID.setError("zID should not be empty");
+
                 } else if (!zID.getText().toString().trim().isEmpty()) {
 
                     for(int i = 0; i < Students.getStudents().size(); i++) {
                         if (Students.getStudents().get(i).getzID().equals(String.valueOf(zID))){
                             Log.d(TAG, "ID has been taken");
+                            Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                            snackbar.show();
+                            zID.setError("zID has been taken");
                         }
                         else {
                             Log.d(TAG, "Passed validation");
@@ -125,7 +135,24 @@ public class regPgOne extends AppCompatActivity {
                     snackbar.show();
                     email.setError("Email should not be empty");
 
-                } else if (discipline.getText().toString().trim().isEmpty()) {
+                } else if (!email.getText().toString().trim().isEmpty()) {
+                    for(int i = 0; i < Students.getStudents().size(); i++) {
+                        if (Students.getStudents().get(i).getzID().equals(String.valueOf(email))){
+                            Log.d(TAG, "ID has been taken");
+                            Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                            snackbar.show();
+                            email.setError("Email has been taken");
+                        }
+                        else {
+                            Log.d(TAG, "Passed validation");
+                            // enterDataToDatabase;
+                        }
+                    }
+                }
+
+                else if (discipline.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
@@ -161,6 +188,13 @@ public class regPgOne extends AppCompatActivity {
                     snackbar.show();
                     stDate.setError("Start Date should not be empty");
 
+                } else if (!dateValidator.validate(stDate.getText().toString())) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    stDate.setError("Invalid Start Date");
+
                 } else if (wkIncome.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
@@ -177,7 +211,7 @@ public class regPgOne extends AppCompatActivity {
                         email.getText().toString(),
                         discipline.getText().toString(),
                         university.getText().toString(),
-                        startDate(zID.getText().toString()),
+                        stDate.getText().toString(),
                         Float.parseFloat(String.valueOf(wkIncome.getText()))
                     );
                     System.out.println(String.format("LOGIN DETAILS PASSED " +
@@ -196,19 +230,6 @@ public class regPgOne extends AppCompatActivity {
 
     public void enterDataToDatabase() {}
 
-    private String startDate (String date) {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString = date;
-
-        try {
-            Date startDate = formatter.parse(dateString);
-            startDate = formatter.parse(stDate.getText().toString());
-
-        } catch (ParseException e){
-            e.printStackTrace();
-        }
-        return date;
-    }
 
     private void openLoginActivity() {
         Intent intent = new Intent(this, MainActivity.class);
