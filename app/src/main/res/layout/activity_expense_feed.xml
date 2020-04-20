@@ -25,7 +25,8 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
             android:layout_width="236dp"
-            android:layout_height="194dp">
+            android:layout_height="194dp"
+            >
 
 
         </com.github.mikephil.charting.charts.BarChart>

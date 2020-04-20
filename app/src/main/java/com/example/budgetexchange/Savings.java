@@ -14,7 +14,10 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,21 +76,40 @@ private TextView savingGoal;
         //BarDataSet data4 = new BarDataSet(expenses2,"Total Spend");
 
         List<List<BarEntry>> expenses = new ArrayList<>();
+
+       //
         List<BarDataSet> dataSet = new ArrayList<>();
+
+        //contains ???
         ArrayList<BarEntry> yValues = new ArrayList<>();
+
         String[] categories = {"food","utilities","transport","miscellaneous","personal"};
         float barWidth = 9f;
         float spaceForBar=10f;
+
+        ArrayList<ArrayList<BarEntry>> BarEntryCategories = new ArrayList<>();
+        for(int i=0; i<5;i++){
+            BarEntryCategories.add(new ArrayList<>());
+
+        }
+        ArrayList<BarDataSet> chartBars = new ArrayList<>();
+
+        //
         for(int i=0;i<5;i++){
             //5 different series
 
             //float val = (float)(Math.random()*range);
             //create a bar for each category
             //calculation for expense in a week
+
+            //Iterates through all expenses
             for(int b = 0; b<Expense.expenses.size();b++){
                 System.out.println(Expense.expenses.get(b).getWeek());
+
+                //if the expense type equals the category at i (food, utilities etc..) AND the expense falls within the current week
                 if(Expense.expenses.get(b).getType().toLowerCase().equals(categories[i]) && Expense.expenses.get(b).getWeek()==currentWeek){
 
+                    //Add the value of that expense to
                     categoryValues[i] = categoryValues[i] + (float)Expense.expenses.get(b).getAmount();
                     System.out.println("category " + categoryValues[i]);
 
@@ -96,31 +118,56 @@ private TextView savingGoal;
 
             }
 
-            BarEntry barD = new BarEntry(i*spaceForBar,categoryValues[i]);
-            yValues.clear();
-            yValues.add(barD);
-            dataSet.add(new BarDataSet(yValues,categories[i]));
-            System.out.println("yvalues AT "  + i + yValues);
+            BarEntryCategories.get(i).add(new BarEntry(i*spaceForBar,categoryValues[i]));
+            //BarEntry barD = new BarEntry(i*spaceForBar,categoryValues[i]);
+            //yValues.clear();
+            chartBars.add(new BarDataSet(BarEntryCategories.get(i),categories[i]));
+
+            System.out.println("DOES THIS CRASH?? " + i);
+            //yValues.add(barD);
+            //
+            //dataSet.add(new BarDataSet(yValues,categories[i]));
+            //System.out.println("yvalues AT "  + i + yValues);
 
 
             //name bar based on category
             //yValues.add(bar);
 
         }
+        System.out.println("DOES THIS CRASH?? hereee " );
 
-        BarData data2 = new BarData(dataSet.get(0),dataSet.get(1),dataSet.get(2),dataSet.get(3),dataSet.get(4));
-        dataSet.get(0).setColor(R.color.green);
-        dataSet.get(1).setColor(R.color.yellow);
-        dataSet.get(2).setColor(R.color.red);
-        dataSet.get(3).setColor(R.color.medium);
-        dataSet.get(4).setColor(R.color.medium);
+        for(BarDataSet b : chartBars){
+            System.out.println(b.getLabel());
+            System.out.println(b.getXMax());
+        }
+
+        //Bar Data contains Bar Data Sets, in this instance a Bar Data Set will contain a single value such as x=Miscellaneous Expense, y= $amount
+        BarData data2 = new BarData(chartBars.get(0),chartBars.get(1),chartBars.get(2),chartBars.get(3),chartBars.get(4));
+        data2.setHighlightEnabled(false);
 
 
+        chartBars.get(0).setColor(getResources().getColor(R.color.green));
+        chartBars.get(0).setValueTextSize(20);
+        chartBars.get(1).setColor(getResources().getColor(R.color.yellow));
+        chartBars.get(1).setValueTextSize(20);
+        chartBars.get(2).setColor(getResources().getColor(R.color.red));
+        chartBars.get(2).setValueTextSize(20);
+        chartBars.get(3).setColor(getResources().getColor(R.color.colorPrimaryDark));
+        chartBars.get(3).setValueTextSize(20);
+        chartBars.get(4).setColor(getResources().getColor(R.color.colorAccent));
+        chartBars.get(4).setValueTextSize(20);
 
         data2.setBarWidth(barWidth);
+
+        //Populating the chart with Bar Data
         chart.setData(data2);
+        chart.setFitBars(true);
+        chart.setScaleEnabled(false);
+
         chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-        chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+
         chart.getLegend().setWordWrapEnabled(true);
         chart.setDrawBorders(false);
         YAxis yAxis = chart.getAxisLeft();
@@ -138,6 +185,12 @@ private TextView savingGoal;
         chart.setDrawBarShadow(false);
         chart.setDrawValueAboveBar(true);
         chart.setDrawGridBackground(true);
+        chart.setBackgroundColor(Color.TRANSPARENT); //set whatever color you prefer
+
+
+        chart.getDescription().setEnabled(false);
+
+
 
 
 

@@ -117,9 +117,16 @@ public class ExpenseFeed extends AppCompatActivity {
         //calculation = weekly income - [ savings goal/(end date - start date in weeks) ]
         for(Goal a: Students.goals){
             if(a.getzID().equals(Students.currUser)){
-                max=a.getIncome() - (a.getGoal()/(a.getWeeks()));
+                max=(a.getGoal()/(a.getWeeks()))-a.getIncome();
+                System.out.println("INCOME IS: " + a.getIncome());
+                System.out.println("GOAL IS: " + a.getGoal());
+                System.out.println("WEEKS ARE: " + a.getWeeks());
             }
         }
+
+        System.out.println("MAX EQUALS HERE: " + max);
+
+
         maxSpend.add(new BarEntry(0,max));
         BarDataSet data = new BarDataSet(maxSpend,"Max Spend");
         ArrayList<BarEntry> actualSpend = new ArrayList<>();
@@ -141,6 +148,7 @@ public class ExpenseFeed extends AppCompatActivity {
         actualSpend.add(new BarEntry(1,expenseTotal));
         BarDataSet data4 = new BarDataSet(actualSpend,"Total Spend");
         BarData data2 = new BarData(data,data4);
+        data2.setHighlightEnabled(false);
         data4.setColors(Color.YELLOW);
         data.setColors(Color.MAGENTA);
         barChart.setData(data2);
@@ -161,12 +169,9 @@ public class ExpenseFeed extends AppCompatActivity {
         barChart.setDrawBorders(false);
         barChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
-        barChart.setBorderColor(Color.TRANSPARENT);
-        //barChart.getLegend().setTextColor(Color.WHITE);
         barChart.getLegend().setTextSize(10);
 
-        data4.setValueTextColor(Color.WHITE);
-        data.setValueTextColor(Color.WHITE);
+
         data4.setValueTextSize(20);
         data.setValueTextSize(20);
         barChart.setDrawBarShadow(false);
@@ -174,6 +179,11 @@ public class ExpenseFeed extends AppCompatActivity {
         barChart.setDrawGridBackground(true);
 
         yAxis.disableGridDashedLine();
+        barChart.getDescription().setEnabled(false);
+        barChart.setFitBars(true);
+        barChart.setScaleEnabled(false);
+        barChart.setBackgroundColor(Color.TRANSPARENT); //set whatever color you prefer
+
         return barChart;
     }
 
@@ -185,7 +195,7 @@ public class ExpenseFeed extends AppCompatActivity {
 
     public void setText(){
         if(expenseTotal>max) {
-            spendInfo.setText("You are over budget by $" + (max-expenseTotal));
+            spendInfo.setText("You are over budget by $" + (Math.abs((max-expenseTotal))));
         } else if (expenseTotal==max){
             spendInfo.setText("Spend any more and you'll be over budget.");
 

@@ -93,6 +93,8 @@ public class Conversion extends AppCompatActivity {
         Retrofit retrofit = builder.build();
 
         CurrencyService service = retrofit.create(CurrencyService.class);
+
+
         service.getExchangeRates(baseCurrency, exCurrency).enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
