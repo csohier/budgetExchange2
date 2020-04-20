@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.example.budgetexchange.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
@@ -35,8 +36,7 @@ public class AddExpense extends AppCompatActivity {
         //expType = findViewById(R.id.exType);
         expDate = findViewById(R.id.exDate);
         description = findViewById(R.id.description);
-
-        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
         ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.category));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
@@ -51,7 +51,6 @@ public class AddExpense extends AppCompatActivity {
                     UIUtil.hideKeyboard(AddExpense.this);
                     set = true;
                     return true;
-
                 } else {
                     UIUtil.showKeyboard(AddExpense.this,description);
                 }
@@ -67,26 +66,40 @@ public class AddExpense extends AppCompatActivity {
 
                 String type = spinner.getSelectedItem().toString();
                 String date = String.valueOf(expDate.getText());
+                if (expAmt.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    expAmt.setError("Expense Amount should not be empty");
 
-                if(!description.getText().toString().equals(null)) {
+                } else if (spinner.getSelectedItem().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+
+                } else if (expDate.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    expDate.setError("Expense Amount should not be empty");
+
+                } else if(!description.getText().toString().trim().isEmpty()) {
                     String desc = String.valueOf(description.getText());
                     Expense.expenses.add(new Expense(amount, type, date, desc));
-                }else{
+                    System.out.println(Expense.expenses);
+                    Intent intent = new Intent(AddExpense.this, ExpenseFeed.class);
+                    startActivity(intent);
+
+                } else {
                     Expense.expenses.add(new Expense(amount, type, date));
-
+                    System.out.println(Expense.expenses);
+                    Intent intent = new Intent(AddExpense.this, ExpenseFeed.class);
+                    startActivity(intent);
                 }
-
-                System.out.println(Expense.expenses);
-                Intent intent = new Intent(AddExpense.this, ExpenseFeed.class);
-                startActivity(intent);
-
-                //
-                //awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-
-
             }
-    });
-
-
-}
+        });
+    }
 }

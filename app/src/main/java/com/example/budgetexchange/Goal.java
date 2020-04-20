@@ -27,8 +27,6 @@ public class Goal {
         this.goalEndDate = goalEndDate;
         weeks = getWeeks(goalStartDate,goalEndDate);
         weeksIntoGoal = getWeeksIn(goalStartDate);
-
-
     }
 
     public String getzID() {
@@ -94,11 +92,9 @@ public class Goal {
         return Students.goals;
     }
 
-
     public static void addGoal(Goal entry) {
         Students.goals.add(entry);
     }
-
 
     public int getWeeks(String goalStartDate, String goalEndDate) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -112,9 +108,7 @@ public class Goal {
         }catch(ParseException e){
             e.printStackTrace();
         }
-
         return week;
-
     }
 
     public int getWeeksIn(String date) {
@@ -126,13 +120,7 @@ public class Goal {
             DateTime dateTime1 = new DateTime(startDate);
             DateTime dateTime2 = new DateTime(currDate);
             week=Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
-
-        return week;    }
-
-
-
-
+        }catch(ParseException e){ e.printStackTrace(); }
+        return week;
     }
+}

@@ -31,8 +31,9 @@ public class HomeActivity extends AppCompatActivity {
         prfBtn = findViewById(R.id.imageButton6);
         conversionBtn = findViewById(R.id.conversionBtn);
 
-        Intent i = getIntent();
-        zID.setText(i.getStringExtra("Username"));
+        Intent intent = getIntent();
+        zID.setText(intent.getStringExtra("Username"));
+
         expBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,11 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                 openConversionActivity();
             }
         });
-
-
-
     }
-
     private void openProfileActivity() {
         Intent intent = new Intent (this, ProfileActivity.class);
         Log.d(TAG, "open Profile Activity");
@@ -88,7 +85,6 @@ public class HomeActivity extends AppCompatActivity {
         Log.d(TAG, "open Social Activity");
         startActivity(intent);
     }
-
     private void openConversionActivity() {
         Intent intent = new Intent (this, Conversion.class);
         Log.d(TAG, "open Conversion Activity");

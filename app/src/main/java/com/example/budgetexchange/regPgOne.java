@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -55,93 +57,144 @@ public class regPgOne extends AppCompatActivity {
 
         insertStudent = (Button) findViewById(R.id.insertStudent);
 
-        insertStudent.setOnClickListener(new View.OnClickListener() {
+        clickSignUp();
 
+    }
+
+
+    private void clickSignUp() {
+        insertStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Students.addStudents(
-                fName.getText().toString(),
-                lName.getText().toString(),
-                password.getText().toString(),
-                zID.getText().toString(),
-                email.getText().toString(),
-                discipline.getText().toString(),
-                university.getText().toString(),
-                startDate(zID.getText().toString()),
-                Float.parseFloat(String.valueOf(wkIncome.getText()))
-            );
+                if (fName.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    fName.setError("First Name should not be empty");
 
-            Log.d(TAG, "open validation methods");
-            iDCheck();
+                } else if (lName.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    lName.setError("Last Name should not be empty");
 
+                } else if (password.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    password.setError("Password should not be empty");
 
-            }
-        })
-    ;}
+                } else if (conPassword.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    conPassword.setError("Confirm Password should not be empty");
 
-    public void iDCheck () {
-        //Error checking, making sure fields are correct
+                } else if (!password.getText().toString().equals(conPassword.getText().toString())) {
+                    Snackbar snackbar = Snackbar.make(v, "Passwords do not match", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    password.setError("Passwords do not match");
+                    conPassword.setError("Passwords do not match");
+                } else if (zID.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    zID.setError("zID should not be empty");
+                } else if (!zID.getText().toString().trim().isEmpty()) {
 
-        if (zID.getText().toString().equals("")) {
-            Toast.makeText(this, "Please fill out the username field", Toast.LENGTH_SHORT).show();
+                    for(int i = 0; i < Students.getStudents().size(); i++) {
+                        if (Students.getStudents().get(i).getzID().equals(String.valueOf(zID))){
+                            Log.d(TAG, "ID has been taken");
+                        }
+                        else {
+                            Log.d(TAG, "Passed validation");
+                            // enterDataToDatabase;
+                        }
+                    }
+                } else if (email.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    email.setError("Email should not be empty");
 
-            Log.d(TAG, "missing username");
+                } else if (discipline.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    discipline.setError("Discipline should not be empty");
 
-        } else if (password.getText().toString().equals("") || conPassword.getText().toString().equals("")) {
-            Toast.makeText(this, "Please fill out both password fields", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "missing password");
+                } else if (university.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    university.setError("Exchange School should not be empty");
 
-        } else if (!password.getText().toString().equals(conPassword.getText().toString())) {
-            Toast.makeText(this, "Passwords did not match", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "missing confirm pw");
+                } else if (!university.getText().toString().trim().isEmpty()){
+                    for(int j = 0; j < University.getUniversities().size(); j++) {
 
-        } else {
-            // Correct credentials, passes username and password to Home Activity
-            System.out.println(String.format("LOGIN DETAILS PASSED \nUsername: %s \nPassword: %s \nPassword: %s",
-                    zID.getText(), password.getText(), conPassword.getText()));
+                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getText()))) {
+                            Log.d(TAG, "University is in the Arraylist");
 
-            Log.d(TAG, "check zID");
+                        } else {
+                            Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                            snackbar.show();
+                            university.setError("University is not in the list");
+                            Log.d(TAG, "University is not in the Arraylist");
+                        }
+                    }
+                } else if (stDate.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    stDate.setError("Start Date should not be empty");
 
-            for(int i = 0; i < Students.getStudents().size(); i++) {
+                } else if (wkIncome.getText().toString().trim().isEmpty()) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    wkIncome.setError("Weekly Income should not be empty");
 
-                if (Students.getStudents().get(i).getzID().equals(String.valueOf(zID))){
-                    Log.d(TAG, "ID has been taken");
+                } else {
+                    Students.addStudents(
+                        fName.getText().toString(),
+                        lName.getText().toString(),
+                        password.getText().toString(),
+                        zID.getText().toString(),
+                        email.getText().toString(),
+                        discipline.getText().toString(),
+                        university.getText().toString(),
+                        startDate(zID.getText().toString()),
+                        Float.parseFloat(String.valueOf(wkIncome.getText()))
+                    );
+                    System.out.println(String.format("LOGIN DETAILS PASSED " +
+                                                        "\nUsername: %s " +
+                                                        "\nPassword: %s " +
+                                                        "\nPassword: %s",
+                                                        zID.getText(),
+                                                        password.getText(),
+                                                        conPassword.getText()));
+
+                    openLoginActivity();
+                    }
                 }
-
-                else {
-                    Log.d(TAG, "Passed validation");
-                    // enterDataToDatabase;
-
-                    universityCheck();
-
-
-                }
-            }
-
+            });
         }
-    }
 
-    public void universityCheck() {
-        for(int j = 0; j < University.getUniversities().size(); j++) {
-
-            if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getText()))){
-                Log.d(TAG, "University is in the Arraylist");
-                openLoginActivity();
-
-            }
-
-            else {
-                Log.d(TAG, "University is not on the list");
-                Toast.makeText(this, "University is not on the list", Toast.LENGTH_SHORT).show();
-                // enterDataToDatabase;
-            }
-        }
-    }
-
-
-    public void enterDataToDatabase() {
-
-    }
+    public void enterDataToDatabase() {}
 
     private String startDate (String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

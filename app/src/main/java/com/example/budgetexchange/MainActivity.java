@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     if (Students.getStudents().get(i).getzID().equals(username) && Students.getStudents().get(i).getPassword().equals(password)) {
                         openHomeActivity();
                     } else{
-                        // authentication failed
+                        Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_SHORT).show();
                     }
                 }
 

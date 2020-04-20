@@ -70,15 +70,13 @@ public class ProfileActivity extends AppCompatActivity {
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
-            editBtn.setOnClickListener(new View.OnClickListener() {
+        editBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             openEditProfileActivity(indicator,amount,start,end);
         }
-    });
-
-
-}
+        });
+    }
 
     private void openEditProfileActivity(String indicator,String goalAmt, String goalSt, String glEnd) {
         Intent intent = new Intent(this, EditProfile.class);

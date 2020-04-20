@@ -25,9 +25,6 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
-
         fName = findViewById(R.id.fNameE);
         lName = findViewById(R.id.lNameE);
         zID = findViewById(R.id.zIDE);
@@ -40,7 +37,6 @@ public class EditProfile extends AppCompatActivity {
         goalAmount = findViewById(R.id.goalsAmountE);
         goalStart = findViewById(R.id.goalStartE);
         goalEnd = findViewById(R.id.goalEndE);
-
 
         System.out.println(Students.currUser);
         System.out.println(Students.searchStudents(Students.currUser));
@@ -68,43 +64,30 @@ public class EditProfile extends AppCompatActivity {
         goalStart.setHint(start);
         goalEnd.setHint(end);
 
-
-
-
         for(Goal a: Students.goals){
             if(a.getzID().equals(Students.currUser)){
                 goal = user.searchGoals(user.getzID());
                 goalAmount.setText(String.valueOf(goal.getGoal()));
                 goalEnd.setText(goal.getGoalEndDate());
                 goalStart.setText(goal.getGoalStartDate());
-
             }
-
         }
-
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //not correct change this
-
                 if (goalAmount.getText().equals(null) || goalStart.getText().equals(null) || goalEnd.getText().equals(null)) {
                     Toast.makeText(EditProfile.this, "Cannot save. Fields Empty, try again.", Toast.LENGTH_SHORT).show();
-
                 } else {
                     saveProfile();
-
                 }
             }
         });
-
-
     }
 
     private void saveProfile() {
-
-
         Intent intent = new Intent (this, ProfileActivity.class);
         startActivity(intent);
     }

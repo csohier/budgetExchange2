@@ -35,8 +35,6 @@ public class Conversion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversion);
-
-
         baseAmount = findViewById(R.id.baseAmount);
         exAmount = findViewById(R.id.exAmount);
         exchange = findViewById(R.id.exchange);
@@ -48,53 +46,34 @@ public class Conversion extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         baseSpinner.setAdapter(myAdapter);
         exSpinner.setAdapter(myAdapter);
-
-        exchange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                exAmount.setText("getting amount");
-                Log.d(TAG, "getting amount" );
-
-                String baseCurrency = baseSpinner.getSelectedItem().toString();
-                String exCurrency = exSpinner.getSelectedItem().toString();
-
-                if (baseCurrency.equals(exCurrency)) {
-                    Toast.makeText(Conversion.this, "Same Currency", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                double amount;
-
-                try {
-                    amount = Double.parseDouble(baseAmount.getText().toString());
-                } catch (NumberFormatException e) {
-                    Toast.makeText(Conversion.this, "Wrong amount input", Toast.LENGTH_SHORT).show();
-
-                    return;
-                }
-
-                convertAmount (baseCurrency, exCurrency, amount);
+        exchange.setOnClickListener(v -> {
+            exAmount.setText("getting amount");
+            Log.d(TAG, "getting amount" );
+            String baseCurrency = baseSpinner.getSelectedItem().toString();
+            String exCurrency = exSpinner.getSelectedItem().toString();
+            if (baseCurrency.equals(exCurrency)) {
+                Toast.makeText(Conversion.this, "Same Currency", Toast.LENGTH_SHORT).show();
+                return;
             }
+            double amount;
+            try {
+                amount = Double.parseDouble(baseAmount.getText().toString());
+            } catch (NumberFormatException e) {
+                Toast.makeText(Conversion.this, "Wrong amount input", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            convertAmount (baseCurrency, exCurrency, amount);
         });
 
-        searchRates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                search();
-            }
-        });
+        searchRates.setOnClickListener(v -> search());
     }
 
     public void convertAmount(final String baseCurrency, final String exCurrency, final double amount){
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://api.exchangeratesapi.io")
                 .addConverterFactory(GsonConverterFactory.create());
-
         Retrofit retrofit = builder.build();
-
         CurrencyService service = retrofit.create(CurrencyService.class);
-
-
         service.getExchangeRates(baseCurrency, exCurrency).enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
@@ -120,7 +99,6 @@ public class Conversion extends AppCompatActivity {
                 + baseSpinner.getSelectedItem().toString()
                 + "&symbols="
                 + exSpinner.getSelectedItem().toString();
-
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }
