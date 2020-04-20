@@ -8,95 +8,104 @@
     android:background="@drawable/random_background"
     tools:context=".EditProfile">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BudgetExchange"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logo" />
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="@+id/tvSave"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/tvSave"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="1.0">
 
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:columnCount="3"
+            android:orientation="horizontal"
             android:rowCount="10">
 
             <TextView
                 android:id="@+id/tvPerDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
                 android:text="Personal Detail"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:layout_columnSpan="3"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="First Name:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/fNameE"
-                android:layout_marginTop="10dp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="First Name"
+                android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Last Name:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
-            android:id="@+id/lNameE"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:id="@+id/lNameE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
-
-            android:layout_columnSpan="2"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:ems="10"
-            android:textColorHint="#FFFFFF"
-            android:hint="Last Name"
-            android:inputType="textPersonName"
-            android:textSize="12sp" />
+                android:textColorHint="#FFFFFF"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvZID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="zID:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/zIDE"
@@ -106,21 +115,21 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="zID"
+                android:inputType="textPersonName"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Email:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/emailE"
@@ -130,59 +139,56 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="Email"
+                android:inputType="textWebEmailAddress|text"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvExDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
                 android:layout_marginTop="12dp"
                 android:text="Exchange Detail"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:layout_columnSpan="3"/>
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvUniversity"
                 android:layout_width="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="University:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"
-                />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/universityE"
-                android:layout_marginTop="10dp"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
-                android:textColor="#FFFFFF"
-
-                android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
+                android:hint="University"
                 android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvDiscipline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Discipline:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/disciplineE"
@@ -192,22 +198,22 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
-                android:textColor="#FFFFFF"
+                android:hint="Discipline"
 
-                android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
                 android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Start Date:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/startDateE"
@@ -217,22 +223,21 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
                 android:textColor="#FFFFFF"
-
                 android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tvWkIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Weekly Income:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/wkIncomeE"
@@ -241,12 +246,11 @@
                 android:layout_columnSpan="2"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
-                android:textColor="#FFFFFF"
-
                 android:ems="10"
-                android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
+                android:hint="In AUD"
                 android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
@@ -272,18 +276,18 @@
 
             <EditText
                 android:id="@+id/goalsAmountE"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:textColor="#FFFFFF"
-
                 android:layout_marginRight="30dp"
+
                 android:ems="10"
-                android:textColorHint="#FFFFFF"
-                android:hint="Last Name"
+                android:hint="Saving Goals"
                 android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="12sp" />
 
             <TextView
@@ -304,11 +308,11 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
-                android:textColorHint="@color/details"
-                android:textColor="#FFFFFF"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
 
-                android:hint="Last Name"
-                android:inputType="textPersonName"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@color/details"
                 android:textSize="12sp" />
 
             <TextView
@@ -325,39 +329,36 @@
                 android:id="@+id/goalEndE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-
                 android:layout_columnSpan="2"
+
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
                 android:ems="10"
+                android:hint="DD/MM/YYYY"
+                android:inputType="date"
+                android:textColor="#FFFFFF"
                 android:textColorHint="@color/details"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
                 android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/tvSave"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_columnSpan="3"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/enterbtn"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginTop="20dp"
+                android:text="Next" />
 
         </GridLayout>
     </ScrollView>
-
-
-    <Button
-        android:id="@+id/tvSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="60dp"
-        android:text="save"
-        android:textColor="@color/white"
-        android:textSize="26sp"
-        app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
@@ -366,15 +367,15 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="79dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
         android:text="Edit Profile"
         android:textColor="@color/white"
         android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

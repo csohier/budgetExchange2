@@ -46,8 +46,6 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
         public void onClick(View view){
             mListener.onClick(view,getAdapterPosition());
         }
-
-
     }
 
     @NonNull
@@ -57,6 +55,7 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
         MyViewHolder SocialFeedViewHolder = new MyViewHolder(view, mListener);
         return SocialFeedViewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         SocialFeed currentFeed = SocialFeed.socialFeed.get(position);
@@ -67,6 +66,7 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
         holder.content.setText(currentFeed.getContent());
 
     }
+
     @Override
     public int getItemCount() {
         return SocialFeed.socialFeed.size();
