@@ -2,14 +2,18 @@ package com.example.budgetexchange.Expenses;
 
 import com.example.budgetexchange.Students;
 
+import org.joda.time.DateTime;
+import org.joda.time.Weeks;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class Expense {
+public class Expense implements Comparable<Expense>{
 
     private String zID;
     private double amount;
@@ -101,6 +105,7 @@ public class Expense {
         expenses.add(new Expense(221.00, "Food", "19/04/2020"));
         expenses.add(new Expense(20.50, "Miscellaneous", "19/04/2020"));
         expenses.add(new Expense(5.50, "Personal", "19/04/2020"));
+        Collections.sort(Expense.expenses);
         return expenses;
 
 
@@ -108,24 +113,20 @@ public class Expense {
 
 
     private int weekCreate(String date) {
-        Calendar calendar = new GregorianCalendar();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString = date;
         int week = 0;
         try {
-            Date newDate = formatter.parse(dateString);
-            calendar.setTime(newDate);
-            System.out.println("Week number:" +
-                    calendar.get(Calendar.WEEK_OF_YEAR));
-            week = calendar.get(Calendar.WEEK_OF_YEAR);
-
-
+            Date startDate = formatter.parse(Students.searchGoals(Students.currUser).getGoalStartDate());
+            Date currDate = formatter.parse(date);
+            DateTime dateTime1 = new DateTime(startDate);
+            DateTime dateTime2 = new DateTime(currDate);
+            week = Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         return week;
     }
-
     public static int currentWeek() throws ParseException {
         Calendar calendar = new GregorianCalendar();
         Date newDate = new Date();
@@ -149,4 +150,10 @@ public class Expense {
 
     }
 
+    @Override
+    public int compareTo(Expense compareExpense) {
+        int compareWeeks = ((Expense) compareExpense).getWeek();
+        return compareWeeks-this.week;
+
+    }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="#FFFFFF"
+    android:background="@color/medium"
     android:orientation="horizontal"
     android:padding="6dp"
     android:layout_margin="6dp"
@@ -11,9 +11,9 @@
 
     <ImageView
         android:id="@+id/imageIv"
-        android:layout_width="58dp"
-        android:layout_height="58dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/money"
         android:layout_marginLeft="8dp"
 
         />
@@ -50,14 +50,13 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="12sp" />
 
 
 

@@ -20,7 +20,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="194dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/medium"
+        >
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChart"
@@ -48,8 +50,13 @@
         <Button
             android:id="@+id/AddButton"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Add Expense" />DA
+            android:background="@drawable/enterbtn"
+            android:elevation="5dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:text="Add Expense" />
     </ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView

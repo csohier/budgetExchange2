@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.budgetexchange.R;
+import com.example.budgetexchange.Students;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
 
     private static List<Expense> models;
     private RecyclerViewClickListener mListener;
+
 
     public ExpenseAdapter(List<Expense> models, RecyclerViewClickListener listener){
         mListener=listener;
@@ -62,7 +64,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
         Expense expense = models.get(position);
         holder.amount.setText("$" + String.valueOf(expense.getAmount()));
         holder.date.setText(expense.getDate());
-        holder.week.setText(String.valueOf(expense.getWeek()));
+        holder.week.setText("Expense made in: Week " + String.valueOf(expense.getWeek()) + " of " + Students.searchGoals(Students.currUser).getWeeks());
         holder.type.setText(expense.getType());
 
     }

@@ -182,7 +182,6 @@ public class ExpenseFeed extends AppCompatActivity {
         barChart.getDescription().setEnabled(false);
         barChart.setFitBars(true);
         barChart.setScaleEnabled(false);
-        barChart.setBackgroundColor(Color.TRANSPARENT); //set whatever color you prefer
 
         return barChart;
     }

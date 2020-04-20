@@ -185,7 +185,6 @@ private TextView savingGoal;
         chart.setDrawBarShadow(false);
         chart.setDrawValueAboveBar(true);
         chart.setDrawGridBackground(true);
-        chart.setBackgroundColor(Color.TRANSPARENT); //set whatever color you prefer
 
 
         chart.getDescription().setEnabled(false);
