@@ -21,8 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Budget Exchange"
+
+        android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +78,7 @@
         android:layout_marginTop="16dp"
         android:text="zID"
         android:textColor="@color/colorAccent"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />

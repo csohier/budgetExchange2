@@ -49,7 +49,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvUserName"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="45dp"
         android:layout_marginTop="84dp"
         android:textColorHint="#FFFFFF"
@@ -63,7 +63,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/userNameInput"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:drawableStart="@drawable/avatar"
             android:drawableLeft="@drawable/avatar"
@@ -75,7 +75,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tvPassword"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:textColorHint="#FFFFFF"
@@ -88,7 +88,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"
-            android:layout_width="match_parent"
+            android:layout_width="280dp"
             android:layout_height="45dp"
             android:drawableStart="@drawable/lock"
             android:drawableLeft="@drawable/lock"
@@ -101,7 +101,7 @@
 
     <CheckBox
         android:id="@+id/rememberMe"
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
         android:text="RememberMe"
@@ -113,27 +113,31 @@
 
     <Button
         android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/enterbtn"
         android:text="Sign In"
+        android:textColor="@color/white"
         android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rememberMe" />
 
     <Button
         android:id="@+id/signUpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:text="SIgn Up"
+        android:layout_width="280dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/enterbtn"
+        android:text="Sign Up"
+        android:textColor="@color/white"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rememberMe" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

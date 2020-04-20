@@ -1,6 +1,4 @@
-package com.example.budgetexchange;
-
-import com.example.budgetexchange.Social.SocialFeed;
+package com.example.budgetexchange.Social;
 
 import java.util.ArrayList;
 import java.util.List;

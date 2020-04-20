@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="title"
+        android:text="Title"
         android:textSize="16sp"
         />
 
@@ -44,7 +44,7 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
-        android:text="@string/l_name"
+        android:text="dd/mm/yyyy"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:textSize="8sp"

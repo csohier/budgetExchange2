@@ -261,10 +261,11 @@
 
             <Button
                 android:id="@+id/insertStudent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
                 android:layout_columnSpan="3"
                 android:textColor="#FFFFFF"
+                android:background="@drawable/enterbtn"
                 android:layout_gravity="fill_vertical"
                 android:layout_marginTop="20dp"
                 android:text="Next" />
