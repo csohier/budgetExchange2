@@ -15,16 +15,11 @@ import android.widget.Toast;
 import com.example.budgetexchange.DataBase.Student.Student;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class regPgOne extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
     private DateValidator dateValidator;
     private static final String TAG = "Student Reg Status";
     EditText fName, lName, password, conPassword, zID, email, discipline, stDate, wkIncome;
@@ -35,7 +30,7 @@ public class regPgOne extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.one_pg_reg);
+        setContentView(R.layout.activity_sign_up);
         List<String> universityList = new ArrayList<>();
         universityList.add(new University().getName());
 
@@ -224,7 +219,7 @@ public class regPgOne extends AppCompatActivity {
                                                         conPassword.getText()));
 
                     openLoginActivity();
-                    Toast.makeText(regPgOne.this, "Student saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "Student saved", Toast.LENGTH_SHORT).show();
 
                     }
                 }

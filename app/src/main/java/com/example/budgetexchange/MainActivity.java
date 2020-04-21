@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ClickSignUp() {
-        Intent intent = new Intent(this, regPgOne.class);
+        Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
 
