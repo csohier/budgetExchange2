@@ -12,11 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.budgetexchange.DataBase.Student.Student;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -51,11 +53,11 @@ public class regPgOne extends AppCompatActivity {
         wkIncome = (EditText) findViewById(R.id.wkIncome);
 
         //Adapter for holding the data view
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line,
-                universityList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, Collections.singletonList(com.example.budgetexchange.DataBase.University.University.class.getName()));
 
         university.setAdapter(adapter);
+
 
         insertStudent = (Button) findViewById(R.id.insertStudent);
 
@@ -123,10 +125,9 @@ public class regPgOne extends AppCompatActivity {
                             snackbar.show();
                             zID.setError("zID has been taken");
                         }
-                        else {
-                            Log.d(TAG, "Passed validation");
-                            // enterDataToDatabase;
-                        }
+
+                        Log.d(TAG, "Passed zID validation");
+
                     }
                 } else if (email.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
@@ -203,7 +204,7 @@ public class regPgOne extends AppCompatActivity {
                     wkIncome.setError("Weekly Income should not be empty");
 
                 } else {
-                    Students.addStudents(
+                    Student student = new Student (
                         fName.getText().toString(),
                         lName.getText().toString(),
                         password.getText().toString(),
@@ -214,22 +215,21 @@ public class regPgOne extends AppCompatActivity {
                         stDate.getText().toString(),
                         Float.parseFloat(String.valueOf(wkIncome.getText()))
                     );
+
                     System.out.println(String.format("LOGIN DETAILS PASSED " +
                                                         "\nUsername: %s " +
-                                                        "\nPassword: %s " +
                                                         "\nPassword: %s",
                                                         zID.getText(),
                                                         password.getText(),
                                                         conPassword.getText()));
 
                     openLoginActivity();
+                    Toast.makeText(regPgOne.this, "Student saved", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             });
         }
-
-    public void enterDataToDatabase() {}
-
 
     private void openLoginActivity() {
         Intent intent = new Intent(this, MainActivity.class);
