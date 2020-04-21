@@ -6,6 +6,7 @@ import java.util.UUID;
 public class SocialFeed {
     //    name , type, location and rating are required details. The image, price and the search option are just for aesthetics
     private String title;
+    private String type;
     private String content;
     private String zID;
     private String postID;
@@ -22,7 +23,7 @@ public class SocialFeed {
     public SocialFeed() {
     }
 
-    public SocialFeed(String title, String content, String zID, String firstName, String lastName, String postDate) {
+    public SocialFeed(String title, String content, String zID, String firstName, String lastName, String postDate, String type) {
         this.title = title;
         this.content = content;
         this.zID = zID;
@@ -30,6 +31,7 @@ public class SocialFeed {
         this.firstName = firstName;
         this.lastName = lastName;
         postID= UUIDcreate();
+        this.type=type;
 
     }
 
@@ -39,6 +41,14 @@ public class SocialFeed {
 
     public void setPostID(String postID) {
         this.postID = postID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getFirstName() {
@@ -92,7 +102,7 @@ public class SocialFeed {
 
     public static ArrayList<SocialFeed> getSocialFeed() {
         socialFeed = new ArrayList<>();
-        socialFeed.add(new SocialFeed("$5 Pasta Recipe", "content","z0000000","Corona","Virus","03/04/2020"));
+        socialFeed.add(new SocialFeed("$5 Pasta Recipe", "content","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
 
         return socialFeed;
     }

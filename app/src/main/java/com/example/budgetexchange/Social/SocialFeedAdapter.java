@@ -17,9 +17,10 @@ import java.util.GregorianCalendar;
 
 public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.MyViewHolder> {
     private RecyclerViewClickListener mListener;
+    private  ArrayList<SocialFeed> socialFeed = SocialFeed.socialFeed;
 
     public SocialFeedAdapter(ArrayList<SocialFeed> myDataset, RecyclerViewClickListener listener) {
-        SocialFeed.socialFeed = myDataset;
+        socialFeed = myDataset;
         this.mListener = listener;
     }
 
@@ -77,4 +78,7 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
         dateFormat.setCalendar(calendar);
         return dateFormat.format(calendar.getTime());
     }
+
+
+
 }

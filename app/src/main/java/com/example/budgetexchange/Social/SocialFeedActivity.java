@@ -12,10 +12,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.budgetexchange.R;
 import com.example.budgetexchange.Reddit.DataDetail;
@@ -23,6 +25,7 @@ import com.example.budgetexchange.RedditService;
 import com.example.budgetexchange.Students;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -42,6 +45,7 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
     private Students user;
     private Calendar cal;
     private Spinner spinner;
+    private Button filterBtn;
 
     public static final String EXTRA_MESSAGE = "position of clicked item";
 
@@ -56,12 +60,23 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         cal = Calendar.getInstance();
         postBtn = (Button) findViewById(R.id.createPost);
         postBtn.setOnClickListener(this);
+        filterBtn = findViewById(R.id.filterBtn);
 
         spinner = (Spinner)findViewById(R.id.categorySpinner);
         ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.budget_category));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
 
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //iterate through socialFeed array list to only return values that are category = budgeting tips or cheap eats
+                String filterText = spinner.getSelectedItem().toString();
+
+
+
+            }
+        });
         Retrofit.Builder builder = new Retrofit.Builder().baseUrl("https://www.reddit.com").addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
         RedditService service = retrofit.create(RedditService.class);
@@ -101,9 +116,11 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
             }
         };
 
-        mAdapter = new SocialFeedAdapter(SocialFeed.socialFeed, listener);
+        initialiseFilter(listener);
+
+        //mAdapter = new SocialFeedAdapter(SocialFeed.socialFeed, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(mAdapter);
+        //recyclerView.setAdapter(mAdapter);
 
         postBtn = findViewById(R.id.createPost);
 
@@ -183,4 +200,45 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         String date = sdf.format(calendar.getTime());
         return date;
     }
-}
+
+    private void initialiseFilter(SocialFeedAdapter.RecyclerViewClickListener listener){
+        String[] categories = {"All","Cheap Eats", "Budgeting Tips"};
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long itemID) {
+                if (position >= 0 && position < categories.length) {
+                    String text = spinner.getSelectedItem().toString();
+                    Toast.makeText(SocialFeedActivity.this, text, Toast.LENGTH_SHORT).show();
+
+                    getCategories(text,listener);
+
+                } else {
+                    Toast.makeText(SocialFeedActivity.this, "Selected Category Does not Exist!", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void getCategories(String category, SocialFeedAdapter.RecyclerViewClickListener listener){
+        ArrayList<SocialFeed> socialPosts = new ArrayList<>();
+        if(category.equals(null))
+        {
+            mAdapter = new SocialFeedAdapter(SocialFeed.socialFeed, listener);
+        }else{
+            //filter by id
+            for (SocialFeed post : SocialFeed.socialFeed) {
+                if (post.getType().equals(category)) {
+                    socialPosts.add(post);
+                }
+            }
+            //instatiate adapter a
+            mAdapter = new SocialFeedAdapter(socialPosts,listener);
+        }
+        //set the adapter to GridView
+        recyclerView.setAdapter(mAdapter);
+    }
+    }
