@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.budgetexchange.R;
 import com.example.budgetexchange.Students;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SocialFeedDetailActivity extends AppCompatActivity {
@@ -40,12 +41,9 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
         post = findViewById(R.id.postText);
         progressBar = findViewById(R.id.progressBar);
         cmtProgressBar = findViewById(R.id.commentsProgressBar);
-
-
         commentEditText = findViewById(R.id.commentEditText);
         sendBtn = findViewById(R.id.sendBtnn);
         cal = Calendar.getInstance();
-
 
         Intent intent = getIntent();
         int position = intent.getIntExtra(SocialFeedActivity.EXTRA_MESSAGE, 0);
@@ -55,19 +53,34 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
 
 
         recyclerView = (RecyclerView)findViewById(R.id.commentsRecyclerView);
+
+
         recyclerView.setHasFixedSize(true);
 
+            CommentsAdapter.RecyclerViewClickListener listener = new CommentsAdapter.RecyclerViewClickListener() {
+                @Override
+                public void onClick(View view, int position) {
 
-        CommentsAdapter.RecyclerViewClickListener listener = new CommentsAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View view, int position) {
+                }
+            };
+            mAdapter = new CommentsAdapter(Comments.commentsList, listener);
+            commentsInput();
 
-            }
-        };
+             recyclerView.setAdapter(mAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 
 
+
+
+
+
+
+    }
+
+
+    public ArrayList<Comments> commentsInput(){
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +95,13 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
                     comments.setPostID(SocialFeed.searchPosts(position).getPostID());
                     Comments.commentsList.add(comments);
                     Toast.makeText(SocialFeedDetailActivity.this,"Added", Toast.LENGTH_SHORT).show();
+                    //mAdapter.notifyItemInserted(Comments.commentsList.size()-1);
+                    mAdapter.addItem(comments,mAdapter.getItemCount());
                     for(Comments a: Comments.commentsList){
-                        System.out.println(a.toString());
+                        System.out.println(a.getContent());
+
+
+
                     }
                 }else{
                     Toast.makeText(SocialFeedDetailActivity.this,"Error", Toast.LENGTH_SHORT).show();
@@ -91,15 +109,7 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
                 }
             }
         });
-
-        mAdapter = new CommentsAdapter(Comments.commentsList, listener);
-
-        recyclerView.setAdapter(mAdapter);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
+        return Comments.commentsList;
 
     }
 

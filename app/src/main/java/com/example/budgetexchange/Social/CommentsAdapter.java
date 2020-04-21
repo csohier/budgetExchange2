@@ -11,14 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.budgetexchange.R;
 
+
 import java.util.ArrayList;
 
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyViewHolder> {
     private RecyclerViewClickListener mListener;
+    private ArrayList<Comments> commentsArrayList;
 
     public CommentsAdapter(ArrayList<Comments> myDataset, RecyclerViewClickListener listener) {
-        Comments.commentsList = myDataset;
+        commentsArrayList = myDataset;
         this.mListener = listener;
     }
 
@@ -48,6 +50,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
     }
 
+
+
     @NonNull
     @Override
     public CommentsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,11 +61,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Comments currentFeed = Comments.commentsList.get(position);
-        holder.firstName.setText(currentFeed.getFirstName());
-        holder.lastName.setText(currentFeed.getLastName());
-        holder.date.setText(currentFeed.getPostDate());
-        holder.content.setText(currentFeed.getContent());
+        holder.firstName.setText(commentsArrayList.get(position).getFirstName());
+        holder.lastName.setText(commentsArrayList.get(position).getLastName());
+        holder.date.setText(commentsArrayList.get(position).getPostDate());
+        holder.content.setText(commentsArrayList.get(position).getContent());
 
     }
     @Override
@@ -69,5 +72,24 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         return SocialFeed.socialFeed.size();
     }
 
+    public RecyclerViewClickListener getmListener() {
+        return mListener;
+    }
 
+    public void setmListener(RecyclerViewClickListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public ArrayList<Comments> getCommentsArrayList() {
+        return commentsArrayList;
+    }
+
+    public void setCommentsArrayList(ArrayList<Comments> commentsArrayList) {
+        this.commentsArrayList = commentsArrayList;
+    }
+
+    void addItem(Comments dataObj, int index) {
+        commentsArrayList.add(dataObj);
+        notifyItemInserted(index);
+    }
 }
