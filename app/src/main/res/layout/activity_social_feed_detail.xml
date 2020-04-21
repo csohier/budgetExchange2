@@ -8,7 +8,7 @@
     android:focusableInTouchMode="true"
     tools:context=".Social.SocialFeedActivity"
     android:focusable="true"
-    android:background="@android:color/white">
+    android:background="@drawable/random_background">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -20,18 +20,21 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+
                 android:layout_marginBottom="8dp">
 
                 <ProgressBar
                     android:id="@+id/progressBar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+
                     android:layout_centerInParent="true"
                     android:visibility="visible" />
 
@@ -40,24 +43,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:text="Hello"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:background="@color/medium"
+
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/postText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="220dp"
+
                     android:layout_below="@+id/titleText"
                     android:paddingLeft="16dp"
-                    android:textColor="@color/colorPrimaryDark"
                     android:paddingRight="16dp"
                     android:scaleType="centerCrop"
+                    android:textColor="@color/white"
+
                     android:transitionName="@string/post_image_transition_name"
                     android:visibility="visible" />
 
@@ -71,6 +79,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/medium"
+
                 android:orientation="horizontal"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
@@ -83,15 +93,16 @@
                     android:layout_marginRight="8dp"
                     android:text="Posted by:"
                     android:textSize="18sp"
-                    android:textColor="@color/colorPrimaryDark" />
-
+                    android:textColor="@color/white"
+/>
                 <TextView
                     android:id="@+id/author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hello2"
-                    android:textSize="18sp"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/white"
+
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -102,6 +113,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/authorContainer"
                 android:layout_marginBottom="8dp"
+
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp" />
 
@@ -117,8 +129,8 @@
                 android:paddingRight="16dp"
                 android:autoLink="all"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark" />
-
+                android:textColor="@color/white"
+/>
             <TextView
                 android:id="@+id/commentsLabel"
                 android:layout_width="wrap_content"
@@ -127,7 +139,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:text="Comments"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/white"
                 android:visibility="gone" />
 
             <RelativeLayout
