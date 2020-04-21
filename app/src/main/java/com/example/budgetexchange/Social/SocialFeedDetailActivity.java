@@ -63,19 +63,12 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
 
                 }
             };
+
             mAdapter = new CommentsAdapter(Comments.commentsList, listener);
             commentsInput();
 
-             recyclerView.setAdapter(mAdapter);
+            recyclerView.setAdapter(mAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-
-
-
 
     }
 
@@ -99,8 +92,6 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
                     mAdapter.addItem(comments,mAdapter.getItemCount());
                     for(Comments a: Comments.commentsList){
                         System.out.println(a.getContent());
-
-
 
                     }
                 }else{
