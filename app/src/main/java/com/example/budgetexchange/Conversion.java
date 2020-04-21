@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetexchange.CurrencyConverter.Currency;
 import com.example.budgetexchange.CurrencyConverter.Rates;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.NumberFormat;
 
@@ -52,7 +53,11 @@ public class Conversion extends AppCompatActivity {
             String baseCurrency = baseSpinner.getSelectedItem().toString();
             String exCurrency = exSpinner.getSelectedItem().toString();
             if (baseCurrency.equals(exCurrency)) {
-                Toast.makeText(Conversion.this, "Same Currency", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(v, "Same Currency", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                snackbar.show();
+                exAmount.setError("Same Currency");
                 return;
             }
             double amount;
