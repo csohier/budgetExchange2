@@ -30,10 +30,6 @@ public class Mastery extends AppCompatActivity {
         transaction.replace(R.id.wideView,fragment);
         transaction.commit(); // save the changes
 
-        /*Bundle arguments = new Bundle();
-        fragment.setArguments(arguments);
-        transaction.replace(R.id.wideView, fragment);
-        transaction.commit();*/
 
     }
 }

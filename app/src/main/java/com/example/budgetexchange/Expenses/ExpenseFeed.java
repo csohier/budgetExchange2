@@ -145,6 +145,8 @@ public class ExpenseFeed extends AppCompatActivity {
             }
         }
 
+        //store all expenses
+
         actualSpend.add(new BarEntry(1,expenseTotal));
         BarDataSet data4 = new BarDataSet(actualSpend,"Total Spend");
         BarData data2 = new BarData(data,data4);

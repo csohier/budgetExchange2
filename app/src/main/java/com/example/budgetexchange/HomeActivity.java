@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.budgetexchange.Expenses.ExpenseFeed;
@@ -17,13 +18,14 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home Activity";
 
     private ImageButton expBtn, svgBtn, sclBtn,prfBtn;
+    private ImageView masteryBtn;
     private Button conversionBtn;
     private TextView zID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        masteryBtn = findViewById(R.id.masterBtn);
         zID = findViewById(R.id.zID);
         expBtn = findViewById(R.id.imageButton4);
         svgBtn = findViewById(R.id.imageButton5);
@@ -64,6 +66,12 @@ public class HomeActivity extends AppCompatActivity {
                 openConversionActivity();
             }
         });
+        masteryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMasterActivity();
+            }
+        });
     }
     private void openProfileActivity() {
         Intent intent = new Intent (this, ProfileActivity.class);
@@ -88,6 +96,12 @@ public class HomeActivity extends AppCompatActivity {
     private void openConversionActivity() {
         Intent intent = new Intent (this, Conversion.class);
         Log.d(TAG, "open Conversion Activity");
+        startActivity(intent);
+    }
+
+    private void openMasterActivity() {
+        Intent intent = new Intent (this, Mastery.class);
+        Log.d(TAG, "open Mastery Activity");
         startActivity(intent);
     }
 }

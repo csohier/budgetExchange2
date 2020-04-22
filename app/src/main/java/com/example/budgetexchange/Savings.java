@@ -1,9 +1,13 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.budgetexchange.Expenses.Expense;
@@ -29,6 +33,7 @@ HorizontalBarChart chart;
 private TextView ttlSaved;
 private TextView leftover;
 private TextView savingGoal;
+private ScrollView savingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,11 @@ private TextView savingGoal;
         savingGoal = findViewById(R.id.savingGoal);
         leftover = findViewById(R.id.leftover);
         ttlSaved = findViewById(R.id.ttlSaved);
+
+        savingBar = findViewById(R.id.savingProgressBar);
+        loadFragment();
+
+
         for(Goal a : Students.goals){
             if(a.getzID().equals(Students.currUser)){
                 savingGoal.setText("$" + Integer.toString(a.getGoal()));
@@ -195,10 +205,14 @@ private TextView savingGoal;
         chart.getDescription().setEnabled(false);
 
 
+    }
 
-
-
-
+    private void loadFragment(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        Fragment fragment = new ProgressFragment();
+        transaction.replace(R.id.savingProgressBar,fragment);
+        transaction.commit(); // save the changes
 
 
     }
