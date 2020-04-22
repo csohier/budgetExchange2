@@ -63,7 +63,11 @@ public class AchievementsAdapter extends RecyclerView.Adapter<AchievementsAdapte
     public void onBindViewHolder(AchievementsAdapter.MyViewHolder holder, int position) {
 
         Achievements achievements = models.get(position);
-        holder.description.setText("Congratulations, you've made it " + String.valueOf(achievements.getPercentTrigger())+ "% closer to your goal!");
+        if(achievements.getPercentTrigger()==100){
+            holder.description.setText("Congratulations, you've reached your goal. " + String.valueOf(achievements.getPercentTrigger())+ "%!!");
+        } else {
+            holder.description.setText("Congratulations, you've made it " + String.valueOf(achievements.getPercentTrigger()) + "% closer to your goal!");
+        }
         holder.name.setText(achievements.getName());
         holder.masteryImage.setImageResource(achievements.getImageResource());
 

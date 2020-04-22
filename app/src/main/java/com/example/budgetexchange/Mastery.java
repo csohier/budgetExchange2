@@ -28,11 +28,11 @@ public class Mastery extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mastery);
         wideView = findViewById(R.id.wideView);
-
+        System.out.println("show me this" + Goal.percentageSaved());
         achievementsList = new ArrayList<>();
 
         for(int i=0; i<Achievements.achievementsList.size();i++){
-            if(Achievements.achievementsList.get(i).getPercentTrigger()>=percentageSaved()){
+            if(Achievements.achievementsList.get(i).getPercentTrigger()>=Goal.percentageSaved()){
                 achievementsList.add(Achievements.achievementsList.get(i));
                 if(achievementsList.get(i).getImageResource()==0){
                     int percent = achievementsList.get(i).getPercentTrigger();
@@ -82,11 +82,6 @@ public class Mastery extends AppCompatActivity {
         return res1;
     }
 
-    private int percentageSaved(){
-        Goal user = Students.searchGoals(Students.currUser);
-        //user.getToSave();
-        int percentage = (user.getTotalSaved()/user.getGoal())*100;
-        return percentage;
-    }
+
 
 }

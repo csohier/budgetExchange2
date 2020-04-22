@@ -54,11 +54,11 @@ private int leftoverSave;
                 savingGoal.setText("$" + Integer.toString(a.getGoal()));
                 totalSaved = (a.getIncome()*a.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
                 a.setTotalSaved(totalSaved);
+                System.out.println("saved: " + a.getTotalSaved());
                 System.out.println("testttttt"+ a.getWeeksIntoGoal());
                 ttlSaved.setText("$" +Integer.toString(totalSaved));
                 leftoverSave= a.getGoal()-totalSaved;
                 leftover.setText("$" + Integer.toString(leftoverSave));
-                a.setToSave(leftoverSave);
 
             }
             //leftover = overall goal - total saved

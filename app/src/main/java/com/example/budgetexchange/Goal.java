@@ -20,8 +20,7 @@ public class Goal {
     private int weeksIntoGoal;
 
     //changes to DB
-    private static int totalSaved;
-    private static int toSave;
+    private int totalSaved;
 
     public Goal(String zID, int income, int goal, String goalStartDate, String goalEndDate) {
         this.zID = zID;
@@ -32,24 +31,16 @@ public class Goal {
         weeks = getWeeks(goalStartDate,goalEndDate);
         weeksIntoGoal = getWeeksIn(goalStartDate);
         totalSaved=0;
-        toSave=this.goal;
     }
 
-    public static int getTotalSaved() {
+    public  int getTotalSaved() {
         return totalSaved;
     }
 
-    public static void setTotalSaved(int totalSaved) {
-        Goal.totalSaved = totalSaved;
+    public  void setTotalSaved(int totalSaved) {
+        this.totalSaved = totalSaved;
     }
 
-    public static int getToSave() {
-        return toSave;
-    }
-
-    public static void setToSave(int toSave) {
-        Goal.toSave = toSave;
-    }
 
     public String getzID() {
         return zID;
@@ -144,5 +135,12 @@ public class Goal {
             week=Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
         }catch(ParseException e){ e.printStackTrace(); }
         return week;
+    }
+
+    public static int percentageSaved(){
+        Goal user = Students.searchGoals(Students.currUser);
+        double percentage = (user.getTotalSaved()/user.getGoal())*100;
+        int castPercentage = (int)percentage;
+        return castPercentage;
     }
 }

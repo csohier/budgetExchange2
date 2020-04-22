@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="77dp"
-    android:orientation="vertical"
     tools:context=".ProgressFragment">
 
     <ProgressBar
@@ -11,11 +10,21 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="77dp"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progressbar"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progressbar"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
         android:paddingRight="15dp"
         android:paddingBottom="15dp" />
+    <TextView
+        android:id="@+id/progressID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="70 % complete"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"/>
 
-</LinearLayout>
+
+</FrameLayout>

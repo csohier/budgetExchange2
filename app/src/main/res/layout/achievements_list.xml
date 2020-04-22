@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="130dp"
     android:background="@color/medium"
     android:orientation="horizontal"
     android:padding="6dp"
     android:layout_marginTop="6dp"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp">
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/masteryImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:src="@drawable/money"
 
         />
@@ -37,26 +37,19 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/masteryText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:paddingLeft="10dp">
-
-        <TextView
-            android:id="@+id/masteryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:layout_gravity="right"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
 
 
 
-    </LinearLayout>
 
 
 
