@@ -53,6 +53,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/imageButton4"
                 android:layout_width="140dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#0DBCBCBC"
@@ -72,9 +73,9 @@
 
                     <ImageView
                         android:id="@+id/expenseBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/spend" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,6 +93,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/imageButton5"
                 android:layout_width="140dp"
+                android:layout_marginLeft="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#0DBCBCBC"
@@ -109,9 +111,9 @@
 
                     <ImageView
                         android:id="@+id/savingBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/expense" />
 
 
                     <TextView
@@ -131,6 +133,7 @@
                 android:id="@+id/imageButton6"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#0DBCBCBC"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton4"
@@ -148,9 +151,9 @@
 
                     <ImageView
                         android:id="@+id/profileBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/profile" />
 
 
                     <TextView
@@ -170,6 +173,7 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
                 app:cardBackgroundColor="#0DBCBCBC"
                 app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton5"
@@ -185,9 +189,9 @@
 
                     <ImageView
                         android:id="@+id/socialBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/feed" />
 
 
                     <TextView
@@ -205,6 +209,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/imageButton8"
                 android:layout_width="140dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
@@ -220,9 +225,9 @@
 
                     <ImageView
                         android:id="@+id/masterBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/mastery" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -240,6 +245,8 @@
                 android:id="@+id/imageButton9"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 app:cardBackgroundColor="#0DBCBCBC">
@@ -254,9 +261,9 @@
 
                     <ImageView
                         android:id="@+id/convertBtn"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        app:srcCompat="@drawable/money" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:srcCompat="@drawable/currency" />
 
                     <TextView
                         android:layout_width="wrap_content"
