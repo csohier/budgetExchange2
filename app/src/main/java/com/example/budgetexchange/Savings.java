@@ -34,6 +34,8 @@ private TextView ttlSaved;
 private TextView leftover;
 private TextView savingGoal;
 private ScrollView savingBar;
+private int totalSaved;
+private int leftoverSave;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +52,13 @@ private ScrollView savingBar;
         for(Goal a : Students.goals){
             if(a.getzID().equals(Students.currUser)){
                 savingGoal.setText("$" + Integer.toString(a.getGoal()));
-                int totalSaved = (a.getIncome()*a.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
+                totalSaved = (a.getIncome()*a.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
+                a.setTotalSaved(totalSaved);
                 System.out.println("testttttt"+ a.getWeeksIntoGoal());
                 ttlSaved.setText("$" +Integer.toString(totalSaved));
-                leftover.setText("$" + Integer.toString(a.getGoal()-totalSaved));
+                leftoverSave= a.getGoal()-totalSaved;
+                leftover.setText("$" + Integer.toString(leftoverSave));
+                a.setToSave(leftoverSave);
 
             }
             //leftover = overall goal - total saved

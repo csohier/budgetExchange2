@@ -19,6 +19,10 @@ public class Goal {
     private int weeks;
     private int weeksIntoGoal;
 
+    //changes to DB
+    private static int totalSaved;
+    private static int toSave;
+
     public Goal(String zID, int income, int goal, String goalStartDate, String goalEndDate) {
         this.zID = zID;
         this.income = income;
@@ -27,6 +31,24 @@ public class Goal {
         this.goalEndDate = goalEndDate;
         weeks = getWeeks(goalStartDate,goalEndDate);
         weeksIntoGoal = getWeeksIn(goalStartDate);
+        totalSaved=0;
+        toSave=this.goal;
+    }
+
+    public static int getTotalSaved() {
+        return totalSaved;
+    }
+
+    public static void setTotalSaved(int totalSaved) {
+        Goal.totalSaved = totalSaved;
+    }
+
+    public static int getToSave() {
+        return toSave;
+    }
+
+    public static void setToSave(int toSave) {
+        Goal.toSave = toSave;
     }
 
     public String getzID() {

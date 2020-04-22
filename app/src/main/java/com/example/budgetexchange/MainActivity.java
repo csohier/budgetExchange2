@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 Students.getStudents();
                 SocialFeed.getSocialFeed();
                 Comments.getComments();
+                Achievements.getAchievements();
 
                 String password = String.valueOf(passwordInput.getText());
 
