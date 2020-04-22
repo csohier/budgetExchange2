@@ -31,7 +31,9 @@ public class Conversion extends AppCompatActivity {
     EditText baseAmount, exAmount;
     Button exchange, searchRates;
     Spinner baseSpinner, exSpinner;
-
+    private String baseCurrency;
+    private String exCurrency;
+private Call<Currency> call;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +52,15 @@ public class Conversion extends AppCompatActivity {
         exchange.setOnClickListener(v -> {
             exAmount.setText("getting amount");
             Log.d(TAG, "getting amount" );
-            String baseCurrency = baseSpinner.getSelectedItem().toString();
-            String exCurrency = exSpinner.getSelectedItem().toString();
+            baseCurrency = baseSpinner.getSelectedItem().toString();
+            exCurrency = exSpinner.getSelectedItem().toString();
             if (baseCurrency.equals(exCurrency)) {
                 Snackbar snackbar = Snackbar.make(v, "Same Currency", Snackbar.LENGTH_LONG);
                 View snackbarView = snackbar.getView();
                 snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                 snackbar.show();
                 exAmount.setError("Same Currency");
-                return;
+                //return;
             }
             double amount;
             try {
@@ -79,7 +81,9 @@ public class Conversion extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
         CurrencyService service = retrofit.create(CurrencyService.class);
-        service.getExchangeRates(baseCurrency, exCurrency).enqueue(new Callback<Currency>() {
+        call = service.getExchangeRates(baseCurrency,exCurrency);
+        System.out.println(call.toString());
+        call.enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
                 Log.d(TAG, "in OnResponse Method");

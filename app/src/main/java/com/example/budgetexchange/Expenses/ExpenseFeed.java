@@ -164,11 +164,11 @@ public class ExpenseFeed extends AppCompatActivity {
         xAxis.setDrawGridLines(false);
         yAxis.setDrawGridLines(false);
         yAxis.disableAxisLineDashedLine();
-        //yAxis.setTextColor(Color.WHITE);
-        //barChart.setNoDataTextColor(Color.WHITE);
+        yAxis.setTextColor(Color.WHITE);
+        barChart.setNoDataTextColor(Color.WHITE);
         barChart.setDrawBorders(false);
         barChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-
+        barChart.getLegend().setTextColor(Color.WHITE);
         barChart.getLegend().setTextSize(10);
 
 
@@ -194,12 +194,12 @@ public class ExpenseFeed extends AppCompatActivity {
 
     public void setText(){
         if(expenseTotal>max) {
-            spendInfo.setText("You are over budget by $" + (Math.abs((max-expenseTotal))));
+            spendInfo.setText("Based on your current spending and budget for this week, you are over budget by $" + (Math.abs((max-expenseTotal))));
         } else if (expenseTotal==max){
-            spendInfo.setText("Spend any more and you'll be over budget.");
+            spendInfo.setText("Based on your current spending and budget for this week, if you spend any more you'll be over budget.");
 
         }else {
-            spendInfo.setText("You have $" + (max-expenseTotal) + " to spend until you're over budget.");
+            spendInfo.setText("You have $" + (max-expenseTotal) + " to spend until you're over budget this week.");
         }
     }
 

@@ -10,4 +10,5 @@ public interface CurrencyService {
 
     @GET ("/api/latest")
     Call<Currency> getExchangeRates(@Query("base") String base, @Query("symbols") String symbols);
+
 }

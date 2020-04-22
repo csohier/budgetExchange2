@@ -85,11 +85,13 @@ public class SocialFeedDetailActivity extends AppCompatActivity {
                     comments.setPostDate(SocialFeedActivity.format(cal));
                     comments.setContent(commentEditText.getText().toString());
 
+                    //comments that are shown need to equal the postID
+
                     comments.setPostID(SocialFeed.searchPosts(position).getPostID());
                     Comments.commentsList.add(comments);
                     Toast.makeText(SocialFeedDetailActivity.this,"Added", Toast.LENGTH_SHORT).show();
-                    //mAdapter.notifyItemInserted(Comments.commentsList.size()-1);
                     mAdapter.addItem(comments,mAdapter.getItemCount());
+                    //mAdapter.notifyItemInserted(Comments.commentsList.size()-1);
                     for(Comments a: Comments.commentsList){
                         System.out.println(a.getContent());
 
