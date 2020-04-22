@@ -10,7 +10,7 @@
     android:gravity="center|left">
 
     <ImageView
-        android:id="@+id/imageIv"
+        android:id="@+id/masteryImage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/money"

@@ -29,6 +29,18 @@ public class Mastery extends AppCompatActivity {
         setContentView(R.layout.activity_mastery);
         wideView = findViewById(R.id.wideView);
 
+        achievementsList = new ArrayList<>();
+
+        for(int i=0; i<Achievements.achievementsList.size();i++){
+            if(Achievements.achievementsList.get(i).getPercentTrigger()>=percentageSaved()){
+                achievementsList.add(Achievements.achievementsList.get(i));
+                if(achievementsList.get(i).getImageResource()==0){
+                    int percent = achievementsList.get(i).getPercentTrigger();
+                    System.out.println("percentage CHECK" + percent);
+                    achievementsList.get(i).setImageResource(imageSetterMethod(percent));
+                }
+            }
+        }
         loadFragment();
 
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
@@ -40,21 +52,11 @@ public class Mastery extends AppCompatActivity {
             }
         };
 
-        for(int i=0; i<Achievements.achievementsList.size();i++){
-            if(Achievements.achievementsList.get(i).getPercentTrigger()==percentageSaved()){
-                achievementsList.add(Achievements.achievementsList.get(i));
-                if(achievementsList.get(i).getImageResource()==0){
-                    achievementsList.get(i).setImageResource(percentageSaved());
-                    int percent = achievementsList.get(i).getImageResource();
-                    imageSetterMethod(percent);
-                }
-            }
-        }
+
 
         mAdapter = new AchievementsAdapter(achievementsList,listener);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        achievementsList = new ArrayList<>();
 
 
 
@@ -76,7 +78,7 @@ public class Mastery extends AppCompatActivity {
     }
 
     public int imageSetterMethod(int masteryID){
-        int res1 = getResources().getIdentifier("mastery" + masteryID, "drawable", getPackageName());
+        int res1 = getResources().getIdentifier("mas_" + masteryID, "drawable", getPackageName());
         return res1;
     }
 

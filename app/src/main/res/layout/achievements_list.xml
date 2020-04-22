@@ -7,16 +7,18 @@
     android:orientation="horizontal"
     android:padding="6dp"
     android:layout_marginTop="6dp"
-    android:layout_marginLeft="70dp"
-    android:layout_marginRight="70dp"
-    android:gravity="center">
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
+
 
     <ImageView
-        android:id="@+id/imageIv"
+        android:id="@+id/masteryImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/money"
@@ -28,7 +30,9 @@
         android:layout_height="wrap_content"
         android:text="Title"
         android:textColor="#000"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+    android:layout_gravity="center"        />
 
     </LinearLayout>
 
@@ -37,21 +41,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center|left">
+        android:layout_gravity="center"
+        android:paddingLeft="10dp">
 
         <TextView
             android:id="@+id/masteryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
             android:textColor="#000000"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
             android:textSize="18sp" />
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:textSize="12sp" />
+
 
 
 

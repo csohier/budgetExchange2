@@ -3,6 +3,7 @@ package com.example.budgetexchange;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class AchievementsAdapter extends RecyclerView.Adapter<AchievementsAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView description,name;
+        public ImageView masteryImage;
         private AchievementsAdapter.RecyclerViewClickListener mListener;
 
         public MyViewHolder(View v, AchievementsAdapter.RecyclerViewClickListener listener){
@@ -38,6 +40,7 @@ public class AchievementsAdapter extends RecyclerView.Adapter<AchievementsAdapte
             v.setOnClickListener(this);
             description = v.findViewById(R.id.masteryText);
             name = v.findViewById(R.id.masteryName);
+            masteryImage = v.findViewById(R.id.masteryImage);
 
         }
 
@@ -62,6 +65,7 @@ public class AchievementsAdapter extends RecyclerView.Adapter<AchievementsAdapte
         Achievements achievements = models.get(position);
         holder.description.setText("Congratulations, you've made it " + String.valueOf(achievements.getPercentTrigger())+ "% closer to your goal!");
         holder.name.setText(achievements.getName());
+        holder.masteryImage.setImageResource(achievements.getImageResource());
 
     }
 
