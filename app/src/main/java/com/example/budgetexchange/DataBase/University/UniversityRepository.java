@@ -16,6 +16,8 @@ public class UniversityRepository {
     public UniversityRepository (Application application ) {
         UniversityDB db = UniversityDB.getInstance(application);
         universityDao = db.universityDao();
+
+
     }
 
     public void insert (University university) {
@@ -93,5 +95,7 @@ public class UniversityRepository {
             return null;
         }
     }
+
+
 
 }

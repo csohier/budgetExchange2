@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.budgetexchange.DataBase.Student.Student;
+import com.example.budgetexchange.DataBase.University.UniversityDB;
+import com.example.budgetexchange.DataBase.University.UniversityDao;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class SignUp extends AppCompatActivity {
     private DateValidator dateValidator;
     private static final String TAG = "Student Reg Status";
     EditText fName, lName, password, conPassword, zID, email, stDate, wkIncome;
-    Spinner university;
+    Spinner spinner;
     Button insertStudent;
     public final static String NEW_USERNAME ="zID";
 
@@ -32,12 +34,8 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        List<String> universityList = new ArrayList<>();
-        universityList.add(new com.example.budgetexchange.DataBase.University.University().getName());
 
         DateValidator dateValidator = new DateValidator();
-
-        university = (Spinner) findViewById(R.id.university);
 
         fName = (EditText) findViewById(R.id.fName);
         lName = (EditText) findViewById(R.id.lName);
@@ -47,11 +45,14 @@ public class SignUp extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email);
         stDate = (EditText) findViewById(R.id.stDate);
         wkIncome = (EditText) findViewById(R.id.wkIncome);
+        spinner = (Spinner) findViewById(R.id.university);
+
+        ArrayList university = new ArrayList<String>();
 
         //Adapter for holding the data view
-        ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,universityList);
+        ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, university);
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        university.setAdapter(myAdapter);
+        spinner.setAdapter(myAdapter);
 
         insertStudent = (Button) findViewById(R.id.insertStudent);
 
@@ -158,7 +159,7 @@ public class SignUp extends AppCompatActivity {
 
                 }
 
-                if (university.getSelectedItem().toString().trim().isEmpty()) {
+                if (spinner.getSelectedItem().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
@@ -166,9 +167,9 @@ public class SignUp extends AppCompatActivity {
 
                 }
 
-                if (!university.getSelectedItem().toString().trim().isEmpty()) {
+                if (!spinner.getSelectedItem().toString().trim().isEmpty()) {
                     for (int j = 0; j < University.getUniversities().size(); j++) {
-                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getSelectedItem()))) {
+                        if (University.getUniversities().get(j).getName().equals(String.valueOf(spinner.getSelectedItem()))) {
                             Log.d(TAG, "University is in the Arraylist");
 
                         } else {
@@ -212,7 +213,7 @@ public class SignUp extends AppCompatActivity {
                             password.getText().toString(),
                             zID.getText().toString(),
                             email.getText().toString(),
-                            university.getSelectedItem().toString(),
+                            spinner.getSelectedItem().toString(),
                             stDate.getText().toString(),
                             Float.parseFloat(String.valueOf(wkIncome.getText()))
                     );
