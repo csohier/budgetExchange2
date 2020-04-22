@@ -17,9 +17,9 @@ import com.example.budgetexchange.Social.SocialFeedActivity;
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home Activity";
 
-    private ImageButton expBtn, svgBtn, sclBtn,prfBtn;
+    private ImageView expBtn, svgBtn, sclBtn,prfBtn;
     private ImageView masteryBtn;
-    private Button conversionBtn;
+    private ImageView conversionBtn;
     private TextView zID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         masteryBtn = findViewById(R.id.masterBtn);
         zID = findViewById(R.id.zID);
-        expBtn = findViewById(R.id.imageButton4);
-        svgBtn = findViewById(R.id.imageButton5);
-        sclBtn = findViewById(R.id.imageButton7);
-        prfBtn = findViewById(R.id.imageButton6);
-        conversionBtn = findViewById(R.id.conversionBtn);
+        expBtn = findViewById(R.id.expenseBtn);
+        svgBtn = findViewById(R.id.savingBtn);
+        sclBtn = findViewById(R.id.socialBtn);
+        prfBtn = findViewById(R.id.profileBtn);
+        conversionBtn = findViewById(R.id.convertBtn);
 
         Intent intent = getIntent();
         zID.setText(intent.getStringExtra("Username"));
@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
             openExpenseActivity();
         }
         });
+
         sclBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
