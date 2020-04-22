@@ -2,6 +2,7 @@ package com.example.budgetexchange.DataBase.Expense;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity (tableName = "expense")
@@ -22,6 +23,7 @@ public class Expense {
     @ColumnInfo (name = "description")
     private String description;
 
+    @Ignore
     public Expense (double amount, String type, String date, String description) {
         this.amount = amount;
         this.type = type;
