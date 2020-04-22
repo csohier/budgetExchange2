@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +20,11 @@ import java.util.List;
 public class EditProfile extends AppCompatActivity {
     private DateValidator dateValidator;
     private static final String TAG = "EditProfile Activity";
-    private EditText fName,lName, zID, email,university, discipline,startDate,weeklyIncome, goalAmount, goalStart, goalEnd;
+    private EditText fName,lName, zID, email,startDate,weeklyIncome, goalAmount, goalStart, goalEnd;
     private Students user;
     private Button saveBtn;
     private Goal goal;
+    private Spinner university;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,6 @@ public class EditProfile extends AppCompatActivity {
         zID = findViewById(R.id.zIDE);
         email = findViewById(R.id.emailE);
         university = findViewById(R.id.universityE);
-        discipline = findViewById(R.id.disciplineE);
         startDate = findViewById(R.id.startDateE);
         weeklyIncome = findViewById(R.id.wkIncomeE);
         saveBtn = findViewById(R.id.tvSave);
@@ -52,8 +53,7 @@ public class EditProfile extends AppCompatActivity {
         lName.setText(user.getlName());
         zID.setText(user.getzID());
         email.setText(user.getEmail());
-        university.setText(user.getUniversity());
-        discipline.setText(user.getDiscipline());
+        university.setAdapter(user.getUniversity());
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
@@ -86,45 +86,47 @@ public class EditProfile extends AppCompatActivity {
                     snackbar.show();
                     fName.setError("First Name should not be empty");
 
-                } else if (lName.getText().toString().trim().isEmpty()) {
+                }
+
+                if (lName.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     lName.setError("Last Name should not be empty");
 
-                } else if (zID.getText().toString().trim().isEmpty()) {
+                }
+
+                if (zID.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     zID.setError("zID should not be empty");
 
-                } else if  (email.getText().toString().trim().isEmpty()) {
+                }
+
+                if  (email.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     email.setError("Email should not be empty");
 
-                } else if (discipline.getText().toString().trim().isEmpty()) {
+                }
+
+                if (university.getSelectedItem().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
-                    discipline.setError("Discipline should not be empty");
 
-                } else if (university.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    university.setError("Exchange School should not be empty");
+                }
 
-                } else if (!university.getText().toString().trim().isEmpty()){
+                if (!university.getSelectedItem().toString().trim().isEmpty()){
                     for(int j = 0; j < University.getUniversities().size(); j++) {
 
-                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getText()))) {
+                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getSelectedItem()))) {
                             Log.d(TAG, "University is in the Arraylist");
 
                         } else {
@@ -132,68 +134,85 @@ public class EditProfile extends AppCompatActivity {
                             View snackbarView = snackbar.getView();
                             snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                             snackbar.show();
-                            university.setError("University is not in the list");
                             Log.d(TAG, "University is not in the Arraylist");
                         }
                     }
 
-                } else if (startDate.getText().toString().trim().isEmpty()) {
+                }
+
+                if (startDate.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     startDate.setError("Start Date should not be empty");
 
-                } else if (!dateValidator.validate(startDate.getText().toString())) {
+                }
+
+                if (!dateValidator.validate(startDate.getText().toString())) {
                     Snackbar snackbar = Snackbar.make(v, "Invalid Start Date", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     startDate.setError("Invalid Start Date");
 
-                } else if (weeklyIncome.getText().toString().trim().isEmpty()) {
+                }
+
+                if (weeklyIncome.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     weeklyIncome.setError("Weekly Income should not be empty");
 
-                } else if (goalAmount.getText().toString().trim().isEmpty()){
+                }
+
+                if (goalAmount.getText().toString().trim().isEmpty()){
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     goalAmount.setError("Weekly Income should not be empty");
 
-                } else if (goalStart.getText().toString().trim().isEmpty()) {
+                }
+
+                if (goalStart.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     goalStart.setError("Start Date should not be empty");
 
-                } else if (!dateValidator.validate(goalStart.getText().toString())) {
+                }
+
+                if (!dateValidator.validate(goalStart.getText().toString())) {
                     Snackbar snackbar = Snackbar.make(v, "Invalid Goal Start Date", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     goalStart.setError("Invalid Goal Start Date");
 
-                }  else if (goalEnd.getText().toString().trim().isEmpty()) {
+                }
+
+                if (goalEnd.getText().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     goalEnd.setError("End Date should not be empty");
 
-                } else if (!dateValidator.validate(goalEnd.getText().toString())) {
+                }
+
+                if (!dateValidator.validate(goalEnd.getText().toString())) {
                     Snackbar snackbar = Snackbar.make(v, "Invalid Goal End Date", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     goalEnd.setError("Invalid Goal End Date");
 
-                } else if (Integer.parseInt(String.valueOf(goalStart)) > Integer.parseInt(String.valueOf(goalEnd))) {
+                }
+
+                if (Integer.parseInt(String.valueOf(goalStart)) > Integer.parseInt(String.valueOf(goalEnd))) {
                     Snackbar snackbar = Snackbar.make(v, "Goal End Date ends before Goal Start Date", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));

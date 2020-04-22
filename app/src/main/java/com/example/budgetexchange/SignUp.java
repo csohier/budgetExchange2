@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.budgetexchange.DataBase.Student.Student;
@@ -22,8 +23,8 @@ import java.util.List;
 public class SignUp extends AppCompatActivity {
     private DateValidator dateValidator;
     private static final String TAG = "Student Reg Status";
-    EditText fName, lName, password, conPassword, zID, email, discipline, stDate, wkIncome;
-    AutoCompleteTextView university;
+    EditText fName, lName, password, conPassword, zID, email, stDate, wkIncome;
+    Spinner university;
     Button insertStudent;
     public final static String NEW_USERNAME ="zID";
 
@@ -34,7 +35,8 @@ public class SignUp extends AppCompatActivity {
         List<String> universityList = new ArrayList<>();
         universityList.add(new University().getName());
 
-        university = (AutoCompleteTextView) findViewById(R.id.university);
+
+        university = (Spinner) findViewById(R.id.university);
 
         fName = (EditText) findViewById(R.id.fName);
         lName = (EditText) findViewById(R.id.lName);
@@ -42,9 +44,7 @@ public class SignUp extends AppCompatActivity {
         conPassword = (EditText) findViewById(R.id.conPassword);
         zID = (EditText) findViewById(R.id.zID);
         email = (EditText) findViewById(R.id.email);
-        discipline = (EditText) findViewById(R.id.discipline);
         stDate = (EditText) findViewById(R.id.stDate);
-
         wkIncome = (EditText) findViewById(R.id.wkIncome);
 
         //Adapter for holding the data view
@@ -159,27 +159,17 @@ public class SignUp extends AppCompatActivity {
 
                 }
 
-                if (discipline.getText().toString().trim().isEmpty()) {
+                if (university.getSelectedItem().toString().trim().isEmpty()) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
-                    discipline.setError("Discipline should not be empty");
 
                 }
 
-                if (university.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    university.setError("Exchange School should not be empty");
-
-                }
-
-                if (!university.getText().toString().trim().isEmpty()) {
+                if (!university.getSelectedItem().toString().trim().isEmpty()) {
                     for (int j = 0; j < University.getUniversities().size(); j++) {
-                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getText()))) {
+                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getSelectedItem()))) {
                             Log.d(TAG, "University is in the Arraylist");
 
                         } else {
@@ -187,7 +177,6 @@ public class SignUp extends AppCompatActivity {
                             View snackbarView = snackbar.getView();
                             snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                             snackbar.show();
-                            university.setError("University is not in the list");
                             Log.d(TAG, "University is not in the Arraylist");
                         }
                     }
@@ -224,8 +213,7 @@ public class SignUp extends AppCompatActivity {
                             password.getText().toString(),
                             zID.getText().toString(),
                             email.getText().toString(),
-                            discipline.getText().toString(),
-                            university.getText().toString(),
+                            university.getSelectedItem().toString(),
                             stDate.getText().toString(),
                             Float.parseFloat(String.valueOf(wkIncome.getText()))
                     );
