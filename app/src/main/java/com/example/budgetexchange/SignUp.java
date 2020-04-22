@@ -33,8 +33,9 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         List<String> universityList = new ArrayList<>();
-        universityList.add(new University().getName());
+        universityList.add(new com.example.budgetexchange.DataBase.University.University().getName());
 
+        DateValidator dateValidator = new DateValidator();
 
         university = (Spinner) findViewById(R.id.university);
 
@@ -48,11 +49,9 @@ public class SignUp extends AppCompatActivity {
         wkIncome = (EditText) findViewById(R.id.wkIncome);
 
         //Adapter for holding the data view
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, Collections.singletonList(com.example.budgetexchange.DataBase.University.University.class.getName()));
-
-        university.setAdapter(adapter);
-
+        ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,universityList);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        university.setAdapter(myAdapter);
 
         insertStudent = (Button) findViewById(R.id.insertStudent);
 

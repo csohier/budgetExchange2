@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -44,6 +45,10 @@ public class EditProfile extends AppCompatActivity {
 
         System.out.println(Students.currUser);
         System.out.println(Students.searchStudents(Students.currUser));
+        List<String> universityList = new ArrayList<>();
+        universityList.add(new com.example.budgetexchange.DataBase.University.University().getName());
+
+        DateValidator dateValidator = new DateValidator();
 
         user = Students.searchStudents(Students.currUser);
         System.out.print(user.toString());
@@ -53,7 +58,9 @@ public class EditProfile extends AppCompatActivity {
         lName.setText(user.getlName());
         zID.setText(user.getzID());
         email.setText(user.getEmail());
-        university.setAdapter(user.getUniversity());
+        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,universityList);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        university.setAdapter(myAdapter);
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
