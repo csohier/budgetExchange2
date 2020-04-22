@@ -49,9 +49,6 @@ public class Student {
     @ColumnInfo (name = "email")
     private String email;
 
-    @ColumnInfo (name = "discipline")
-    private String discipline;
-
     @ColumnInfo (name = "university")
     private String university;
 
@@ -61,13 +58,12 @@ public class Student {
     @ColumnInfo (name = "wkIncome")
     private float wkIncome;
 
-    public Student (String ZID, String FName, String LName, String password, String email, String discipline, String  university, String stDate, float wkIncome) {
+    public Student (String ZID, String FName, String LName, String password, String email, String  university, String stDate, float wkIncome) {
         this.ZID = ZID;
         this.FName = FName;
         this.LName = LName;
         this.password = password;
         this.email = email;
-        this.discipline = discipline;
         this.university = university;
         this.stDate = stDate;
         this.wkIncome = wkIncome;
@@ -92,14 +88,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
     }
 
     public String getUniversity() {

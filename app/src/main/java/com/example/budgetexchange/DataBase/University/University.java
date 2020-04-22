@@ -2,6 +2,7 @@ package com.example.budgetexchange.DataBase.University;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
@@ -13,6 +14,11 @@ public class University implements Serializable {
 
     @ColumnInfo (name = "name")
     private String name;
+
+    @Ignore
+    public University() {
+
+    }
 
     public int getId() { return id; }
 

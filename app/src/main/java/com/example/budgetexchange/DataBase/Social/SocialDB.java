@@ -1,5 +1,4 @@
-package com.example.budgetexchange.DataBase.Student;
-
+package com.example.budgetexchange.DataBase.Social;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -10,25 +9,20 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.budgetexchange.DataBase.Student.StudentDao;
+@Database(entities = Social.class, exportSchema = false, version = 1)
+public abstract class SocialDB extends RoomDatabase {
+    private static SocialDB instance;
 
-
-@Database(entities = Student.class, exportSchema = false, version = 1)
-public abstract class StudentDB extends RoomDatabase {
-    private static StudentDB instance;
-
-    public abstract StudentDao studentDao();
-
-    public static synchronized StudentDB getInstance(Context context) {
+    public abstract SocialDao socialDao();
+    public static synchronized SocialDB getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    StudentDB.class,
-                    "student_db")
+                    SocialDB.class,
+                    "social_db")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
         }
-
         return instance;
     }
 
@@ -41,19 +35,18 @@ public abstract class StudentDB extends RoomDatabase {
     };
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
-        private StudentDao studentDao;
-        private PopulateDbAsyncTask (StudentDB db) {
+        private SocialDao socialDao;
 
-            studentDao = db.studentDao();
+        private PopulateDbAsyncTask (SocialDB db) {
+            socialDao = db.socialDao();
         }
 
         @Override
-        protected Void doInBackground (Void... voids) {
-            studentDao.insert(new Student("z0000000","Corona", "Virus", "COVID-19",  "c.virus@student.unsw.edu.au", "Economics", "31/03/2020",1000f));
+        protected Void doInBackground(Void... voids) {
+            socialDao.insert(new Social("$5 Pasta Recipe", "content","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
             return null;
         }
     }
-
 
 
 }

@@ -165,45 +165,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/universityE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
+                android:layout_width="125dp"
+                android:layout_height="28dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginRight="30dp"
-                android:ems="10"
-                android:hint="University"
-                android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tvDiscipline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="1"
-                android:layout_marginTop="10dp"
-                android:text="Discipline:"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/disciplineE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
-                android:layout_marginEnd="30dp"
-                android:layout_marginRight="30dp"
-                android:ems="10"
-                android:hint="Discipline"
-
-                android:inputType="textPersonName"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="12sp" />
+                android:background="@drawable/btn"
+                android:hint="Type"
+                />
 
             <TextView
                 android:id="@+id/tvStartDate"
