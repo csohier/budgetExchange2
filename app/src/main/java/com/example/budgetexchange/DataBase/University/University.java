@@ -84,5 +84,7 @@ public class University implements Serializable {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
+
+
 }
 

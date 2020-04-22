@@ -26,4 +26,8 @@ public interface UniversityDao {
         @Query("DELETE FROM university")
         void deleteAllUniversity();
 
+        @Query("SELECT name FROM university")
+        University getUniversity (String name);
+
+
 }
