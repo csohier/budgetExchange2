@@ -2,6 +2,7 @@ package com.example.budgetexchange.DataBase.Expense;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,6 +19,9 @@ public interface ExpenseDao {
 
     @Update
     void update (Expense expense);
+
+    @Delete
+    void delete (Expense expense);
 
     @Query("DELETE FROM expense")
     void deleteAllExpense();
