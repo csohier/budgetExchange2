@@ -182,9 +182,14 @@ private TextView savingGoal;
         yAxis.setDrawGridLines(false);
         yAxis.disableAxisLineDashedLine();
         yAxis.setTextColor(Color.WHITE);
+        yAxis2.setTextColor(Color.WHITE);
         chart.setDrawBarShadow(false);
         chart.setDrawValueAboveBar(true);
         chart.setDrawGridBackground(true);
+        chart.getLegend().setTextColor(Color.WHITE);
+        chart.getLegend().setTextSize(15);
+
+
 
 
         chart.getDescription().setEnabled(false);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Savings"
-    android:background="@color/details"
+    android:background="@drawable/random_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -116,26 +116,24 @@
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
-
+    <TextView
+        android:id="@+id/spending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:text="Total Spending in $AUD"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 
         <com.github.mikephil.charting.charts.HorizontalBarChart
+            android:paddingLeft="10dp"
             android:id="@+id/chart1"
             android:layout_width="match_parent"
-            android:background="@color/medium"
             android:layout_height="400dp"></com.github.mikephil.charting.charts.HorizontalBarChart>
-
-
-
-    <Button
-        android:textColor="#fff"
-        android:background="@drawable/enterbtn"
-        android:layout_marginBottom="35dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Follow Me"/>
 
 
 </LinearLayout>
