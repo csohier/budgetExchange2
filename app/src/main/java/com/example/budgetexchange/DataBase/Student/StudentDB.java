@@ -48,7 +48,7 @@ public abstract class StudentDB extends RoomDatabase {
 
         @Override
         protected Void doInBackground (Void... voids) {
-            studentDao.insert(new Student("z0000000","Corona", "Virus", "COVID-19",  "c.virus@student.unsw.edu.au", "Economics", "London School of Economics", "31/03/2020",1000f));
+            studentDao.insert(new Student("z0000000","Corona", "Virus", "COVID-19",  "c.virus@student.unsw.edu.au", "Economics", "31/03/2020",1000f));
             return null;
         }
     }
