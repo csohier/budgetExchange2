@@ -13,6 +13,7 @@ public class StudentRepository {
     public StudentRepository (Application application ) {
         StudentDB db = StudentDB.getInstance(application);
         studentDao = db.studentDao();
+        allStudent = studentDao.getAllStudent();
     }
 
     public void insert (Student student) {
@@ -87,6 +88,20 @@ public class StudentRepository {
         @Override
         protected Void doInBackground(Void... voids) {
             studentDao.deleteAllStudent();
+            return null;
+        }
+    }
+
+    private static class StudentLogin extends AsyncTask<Student, Void, Void> {
+        private StudentDao studentDao;
+        private StudentLogin (StudentDao studentDao) {
+            this.studentDao = studentDao;
+        }
+
+        @Override
+        protected Void doInBackground(Student... student) {
+            studentDao.deleteAllStudent();
+            studentDao.insert(student[0]);
             return null;
         }
     }

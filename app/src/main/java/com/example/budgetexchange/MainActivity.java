@@ -3,12 +3,22 @@ package com.example.budgetexchange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputBinding;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.budgetexchange.DataBase.Student.Student;
+import com.example.budgetexchange.DataBase.Student.StudentDB;
+import com.example.budgetexchange.DataBase.Student.StudentDao;
+import com.example.budgetexchange.DataBase.Student.StudentRepository;
 import com.example.budgetexchange.Expenses.Expense;
 import com.example.budgetexchange.Social.Comments;
 import com.example.budgetexchange.Social.SocialFeed;
@@ -37,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signUpBtn = findViewById(R.id.signUpBtn);
         rememberMe = findViewById(R.id.rememberMe);
-        List<Students> students;
-
 
 
         //open register xml
@@ -71,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //Here you can write the codes for checking username
 
+
                 }
 
                 if (passwordInput.getText().toString().trim().isEmpty()) {
@@ -88,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     //Here you can write the codes if box is not checked
                 }
+
 
                 String username = String.valueOf(userNameInput.getText());
                 Students.currUser=username;
@@ -108,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+
+
+
+
 
             }
 

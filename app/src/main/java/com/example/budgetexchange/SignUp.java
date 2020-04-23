@@ -21,6 +21,8 @@ import com.example.budgetexchange.DataBase.University.UniversityDB;
 import com.example.budgetexchange.DataBase.University.UniversityRepository;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -50,6 +52,8 @@ public class SignUp extends AppCompatActivity {
         stDate = (EditText) findViewById(R.id.stDate);
         wkIncome = (EditText) findViewById(R.id.wkIncome);
         spinner = (Spinner) findViewById(R.id.university);
+
+
 
         /*List<com.example.budgetexchange.DataBase.University.University> university =
                 UniversityDB.getInstance(this).universityDao().allUniversity();
@@ -200,13 +204,21 @@ public class SignUp extends AppCompatActivity {
                     snackbar.show();
                     stDate.setError("Start Date should not be empty");
 
-                } else if (!dateValidator.validate(stDate.getText().toString())) {
+                } else if /*(dateValidator.validate(stDate.getText().toString()) == false ) {
                     Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     stDate.setError("Invalid Start Date");
 
+                }*/
+
+                (checkDateFormat(stDate.getText().toString()) == false ) {
+                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    stDate.setError("Invalid Start Date");
                 }
 
                 if (wkIncome.getText().toString().trim().isEmpty()) {
@@ -265,4 +277,16 @@ public class SignUp extends AppCompatActivity {
             spinner.setAdapter((SpinnerAdapter) mDb);
         }
     }*/
+
+    public Boolean checkDateFormat(String date){
+        if (date == null || !date.matches("^(1[0-9]|0[1-9]|3[0-1]|2[1-9])/(0[1-9]|1[0-2])/[0-9]{4}$"))
+            return false;
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            format.parse(date);
+            return true;
+        }catch (ParseException e){
+            return false;
+        }
+    }
 }
