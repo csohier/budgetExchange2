@@ -62,6 +62,24 @@
         <item>Cheap Eats</item>
     </string-array>
 
+    <string-array name="university_name">
+        <item>Select… </item>
+        <item>Boston College</item>
+        <item>Chinese University of Hong Kong</item>
+        <item>Copenhagen Business School</item>
+        <item>Hokkaido University</item>
+        <item>Kyoto University</item>
+        <item>McGill University</item>
+        <item>Seoul National University</item>
+        <item>University of Amsterdam</item>
+        <item>University of British Columbia</item>
+        <item>University of California, Berkeley</item>
+        <item>University College London</item>
+
+
+
+
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

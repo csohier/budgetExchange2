@@ -1,25 +1,28 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.room.Room;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.budgetexchange.DataBase.Student.Student;
 import com.example.budgetexchange.DataBase.University.UniversityDB;
-import com.example.budgetexchange.DataBase.University.UniversityDao;
+import com.example.budgetexchange.DataBase.University.UniversityRepository;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SignUp extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class SignUp extends AppCompatActivity {
     EditText fName, lName, password, conPassword, zID, email, stDate, wkIncome;
     Spinner spinner;
     Button insertStudent;
+    private UniversityDB mDb;
     public final static String NEW_USERNAME ="zID";
 
     @Override
@@ -47,10 +51,16 @@ public class SignUp extends AppCompatActivity {
         wkIncome = (EditText) findViewById(R.id.wkIncome);
         spinner = (Spinner) findViewById(R.id.university);
 
-        ArrayList university = new ArrayList<String>();
+        /*List<com.example.budgetexchange.DataBase.University.University> university =
+                UniversityDB.getInstance(this).universityDao().allUniversity();
 
         //Adapter for holding the data view
-        ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, university);
+        ArrayAdapter<com.example.budgetexchange.DataBase.University.University>myAdapter=
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, university);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(myAdapter);*/
+
+        ArrayAdapter<String>myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.university_name));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(myAdapter);
 
@@ -241,4 +251,18 @@ public class SignUp extends AppCompatActivity {
 
 
     }
+
+    /*public class getAllUniversity extends AsyncTask<Void, Void, List<com.example.budgetexchange.DataBase.University.University>> {
+
+        @Override
+        protected List<com.example.budgetexchange.DataBase.University.University> doInBackground(Void... voids) {
+            mDb.universityDao().allUniversity();
+            return mDb.universityDao().allUniversity();
+        }
+
+        @Override
+        protected void onPostExecute(List<com.example.budgetexchange.DataBase.University.University> university) {
+            spinner.setAdapter((SpinnerAdapter) mDb);
+        }
+    }*/
 }

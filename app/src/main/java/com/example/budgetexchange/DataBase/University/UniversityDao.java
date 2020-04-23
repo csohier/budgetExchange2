@@ -1,6 +1,5 @@
 package com.example.budgetexchange.DataBase.University;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,7 +11,7 @@ import java.util.List;
 @Dao
 public interface UniversityDao {
         @Query("Select * from university")
-        LiveData<List<University>> allUniversity();
+        List<University> allUniversity();
 
         @Insert
         void insert (University university);

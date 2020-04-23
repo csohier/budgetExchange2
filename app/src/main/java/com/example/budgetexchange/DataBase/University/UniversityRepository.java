@@ -2,16 +2,14 @@ package com.example.budgetexchange.DataBase.University;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import androidx.lifecycle.LiveData;
-import com.example.budgetexchange.DataBase.University.UniversityDao;
-import com.example.budgetexchange.DataBase.University.University;
-import com.example.budgetexchange.DataBase.University.UniversityDB;
+
 
 import java.util.List;
 
 public class UniversityRepository {
     private UniversityDao universityDao;
-    private LiveData<List<University>> allUniversity;
+    private List<University> allUniversity;
+    private UniversityDB mDb;
 
     public UniversityRepository (Application application ) {
         UniversityDB db = UniversityDB.getInstance(application);
@@ -36,7 +34,7 @@ public class UniversityRepository {
 
     }
 
-    public LiveData<List<University>> getAllUniversity() {
+    public List<University> getAllUniversity() {
         return allUniversity;
     }
 
@@ -95,7 +93,4 @@ public class UniversityRepository {
             return null;
         }
     }
-
-
-
 }

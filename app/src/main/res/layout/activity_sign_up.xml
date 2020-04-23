@@ -197,10 +197,12 @@
 
             <Spinner
             android:id="@+id/university"
-            android:layout_width="125dp"
+            android:layout_width="140dp"
             android:layout_height="28dp"
             android:layout_marginTop="10dp"
             android:layout_columnSpan="2"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
             android:background="@drawable/btn"
             android:hint="Type"
             />

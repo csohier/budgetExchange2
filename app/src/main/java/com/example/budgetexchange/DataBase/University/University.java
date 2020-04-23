@@ -85,6 +85,8 @@ public class University implements Serializable {
         this.currency = currency;
     }
 
-
+    public String toString () {
+        return name;
+    }
 }
 
