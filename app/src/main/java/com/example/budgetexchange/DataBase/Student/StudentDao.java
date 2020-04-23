@@ -26,4 +26,7 @@ public interface StudentDao {
     @Query("DELETE FROM student")
     void deleteAllStudent();
 
+    @Query("SELECT * FROM student WHERE ZID = :zID and password = :password")
+    Student getStudent (String zID, String password);
+
 }

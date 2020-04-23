@@ -19,6 +19,7 @@ import com.example.budgetexchange.DataBase.Student.Student;
 import com.example.budgetexchange.DataBase.Student.StudentDB;
 import com.example.budgetexchange.DataBase.Student.StudentDao;
 import com.example.budgetexchange.DataBase.Student.StudentRepository;
+import com.example.budgetexchange.DataBase.University.UniversityDB;
 import com.example.budgetexchange.Expenses.Expense;
 import com.example.budgetexchange.Social.Comments;
 import com.example.budgetexchange.Social.SocialFeed;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private Button loginBtn;
     private Button signUpBtn;
 
-
+    private StudentDao studentDao;
+    private StudentDB studentDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,26 +100,52 @@ public class MainActivity extends AppCompatActivity {
                     //Here you can write the codes if box is not checked
                 }
 
+                Student student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
+                if (student != null) {
+                    String username = String.valueOf(userNameInput.getText());
+                    Students.currUser=username;
+                    Students.goals = Goal.getGoals();
+                    Expense.getExpenses();
+                    Students.getStudents();
+                    SocialFeed.getSocialFeed();
+                    Comments.getComments();
+                    Achievements.getAchievements();
 
-                String username = String.valueOf(userNameInput.getText());
-                Students.currUser=username;
-                Students.goals = Goal.getGoals();
-                Expense.getExpenses();
-                Students.getStudents();
-                SocialFeed.getSocialFeed();
-                Comments.getComments();
-                Achievements.getAchievements();
+                    openHomeActivity();
 
-                String password = String.valueOf(passwordInput.getText());
+                } else {
+                    Snackbar snackbar = Snackbar.make(view, "zID or Password incorrect", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                    snackbar.show();
+                    userNameInput.setError("Check fields");
+                    passwordInput.setError("Check fields");
+                }
 
-                for (int i = 0; i < Students.getStudents().size(); i++) {
+
+
+
+
+
+                /*  String username = String.valueOf(userNameInput.getText());
+                    String password = String.valueOf(passwordInput.getText());
+
+                    Students.currUser=username;
+                    Students.goals = Goal.getGoals();
+                    Expense.getExpenses();
+                    Students.getStudents();
+                    SocialFeed.getSocialFeed();
+                    Comments.getComments();
+                    Achievements.getAchievements();
+
+                    for (int i = 0; i < Students.getStudents().size(); i++) {
 
                     if (Students.getStudents().get(i).getzID().equals(username) && Students.getStudents().get(i).getPassword().equals(password)) {
                         openHomeActivity();
                     } else{
                         Toast.makeText(MainActivity.this, "Failed to login", Toast.LENGTH_SHORT).show();
                     }
-                }
+                }*/
 
 
 
