@@ -45,8 +45,6 @@ public class EditProfile extends AppCompatActivity {
 
         System.out.println(Students.currUser);
         System.out.println(Students.searchStudents(Students.currUser));
-        List<String> universityList = new ArrayList<>();
-        universityList.add(new com.example.budgetexchange.DataBase.University.University().getName());
 
         DateValidator dateValidator = new DateValidator();
 
@@ -58,7 +56,7 @@ public class EditProfile extends AppCompatActivity {
         lName.setText(user.getlName());
         zID.setText(user.getzID());
         email.setText(user.getEmail());
-        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,universityList);
+        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.university_name));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         university.setAdapter(myAdapter);
         startDate.setText(user.getStDateString());
