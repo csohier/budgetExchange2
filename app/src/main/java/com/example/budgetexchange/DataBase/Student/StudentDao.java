@@ -15,6 +15,9 @@ public interface StudentDao {
     LiveData <List<Student>> getAllStudent();
 
     @Insert
+    void insertAll(Student... students);
+
+    @Insert
     void insert (Student student);
 
     @Update
@@ -26,8 +29,6 @@ public interface StudentDao {
     @Delete
     void deleteAll(Student... students);
 
-    @Query("SELECT * FROM student")
-    LiveData<Student> getStudents();
 
     @Query("SELECT * FROM student WHERE ZID = :zID and password = :password")
     LiveData<Student> getStudent(String zID, String password);
