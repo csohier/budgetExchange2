@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
+
 import java.util.List;
 
 public class ExpenseRepository {
@@ -12,7 +14,7 @@ public class ExpenseRepository {
     private LiveData<List<Expense>> allExpense;
 
     public ExpenseRepository (Application application) {
-        ExpenseDB db = ExpenseDB.getInstance(application);
+        AppDatabase db = AppDatabase.getInstance(application);
         expenseDao = db.expenseDao();
     }
 

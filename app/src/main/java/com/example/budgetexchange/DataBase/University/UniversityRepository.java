@@ -4,15 +4,17 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 
+import com.example.budgetexchange.DataBase.AppDatabase;
+
 import java.util.List;
 
 public class UniversityRepository {
     private UniversityDao universityDao;
     private List<University> allUniversity;
-    private UniversityDB mDb;
+    private AppDatabase mDb;
 
     public UniversityRepository (Application application ) {
-        UniversityDB db = UniversityDB.getInstance(application);
+        AppDatabase db = AppDatabase.getInstance(application);
         universityDao = db.universityDao();
 
 

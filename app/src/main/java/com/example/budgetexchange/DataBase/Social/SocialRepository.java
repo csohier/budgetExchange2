@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
+
 import java.util.List;
 
 public class SocialRepository {
@@ -13,7 +15,7 @@ public class SocialRepository {
     private LiveData<List<Social>> allSocial;
 
     public SocialRepository (Application application) {
-        SocialDB db = SocialDB.getInstance(application);
+        AppDatabase db = AppDatabase.getInstance(application);
         socialDao = db.socialDao();
 
     }

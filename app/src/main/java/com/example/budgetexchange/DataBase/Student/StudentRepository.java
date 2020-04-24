@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
+
 import java.util.List;
 
 public class StudentRepository {
@@ -11,7 +13,7 @@ public class StudentRepository {
     private LiveData<List<Student>> allStudent;
 
     public StudentRepository (Application application ) {
-        StudentDB db = StudentDB.getInstance(application);
+        AppDatabase db = AppDatabase.getInstance(application);
         studentDao = db.studentDao();
         allStudent = studentDao.getAllStudent();
     }

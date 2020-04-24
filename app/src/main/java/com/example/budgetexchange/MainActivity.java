@@ -4,31 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputBinding;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
 import com.example.budgetexchange.DataBase.Student.Student;
-import com.example.budgetexchange.DataBase.Student.StudentDB;
 import com.example.budgetexchange.DataBase.Student.StudentDao;
 import com.example.budgetexchange.DataBase.Student.StudentRepository;
-import com.example.budgetexchange.DataBase.University.UniversityDB;
 import com.example.budgetexchange.Expenses.Expense;
 import com.example.budgetexchange.Social.Comments;
 import com.example.budgetexchange.Social.SocialFeed;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signUpBtn;
 
     private StudentDao studentDao;
-    private StudentDB studentDB;
+    private AppDatabase appDatabase;
     private StudentRepository studentRepository;
 
     @Override
@@ -54,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.signUpBtn);
         rememberMe = findViewById(R.id.rememberMe);
 
-        studentDB = Room.databaseBuilder(this, StudentDB.class, "student_database")
+        appDatabase = Room.databaseBuilder(this, AppDatabase.class, "student_database")
                 .allowMainThreadQueries()
                 .build();
 
-        studentDao = studentDB.studentDao();
+        studentDao = appDatabase.studentDao();
 
 
         //open register xml
@@ -82,16 +73,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (userNameInput.getText().toString().trim().isEmpty()) {
-
                     Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     userNameInput.setError("Username should not be empty");
-                } else {
-                    //Here you can write the codes for checking username
-
-
                 }
 
                 if (passwordInput.getText().toString().trim().isEmpty()) {
@@ -100,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
                     snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                     snackbar.show();
                     passwordInput.setError("Password should not be empty");
-                } else {
-                    //Here you can write the codes for checking password
                 }
 
                 if (rememberMe.isChecked()) {

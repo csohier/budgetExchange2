@@ -128,9 +128,7 @@ private int leftoverSave;
                     categoryValues[i] = categoryValues[i] + (float)Expense.expenses.get(b).getAmount();
                     System.out.println("category " + categoryValues[i]);
 
-
                 }
-
             }
 
             BarEntryCategories.get(i).add(new BarEntry(i*spaceForBar,categoryValues[i]));

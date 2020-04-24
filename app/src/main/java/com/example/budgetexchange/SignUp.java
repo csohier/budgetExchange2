@@ -1,11 +1,8 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.room.Room;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,19 +10,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
 import com.example.budgetexchange.DataBase.Student.Student;
-import com.example.budgetexchange.DataBase.University.UniversityDB;
-import com.example.budgetexchange.DataBase.University.UniversityRepository;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class SignUp extends AppCompatActivity {
     private DateValidator dateValidator;
@@ -33,7 +25,7 @@ public class SignUp extends AppCompatActivity {
     EditText fName, lName, password, conPassword, zID, email, stDate, wkIncome;
     Spinner spinner;
     Button insertStudent;
-    private UniversityDB mDb;
+    private AppDatabase mDb;
     public final static String NEW_USERNAME ="zID";
 
     @Override
