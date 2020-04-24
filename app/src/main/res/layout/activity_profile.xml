@@ -11,94 +11,91 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="@+id/tvEdit"
         app:layout_constraintBottom_toTopOf="@id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/tvEdit"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/logo"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="1.0">
 
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:columnCount="3"
+            android:orientation="horizontal"
             android:rowCount="10">
 
             <TextView
                 android:id="@+id/tvPerDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
                 android:text="Personal Detail"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:layout_columnSpan="3"
-                />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="First Name:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/fName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
+                android:ems="10"
                 android:text="First Name:"
                 android:textColor="#FFFFFF"
-                android:ems="10"
-                android:textSize="18sp"
-                 />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Last Name:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/lName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="First Name:"
-                android:textColor="#FFFFFF"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
                 android:ems="10"
+                android:text="First Name:"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvZID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="zID:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/zID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
-                android:ems="10"
                 android:layout_marginTop="10dp"
+                android:ems="10"
                 android:text="zID:"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
@@ -107,79 +104,78 @@
                 android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Email:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email:"
+                android:layout_columnSpan="2"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ellipsize="none"
+                android:ems="10"
                 android:maxLines="100"
                 android:scrollHorizontally="false"
+                android:text="Email:"
                 android:textColor="#FFFFFF"
-                android:layout_columnSpan="2"
-                android:ems="10"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvExDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="3"
                 android:layout_marginTop="12dp"
                 android:text="Exchange Detail"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
-                android:layout_columnSpan="3"/>
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/tvUniversity"
                 android:layout_width="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="University:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"
-                />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/university"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Exchange School:"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ellipsize="none"
-                android:maxLines="100"
                 android:ems="10"
+                android:maxLines="100"
                 android:scrollHorizontally="false"
+                android:text="Exchange School:"
                 android:textColor="#FFFFFF"
-                android:layout_columnSpan="2"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDiscipline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Discipline:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/discipline"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:text="Discipline:"
                 android:textColor="#FFFFFF"
@@ -189,32 +185,32 @@
                 android:id="@+id/tvStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Start Date:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/stDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:text="Discipline:"
-                android:layout_marginTop="10dp"
                 android:textColor="#FFFFFF"
-                android:layout_columnSpan="2"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvWkIncome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_columnSpan="1"
                 android:layout_marginTop="10dp"
                 android:text="Weekly Income:"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:layout_columnSpan="1"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/wkIncome"
@@ -223,9 +219,9 @@
                 android:layout_columnSpan="2"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                android:textSize="18dp"
                 android:text="Discipline:"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tvGoalsTitle"
@@ -301,30 +297,26 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18dp" />
 
+            <Button
+                android:id="@+id/tvEdit"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_columnSpan="3"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/enterbtn"
+                android:layout_gravity="fill_vertical"
+                android:layout_marginTop="20dp"
+                android:text="EDIT" />
 
 
         </GridLayout>
     </ScrollView>
 
-
-    <Button
-        android:id="@+id/tvEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="60dp"
-        android:text="edit"
-        android:textColor="@color/white"
-        android:textSize="26sp"
-        app:layout_constraintStart_toEndOf="@+id/logo"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
@@ -335,14 +327,26 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="128dp"
         android:text="Profile"
         android:textColor="@color/white"
         android:textSize="26sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BudgetExchange"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logo" />
 
     <TextView
         android:id="@+id/textView10"
