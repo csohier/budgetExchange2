@@ -19,8 +19,8 @@ public class Goals implements Serializable {
     @PrimaryKey (autoGenerate = true)
     private int id;
 
-    @ColumnInfo (name = "zID")
-    private String zID;
+    @ColumnInfo (name = "ZID")
+    private String ZID;
 
     @ColumnInfo (name = "income")
     private int income;
@@ -34,14 +34,78 @@ public class Goals implements Serializable {
     @ColumnInfo (name = "goalStartDate")
     private String goalStartDate;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getZID() {
+        return ZID;
+    }
+
+    public void setzID(String ZID) {
+        this.ZID = ZID;
+    }
+
+    public int getIncome() {
+        return income;
+    }
+
+    public void setIncome(int income) {
+        this.income = income;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public String getGoalEndDate() {
+        return goalEndDate;
+    }
+
+    public void setGoalEndDate(String goalEndDate) {
+        this.goalEndDate = goalEndDate;
+    }
+
+    public String getGoalStartDate() {
+        return goalStartDate;
+    }
+
+    public void setGoalStartDate(String goalStartDate) {
+        this.goalStartDate = goalStartDate;
+    }
+
+    public int getWeeks() {
+        return weeks;
+    }
+
+    public void setWeeks(int weeks) {
+        this.weeks = weeks;
+    }
+
+    public int getWeeksIntoGoal() {
+        return weeksIntoGoal;
+    }
+
+    public void setWeeksIntoGoal(int weeksIntoGoal) {
+        this.weeksIntoGoal = weeksIntoGoal;
+    }
+
     @ColumnInfo (name = "weeks")
     private int weeks;
 
     @ColumnInfo (name = "weeksIntoGoal")
     private int weeksIntoGoal;
 
-    public Goals(String zID, int income, int goal, String goalStartDate, String goalEndDate) {
-        this.zID = zID;
+    public Goals(String ZID, int income, int goal, String goalStartDate, String goalEndDate) {
+        this.ZID = ZID;
         this.income = income;
         this.goal = goal;
         this.goalStartDate = goalStartDate;

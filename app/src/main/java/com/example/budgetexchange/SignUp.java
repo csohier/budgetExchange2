@@ -1,6 +1,7 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +46,9 @@ public class SignUp extends AppCompatActivity {
         wkIncome = (EditText) findViewById(R.id.wkIncome);
         spinner = (Spinner) findViewById(R.id.university);
 
-
+        mDb = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "coins-database")
+                .allowMainThreadQueries()
+                .build();
 
         /*List<com.example.budgetexchange.DataBase.University.University> university =
                 UniversityDB.getInstance(this).universityDao().allUniversity();
@@ -231,6 +234,9 @@ public class SignUp extends AppCompatActivity {
                             stDate.getText().toString(),
                             Float.parseFloat(String.valueOf(wkIncome.getText()))
                     );
+
+                    mDb.studentDao().insert(student);
+                    mDb.studentDao().insertAll(student);
 
                     System.out.println(String.format("LOGIN DETAILS PASSED " +
                                     "\nUsername: %s " +

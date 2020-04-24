@@ -14,6 +14,38 @@ public class Achievements implements Serializable {
     @ColumnInfo (name = "name")
     private String name;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPercentTrigger() {
+        return percentTrigger;
+    }
+
+    public void setPercentTrigger(int percentTrigger) {
+        this.percentTrigger = percentTrigger;
+    }
+
+    public int getImageResource() {
+        return imageResource;
+    }
+
+    public void setImageResource(int imageResource) {
+        this.imageResource = imageResource;
+    }
+
     @ColumnInfo (name = "percentTrigger")
     private int percentTrigger;
 
