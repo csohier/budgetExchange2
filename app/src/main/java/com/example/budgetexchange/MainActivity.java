@@ -2,6 +2,7 @@ package com.example.budgetexchange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputBinding;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Room;
 
 import com.example.budgetexchange.DataBase.Student.Student;
 import com.example.budgetexchange.DataBase.Student.StudentDB;
@@ -30,6 +32,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "Main Activity";
     private TextInputEditText userNameInput;
     private TextInputEditText passwordInput;
     private CheckBox rememberMe;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private StudentDao studentDao;
     private StudentDB studentDB;
+    private StudentRepository studentRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         signUpBtn = findViewById(R.id.signUpBtn);
         rememberMe = findViewById(R.id.rememberMe);
+
+        studentDB = Room.databaseBuilder(this, StudentDB.class, "student_database")
+                .allowMainThreadQueries()
+                .build();
+
+        studentDao = studentDB.studentDao();
 
 
         //open register xml
@@ -100,7 +110,14 @@ public class MainActivity extends AppCompatActivity {
                     //Here you can write the codes if box is not checked
                 }
 
-                Student student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
+                Log.d(TAG, userNameInput.getText().toString());
+                Log.d(TAG, passwordInput.getText().toString());
+
+                System.out.println(userNameInput.getText().toString());
+                System.out.println(passwordInput.getText().toString());
+
+                LiveData<Student> student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
+
                 if (student != null) {
                     String username = String.valueOf(userNameInput.getText());
                     Students.currUser=username;
@@ -121,10 +138,6 @@ public class MainActivity extends AppCompatActivity {
                     userNameInput.setError("Check fields");
                     passwordInput.setError("Check fields");
                 }
-
-
-
-
 
 
                 /*  String username = String.valueOf(userNameInput.getText());

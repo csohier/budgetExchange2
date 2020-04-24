@@ -36,6 +36,10 @@ public class StudentRepository {
         return allStudent;
     }
 
+    public LiveData<Student> getStudent(String name, String password) {
+        return studentDao.getStudent(name, password);
+    }
+
     private static class InsertStudentAsyncTask extends AsyncTask<Student, Void, Void> {
         private StudentDao studentDao;
 
@@ -95,6 +99,7 @@ public class StudentRepository {
     private static class StudentLogin extends AsyncTask<Student, Void, Void> {
         private StudentDao studentDao;
         private StudentLogin (StudentDao studentDao) {
+
             this.studentDao = studentDao;
         }
 
