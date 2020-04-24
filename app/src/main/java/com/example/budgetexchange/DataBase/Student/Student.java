@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.budgetexchange.DataBase.Goals.Goals;
+
 @Entity (tableName = "student")
 public class Student {
 
@@ -57,6 +59,8 @@ public class Student {
 
     @ColumnInfo (name = "wkIncome")
     private float wkIncome;
+
+    public static String currUser;
 
     public Student (String ZID, String FName, String LName, String password, String email, String  university, String stDate, float wkIncome) {
         this.ZID = ZID;
@@ -114,6 +118,31 @@ public class Student {
         this.wkIncome = wkIncome;
     }
 
+    /*public static Student searchStudents(String zID) {
+        for(int i = 0; i < Student.students.size(); i++)
+            if(Student..get(i).zID.equals(zID)){
+                return Student.students.get(i);
+            }
+        return null;
+    }
+
+    public static Goals searchGoals(String zID) {
+        for(int i = 0; i < Student.goals.size(); i++)
+            if(Student.goals.get(i).getzID().equals(zID)){
+                return Student.goals.get(i);
+            }
+        return null;
+    }
+
+
+    public boolean goalExists(String zID){
+        for(Goals a: Student.goals){
+            if(a.getzID().equals(Student.currUser)){
+                return true;
+            }
+        }
+        return false;
+    }*/
 
 }
 
