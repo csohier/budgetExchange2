@@ -93,7 +93,7 @@ public class StudentRepository {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            studentDao.deleteAllStudent();
+            studentDao.deleteAll();
             return null;
         }
     }
@@ -107,7 +107,7 @@ public class StudentRepository {
 
         @Override
         protected Void doInBackground(Student... student) {
-            studentDao.deleteAllStudent();
+            studentDao.deleteAll();
             studentDao.insert(student[0]);
             return null;
         }

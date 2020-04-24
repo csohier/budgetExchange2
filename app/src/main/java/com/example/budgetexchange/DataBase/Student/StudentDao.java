@@ -23,10 +23,13 @@ public interface StudentDao {
     @Delete
     void delete (Student student);
 
-    @Query("DELETE FROM student")
-    void deleteAllStudent();
+    @Delete
+    void deleteAll(Student... students);
+
+    @Query("SELECT * FROM student")
+    LiveData<Student> getStudents();
 
     @Query("SELECT * FROM student WHERE ZID = :zID and password = :password")
-    LiveData<Student> getStudent (String zID, String password);
+    LiveData<Student> getStudent(String zID, String password);
 
 }

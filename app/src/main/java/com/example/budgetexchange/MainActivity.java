@@ -21,6 +21,8 @@ import com.example.budgetexchange.Social.SocialFeed;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Main Activity";
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox rememberMe;
     private Button loginBtn;
     private Button signUpBtn;
+    List<Student> studentsList;
 
     private StudentDao studentDao;
     private AppDatabase appDatabase;
@@ -100,9 +103,14 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(userNameInput.getText().toString());
                 System.out.println(passwordInput.getText().toString());
 
+                //List<Student> students = response.body().getData();
+
+               // appDatabase.studentDao().deleteAll(appDatabase.studentDao().getStudents().toArray(new Student[appDatabase.studentDao().getStudents().size()]));
+                //studentsList = studentDao.getStudents();
+
                 LiveData<Student> student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
 
-                if (student != null) {
+                if (student.getValue() != null) {
                     String username = String.valueOf(userNameInput.getText());
                     Students.currUser=username;
                     Students.goals = Goal.getGoals();
