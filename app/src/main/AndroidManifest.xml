@@ -12,14 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Mastery"></activity>
+
+        <activity android:name=".Mastery" />
         <activity android:name=".Conversion" />
         <activity android:name=".EditProfile" />
         <activity
             android:name=".Expenses.AddExpense"
             android:windowSoftInputMode="stateHidden" />
+
         <activity android:name=".Savings" />
+
         <activity android:name=".Expenses.ExpenseFeed" />
+
         <activity android:name=".Social.SocialFeedDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

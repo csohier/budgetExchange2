@@ -1,14 +1,10 @@
 package com.example.budgetexchange.DataBase;
 
-
 import android.content.Context;
-import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.budgetexchange.DataBase.Achievements.AcheivementsDao;
 import com.example.budgetexchange.DataBase.Achievements.Achievements;
@@ -26,10 +22,11 @@ import com.example.budgetexchange.DataBase.University.University;
 import com.example.budgetexchange.DataBase.University.UniversityDao;
 
 
-@Database(entities = {Student.class, Expense.class, Social.class, Comment.class, University.class, Goals.class, Achievements.class} , exportSchema = false, version = 1)
+@Database(entities = {Student.class, Expense.class, Social.class, Comment.class,
+                      University.class, Goals.class, Achievements.class},
+                      exportSchema = false, version = 1)
 
 public abstract class AppDatabase extends RoomDatabase {
-    private static AppDatabase instance;
 
     public abstract StudentDao studentDao();
     public abstract UniversityDao universityDao();
@@ -39,19 +36,21 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract AcheivementsDao achievementsDao();
     public abstract GoalsDao goalsDao();
 
-    public static synchronized AppDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                    AppDatabase.class,
-                    "app_database")
-                    .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
-                    .build();
-        }
+    private static AppDatabase instance;
 
+    public static synchronized AppDatabase getInstance(Context context) {
+
+        if (instance == null) {
+            instance = Room.databaseBuilder(context, AppDatabase.class, "app_database")
+                //.fallbackToDestructiveMigration()
+                //.addCallback(roomCallback)
+                //.allowMainThreadQueries()
+                .build();
+        }
         return instance;
     }
 
+    /*
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate (@NonNull SupportSQLiteDatabase db) {
@@ -108,5 +107,5 @@ public abstract class AppDatabase extends RoomDatabase {
 
             return null;
         }
-    }
+    }*/
 }

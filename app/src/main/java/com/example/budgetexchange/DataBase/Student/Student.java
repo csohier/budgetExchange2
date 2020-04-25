@@ -1,49 +1,25 @@
 package com.example.budgetexchange.DataBase.Student;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.example.budgetexchange.DataBase.Goals.Goals;
 
 @Entity (tableName = "student")
 public class Student {
 
     @PrimaryKey (autoGenerate =  true)
+    @NonNull
     private int id;
 
     @ColumnInfo (name = "ZID")
     private String ZID;
 
-    public String getZID() {
-        return ZID;
-    }
-
-    public void setZID(String zID) {
-        this.ZID = zID;
-    }
-
     @ColumnInfo (name = "FName")
     private String FName;
 
-    public String getFName() {
-        return FName;
-    }
-
-    public void setFName(String fName) {
-        this.FName = fName;
-    }
-
     @ColumnInfo (name = "LName")
     private String LName;
-
-    public String getLName() {
-        return LName;
-    }
-
-    public void setLName(String lName) {
-        this.LName = lName;
-    }
 
     @ColumnInfo (name = "password")
     private String password;
@@ -62,6 +38,9 @@ public class Student {
 
     public static String currUser;
 
+    //Mastery Stuff
+    //private int points;
+
     public Student (String ZID, String FName, String LName, String password, String email, String  university, String stDate, float wkIncome) {
         this.ZID = ZID;
         this.FName = FName;
@@ -72,6 +51,30 @@ public class Student {
         this.stDate = stDate;
         this.wkIncome = wkIncome;
 
+    }
+
+    public String getZID() {
+        return ZID;
+    }
+
+    public void setZID(String zID) {
+        this.ZID = zID;
+    }
+
+    public String getFName() {
+        return FName;
+    }
+
+    public void setFName(String fName) {
+        this.FName = fName;
+    }
+
+    public String getLName() {
+        return LName;
+    }
+
+    public void setLName(String lName) {
+        this.LName = lName;
     }
 
     public int getId() { return id; }
@@ -143,6 +146,10 @@ public class Student {
         }
         return false;
     }*/
+
+    public static String getCurrUser() { return currUser; }
+
+    public static void setCurrUser(String currUser) { Student.currUser = currUser; }
 
 }
 

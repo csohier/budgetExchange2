@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,13 +14,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.budgetexchange.DataBase.AppDatabase;
+import com.example.budgetexchange.DataBase.Student.AsyncTaskStudentDelegate;
+import com.example.budgetexchange.DataBase.Student.GetAllZIDAsyncTask;
+import com.example.budgetexchange.DataBase.Student.Student;
+import com.example.budgetexchange.DataBase.Student.UpdateStudentByZIDAsyncTask;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditProfile extends AppCompatActivity {
-    private DateValidator dateValidator;
+public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDelegate {
     private static final String TAG = "EditProfile Activity";
     private EditText fName,lName, zID, email,startDate,weeklyIncome, goalAmount, goalStart, goalEnd;
     private Students user;
@@ -45,8 +52,6 @@ public class EditProfile extends AppCompatActivity {
 
         System.out.println(Students.currUser);
         System.out.println(Students.searchStudents(Students.currUser));
-
-        DateValidator dateValidator = new DateValidator();
 
         user = Students.searchStudents(Students.currUser);
         System.out.print(user.toString());
@@ -81,159 +86,107 @@ public class EditProfile extends AppCompatActivity {
             }
         }
 
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (fName.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    fName.setError("First Name should not be empty");
+        saveBtn.setOnClickListener(v -> {
+            //Checks if fields are empty
 
-                }
+            if (checkFieldsEmpty(fName) || checkFieldsEmpty(lName) ||
+                    checkFieldsEmpty(zID) || checkFieldsEmpty(email) ||
+                    checkFieldsEmpty(startDate) || checkFieldsEmpty(weeklyIncome) ||
+                    university.getSelectedItem().equals(" ") || checkFieldsEmpty(goalStart) ||
+                    checkFieldsEmpty(goalAmount) || checkFieldsEmpty(goalEnd)) {
 
-                if (lName.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    lName.setError("Last Name should not be empty");
+                //Display error message
+                incompleteEdit(v);
 
-                }
+            } else {
 
-                if (zID.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    zID.setError("zID should not be empty");
+                AppDatabase db = AppDatabase.getInstance(EditProfile.this);
 
-                }
-
-                if  (email.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    email.setError("Email should not be empty");
-
-                }
-
-                if (university.getSelectedItem().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-
-                }
-
-                if (!university.getSelectedItem().toString().trim().isEmpty()){
-                    for(int j = 0; j < University.getUniversities().size(); j++) {
-
-                        if (University.getUniversities().get(j).getName().equals(String.valueOf(university.getSelectedItem()))) {
-                            Log.d(TAG, "University is in the Arraylist");
-
-                        } else {
-                            Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                            View snackbarView = snackbar.getView();
-                            snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                            snackbar.show();
-                            Log.d(TAG, "University is not in the Arraylist");
-                        }
-                    }
-
-                }
-
-                if (startDate.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    startDate.setError("Start Date should not be empty");
-
-                }
-
-                if (!dateValidator.validate(startDate.getText().toString())) {
-                    Snackbar snackbar = Snackbar.make(v, "Invalid Start Date", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    startDate.setError("Invalid Start Date");
-
-                }
-
-                if (weeklyIncome.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    weeklyIncome.setError("Weekly Income should not be empty");
-
-                }
-
-                if (goalAmount.getText().toString().trim().isEmpty()){
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalAmount.setError("Weekly Income should not be empty");
-
-                }
-
-                if (goalStart.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalStart.setError("Start Date should not be empty");
-
-                }
-
-                if (!dateValidator.validate(goalStart.getText().toString())) {
-                    Snackbar snackbar = Snackbar.make(v, "Invalid Goal Start Date", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalStart.setError("Invalid Goal Start Date");
-
-                }
-
-                if (goalEnd.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(v, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalEnd.setError("End Date should not be empty");
-
-                }
-
-                if (!dateValidator.validate(goalEnd.getText().toString())) {
-                    Snackbar snackbar = Snackbar.make(v, "Invalid Goal End Date", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalEnd.setError("Invalid Goal End Date");
-
-                }
-
-                if (Integer.parseInt(String.valueOf(goalStart)) > Integer.parseInt(String.valueOf(goalEnd))) {
-                    Snackbar snackbar = Snackbar.make(v, "Goal End Date ends before Goal Start Date", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    goalEnd.setError("Goal End Date ends before Goal Start Date");
-                }
-
-                else {
-                    saveProfile();
-                }
+                //Grab all the usernames to check if the same username doesn't already exist
+                UpdateStudentByZIDAsyncTask updateStudentByZIDAsyncTask = new UpdateStudentByZIDAsyncTask();
+                updateStudentByZIDAsyncTask.setDatabase(db);
+                updateStudentByZIDAsyncTask.setDelegate(EditProfile.this);
+                updateStudentByZIDAsyncTask.execute();
             }
         });
     }
+
 
     private void saveProfile() {
         Intent intent = new Intent (this, ProfileActivity.class);
         startActivity(intent);
     }
+
+    public void incompleteEdit (View v) {
+        Snackbar snackbar = Snackbar.make(v, "Please fill out all parts of the page", Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+        snackbar.show();
+    }
+
+    public boolean checkFieldsEmpty(EditText editText) {
+        return TextUtils.isEmpty(editText.getText());
+    }
+
+    public Boolean checkDateFormat(String date){
+        if (date == null || !date.matches("^(1[0-9]|0[1-9]|3[0-1]|2[1-9])/(0[1-9]|1[0-2])/[0-9]{4}$"))
+            return false;
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            format.parse(date);
+            return true;
+        }catch (ParseException e){
+            return false;
+        }
+    }
+
+    @Override
+    public void handleUpdateStudentByZID(String result) {
+        if (!checkDateFormat(startDate.getText().toString()) || !checkDateFormat(goalStart.getText().toString()) || !checkDateFormat(goalEnd.getText().toString())) {
+            invalidDates();
+
+        } else if (Integer.parseInt(String.valueOf(goalStart)) > Integer.parseInt(String.valueOf(goalEnd))){
+            invalidDates();
+        } else {
+
+            AppDatabase db = AppDatabase.getInstance(EditProfile.this);
+
+            //Update this student to database
+            UpdateStudentByZIDAsyncTask updateStudentByZIDAsyncTask = new UpdateStudentByZIDAsyncTask();
+            updateStudentByZIDAsyncTask.setDatabase(db);
+            updateStudentByZIDAsyncTask.setDelegate(this);
+            updateStudentByZIDAsyncTask.execute();
+
+            saveProfile();
+        }
+    }
+
+    public void invalidDates() {
+        Toast.makeText(EditProfile.this, "Invalid Dates", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void handleInsertStudentResult(String result) {
+
+    }
+
+    @Override
+    public void handleGetStudentResult(Student student) {}
+
+    @Override
+    public void handleGetAllStudentsResult(List<Student> student) {
+
+    }
+
+    @Override
+    public void handleGetZIDResult(List<String> zID) {
+
+    }
+
+    @Override
+    public void handleGetStudentByZID(Student zID) {
+
+    }
+
+
 }
