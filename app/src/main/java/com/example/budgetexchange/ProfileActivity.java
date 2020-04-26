@@ -1,11 +1,8 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,7 +19,6 @@ public class ProfileActivity extends AppCompatActivity {
     private Button editBtn;
     private Students user;
     private Goal goal;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +39,9 @@ public class ProfileActivity extends AppCompatActivity {
         user = Students.searchStudents(Students.currUser);
 
         String indicator, amount, start, end;
-        if(user.goalExists(user.getzID())==true){
+
+        //Checks whether the Student has a goal in the system
+        if(user.goalExists(user.getzID())==true) {
             goal = user.searchGoals(user.getzID());
             amount = String.valueOf(goal.getGoal());
             goalAmount.setText("$" + amount);
@@ -52,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
             end = goal.getGoalEndDate();
             goalEnd.setText(end);
             indicator = "A";
+
         } else {
             amount = "$NULL";
             start = "dd/MM/yyyy";
@@ -60,7 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         editBtn = findViewById(R.id.tvEdit);
-
         fName.setText(user.getfName());
         lName.setText(user.getlName());
         zID.setText(user.getzID());
@@ -70,14 +68,11 @@ public class ProfileActivity extends AppCompatActivity {
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
-        editBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            openEditProfileActivity(indicator,amount,start,end);
-        }
-        });
+        //Button to open Edit Profile Activity
+        editBtn.setOnClickListener(view -> openEditProfileActivity(indicator,amount,start,end));
     }
 
+    //Switch Activity to Edit Profile Activity
     private void openEditProfileActivity(String indicator,String goalAmt, String goalSt, String glEnd) {
         Intent intent = new Intent(this, EditProfile.class);
         intent.putExtra("i",indicator);
@@ -85,6 +80,5 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra("startDate",goalSt);
         intent.putExtra("endDate",glEnd);
         startActivity(intent);
-
     }
 }

@@ -74,38 +74,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
                 snackbar.show();
                 passwordInput.setError("Password should not be empty");
             }
-
-            /*
-            Log.d(TAG, userNameInput.getText().toString());
-            Log.d(TAG, passwordInput.getText().toString());
-
-            System.out.println(userNameInput.getText().toString());
-            System.out.println(passwordInput.getText().toString());
-
-            List<Student> student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
-
-            if (student != null) {
-                String username = String.valueOf(userNameInput.getText());
-                Students.currUser=username;
-                Students.goals = Goal.getGoals();
-                Expense.getExpenses();
-                Students.getStudents();
-                SocialFeed.getSocialFeed();
-                Comments.getComments();
-                Achievements.getAchievements();
-
-                openHomeActivity();
-
-            } else {
-                Snackbar snackbar = Snackbar.make(view, "zID or Password incorrect", Snackbar.LENGTH_LONG);
-                View snackbarView = snackbar.getView();
-                snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                snackbar.show();
-                userNameInput.setError("Check fields");
-                passwordInput.setError("Check fields");
-            }
-
-             */
         });
     }
 
@@ -114,12 +82,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
         Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
     }
-
-    @Override
-    public void handleInsertStudentResult(String result) { }
-
-    @Override
-    public void handleGetAllStudentsResult(List<Student> student) { }
 
     public void handleGetZIDResult(List<String> zID) {
         existingStudents = zID;
@@ -142,9 +104,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     @Override
     public void handleGetStudentByZID (Student student) {
         currUser = student;
-        //Now that we have a correct ZID, let's check if the password is correct
 
-        //Check if password matches:
+        //Now that we have a correct ZID, let's check if the password is correct
+        //Check if password matches:å
         if(currUser.getPassword().equals(passwordInput.getText().toString())) {
             Students.currUser=currUser.getZID();
             Students.goals = Goal.getGoals();
@@ -153,21 +115,24 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
             SocialFeed.getSocialFeed();
             Comments.getComments();
             Achievements.getAchievements();
+
             //Switch pages
             openHomeActivity();
 
         } else {
             //display toast
             passwordIncorrect();
-        };
+        }
     }
 
+    //Method for wrong zID
     public void zIDNotExist() {
         //Displays error messages
         Toast.makeText(MainActivity.this, "zID does not exist.", Toast.LENGTH_SHORT).show();
         userNameInput.setError("Check fields");
     }
 
+    //Method for incorrect password
     public void passwordIncorrect() {
         //Displays error messages
         Toast.makeText(MainActivity.this, "Password incorrect.", Toast.LENGTH_SHORT).show();
@@ -184,4 +149,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
 
     @Override
     public void handleUpdateStudentByZID(String result) { }
+
+    @Override
+    public void handleInsertStudentResult(String result) { }
+
+    @Override
+    public void handleGetAllStudentsResult(List<Student> student) { }
 }

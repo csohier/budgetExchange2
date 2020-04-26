@@ -1,7 +1,6 @@
 package com.example.budgetexchange;
 
 import com.example.budgetexchange.Expenses.Expense;
-
 import java.text.DateFormat;
 import java.util.ArrayList;
 
@@ -20,7 +19,6 @@ public class Students {
     public static String currUser;
     public static ArrayList<Goal> goals;
     public static ArrayList<Expense> expenses;
-
 
     public Students () {
         //empty constructor
@@ -132,13 +130,5 @@ public class Students {
             }
         }
         return false;
-    }
-
-
-    public static void addStudents(String fName, String lName, String password, String zID, String email, String discipline, String university, String stDate, double wkIncome) {
-    }
-
-    public static void addStudents (Students entry){
-        Students.addStudents(entry);
     }
 }
