@@ -98,6 +98,7 @@ public class Goal {
         this.goalStartDate = goalStartDate;
     }
 
+    //dummy data for goals
     public static ArrayList<Goal> getGoals() {
         Students.goals = new ArrayList<>();
         Students.goals.add(new Goal("z0000000", 350, 8000, "01/04/2020", "14/08/2020"));
@@ -109,6 +110,8 @@ public class Goal {
         Students.goals.add(entry);
     }
 
+
+    //Calculates the number of weeks between a goal start and end date
     public int getWeeks(String goalStartDate, String goalEndDate) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week=0;
@@ -124,6 +127,7 @@ public class Goal {
         return week;
     }
 
+   //calculates how many weeks into a goal a particular date is
     public int getWeeksIn(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week=0;
@@ -138,6 +142,7 @@ public class Goal {
         return week;
     }
 
+    //calculates the percentage that has been saved by the current user
     public static int percentageSaved(){
         Goal user = Students.searchGoals(Students.currUser);
         double percentage = (user.getTotalSaved()/user.getGoal())*100;

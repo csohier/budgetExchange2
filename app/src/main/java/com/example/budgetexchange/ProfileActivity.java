@@ -3,6 +3,7 @@ package com.example.budgetexchange;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,10 +39,10 @@ public class ProfileActivity extends AppCompatActivity {
         goalStart = findViewById(R.id.goalStart);
         user = Students.searchStudents(Students.currUser);
 
+        //checks if a goal has been created by the user yet.
+        //if not, the profile page will indicate that the values are empty
         String indicator, amount, start, end;
-
-        //Checks whether the Student has a goal in the system
-        if(user.goalExists(user.getzID())==true) {
+        if(user.goalExists(user.getzID())==true){
             goal = user.searchGoals(user.getzID());
             amount = String.valueOf(goal.getGoal());
             goalAmount.setText("$" + amount);
@@ -50,7 +51,6 @@ public class ProfileActivity extends AppCompatActivity {
             end = goal.getGoalEndDate();
             goalEnd.setText(end);
             indicator = "A";
-
         } else {
             amount = "$NULL";
             start = "dd/MM/yyyy";
@@ -68,8 +68,13 @@ public class ProfileActivity extends AppCompatActivity {
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
-        //Button to open Edit Profile Activity
-        editBtn.setOnClickListener(view -> openEditProfileActivity(indicator,amount,start,end));
+        //edit profile
+        editBtn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            openEditProfileActivity(indicator,amount,start,end);
+        }
+        });
     }
 
     //Switch Activity to Edit Profile Activity

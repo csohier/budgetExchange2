@@ -24,9 +24,14 @@ public class ProgressFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_progress_fragment, container, false);
         progressBar = view.findViewById(R.id.progressBar);
         progressText = view.findViewById(R.id.progressID);
+
+        //creates and populates progress bar with label
+        //SOURCE: https://www.youtube.com/watch?v=2qkgqgeC5r4&t=322s
         progressText.setText(String.valueOf(Students.searchGoals(Students.currUser).percentageSaved()) + "% saved");
 
-        progressBar.setProgress(Students.searchGoals(Students.currUser).percentageSaved());
+
+        progressBar.setProgress(23);
         return view;
+
     }
 }

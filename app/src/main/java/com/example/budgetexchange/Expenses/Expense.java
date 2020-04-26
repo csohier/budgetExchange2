@@ -111,6 +111,7 @@ public class Expense implements Comparable<Expense>{
 
     }
 
+    //determines the week in the year a particular date belongs in
     private int weekCreate(String date) {
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -130,6 +131,7 @@ public class Expense implements Comparable<Expense>{
         return week;
     }
 
+   //determines the week number of a particular date between the goal start and end dates
     public static int weekIntoGoal(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week = 0;
@@ -145,6 +147,8 @@ public class Expense implements Comparable<Expense>{
 
         return week;
     }
+
+    //calculates the current week out of the year
     public static int currentWeek() throws ParseException {
         Calendar calendar = new GregorianCalendar();
         Date newDate = new Date();
@@ -157,6 +161,7 @@ public class Expense implements Comparable<Expense>{
 
     }
 
+    //calculates the sum of all expenses of a current user
     public static int getSumOfExpenses(ArrayList<Expense> expenses) {
         int expenseTotal = 0;
         for (Expense a : expenses) {

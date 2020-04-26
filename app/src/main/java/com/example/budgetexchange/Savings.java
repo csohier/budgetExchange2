@@ -80,9 +80,9 @@ private int leftoverSave;
 
         //create a counter for each category
         float[] categoryValues = new float[5];
-        for(int a = 0; a<5;a++){
+       for(int a = 0; a<5;a++){
            categoryValues[a]=0;
-        }
+       }
 
         //expenses.add(new BarEntry(0,190));
         //BarDataSet data = new BarDataSet(expenses,"Max Spend");
@@ -141,7 +141,8 @@ private int leftoverSave;
             //
             //dataSet.add(new BarDataSet(yValues,categories[i]));
             //System.out.println("yvalues AT "  + i + yValues);
-            //
+
+
             //name bar based on category
             //yValues.add(bar);
 
