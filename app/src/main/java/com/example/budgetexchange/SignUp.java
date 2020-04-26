@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
     Button insertStudent;
     private AppDatabase mDb;
     private List<String> unavailableZIDs;
+    //private List<String> studentZIDS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,18 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
             @Override
             public void onClick(View v) {
 
+                //check contents
+                System.out.println("ZID");
+                System.out.println("FIRST NAME : ");
+                System.out.println("LAST NAME: " + String.valueOf(lName.getText()));
+                System.out.println("PASSWORD ");
+                System.out.println("EMAIL ");
+                System.out.println("ZID DOES NOT EXIST");
+                System.out.println("ZID DOES NOT EXIST");
+                System.out.println("ZID DOES NOT EXIST");
+
+
+
                 //Checks if fields are empty
 
                 if (checkFieldsEmpty(fName) || checkFieldsEmpty(lName) ||
@@ -95,6 +108,8 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
                     getAllZIDAsyncTask.setDatabase(db);
                     getAllZIDAsyncTask.setDelegate(SignUp.this);
                     getAllZIDAsyncTask.execute();
+
+
                 }
             }
         });
@@ -193,10 +208,10 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
                 insertStudentAsyncTask.execute(
 
                     new Student(
-                        fName.getText().toString(),
+                            zID.getText().toString(),
+                            fName.getText().toString(),
                         lName.getText().toString(),
                         password.getText().toString(),
-                        zID.getText().toString(),
                         email.getText().toString(),
                         spinner.getSelectedItem().toString(),
                         stDate.getText().toString(),

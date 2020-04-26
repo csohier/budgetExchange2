@@ -26,6 +26,7 @@ public class GetAllZIDAsyncTask extends AsyncTask<Void, Integer, List<String>> {
 
     @Override
     protected List<String> doInBackground(Void... voids) {
+        System.out.println("STUDENT ZIDS ARE: " + db.studentDao().getZIDs().toString());
         return db.studentDao().getZIDs();
     }
 

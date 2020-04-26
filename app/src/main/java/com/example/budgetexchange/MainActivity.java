@@ -192,4 +192,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
         intent.putExtra("Username", userNameInput.getText().toString());
         startActivity(intent);
     }
+
+    @Override
+    public void handleUpdateStudentByZID(String result) {
+
+    }
 }
