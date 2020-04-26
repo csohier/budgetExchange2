@@ -42,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
         goalStart = findViewById(R.id.goalStart);
         user = Students.searchStudents(Students.currUser);
 
+        //checks if a goal has been created by the user yet.
+        //if not, the profile page will indicate that the values are empty
         String indicator, amount, start, end;
         if(user.goalExists(user.getzID())==true){
             goal = user.searchGoals(user.getzID());
@@ -60,7 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         editBtn = findViewById(R.id.tvEdit);
-
         fName.setText(user.getfName());
         lName.setText(user.getlName());
         zID.setText(user.getzID());
@@ -70,6 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         startDate.setText(user.getStDateString());
         weeklyIncome.setText("$" + String.valueOf(user.getWkIncome()));
 
+        //edit profile
         editBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {

@@ -44,34 +44,41 @@ private int leftoverSave;
         savingGoal = findViewById(R.id.savingGoal);
         leftover = findViewById(R.id.leftover);
         ttlSaved = findViewById(R.id.ttlSaved);
-
         savingBar = findViewById(R.id.savingProgressBar);
+
+        //loads a progress bar which shows the percentage a user has saved to date.
         loadFragment();
 
-
+        //set data in the top cardview such as total saved, amount to save, and savings goal
+        //the following for loop calculates the total amount saved by the user and the amount left to save
         for(Goal a : Students.goals){
             if(a.getzID().equals(Students.currUser)){
                 savingGoal.setText("$" + Integer.toString(a.getGoal()));
                 totalSaved = (a.getIncome()*a.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
                 a.setTotalSaved(totalSaved);
-                System.out.println("saved: " + a.getTotalSaved());
-                System.out.println("testttttt"+ a.getWeeksIntoGoal());
+                System.out.println("Total Saved: " + a.getTotalSaved());
+                System.out.println("Weeks into goal: "+ a.getWeeksIntoGoal());
                 ttlSaved.setText("$" +Integer.toString(totalSaved));
+                //ttlSaved = income to date - total sum of expenses
                 leftoverSave= a.getGoal()-totalSaved;
                 leftover.setText("$" + Integer.toString(leftoverSave));
-
+                //leftover = overall goal - total saved
             }
-            //leftover = overall goal - total saved
-            //ttlSaved = income to date - total sum of expenses
         }
 
 
-        //Weeks to go, Saved so far, Saved this week
         chart = findViewById(R.id.chart1);
+
+        //bar chart which displays a users expenses during the current week
+        //BAR CHART SOURCE: https://www.youtube.com/watch?v=sXo2SkX7rGk
         setData(5, 50000);
+
     }
 
     private void setData(int count, int range){
+
+
+        //find the int value of current week of the year
         Date currentDate = new Date();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(currentDate);
@@ -84,43 +91,30 @@ private int leftoverSave;
            categoryValues[a]=0;
        }
 
-        //expenses.add(new BarEntry(0,190));
-        //BarDataSet data = new BarDataSet(expenses,"Max Spend");
-        //ArrayList<BarEntry> expenses2 = new ArrayList<>();
-        //expenses2.add(new BarEntry(1,150));
-        //BarDataSet data4 = new BarDataSet(expenses2,"Total Spend");
-
-        List<List<BarEntry>> expenses = new ArrayList<>();
-
-       //
-        List<BarDataSet> dataSet = new ArrayList<>();
-
-        //contains ???
-        ArrayList<BarEntry> yValues = new ArrayList<>();
-
+       //create an array of categories which will represent a bar on the bar chart
         String[] categories = {"food","utilities","transport","miscellaneous","personal"};
+
+       //set bar width and spacing
         float barWidth = 9f;
         float spaceForBar=10f;
 
+        //Instantiate 5 bar entry arraylists which will hold expense data
         ArrayList<ArrayList<BarEntry>> BarEntryCategories = new ArrayList<>();
         for(int i=0; i<5;i++){
             BarEntryCategories.add(new ArrayList<>());
-
         }
+
+
         ArrayList<BarDataSet> chartBars = new ArrayList<>();
 
-        //
+        //create a for loop which populates bar graph data
         for(int i=0;i<5;i++){
-            //5 different series
 
-            //float val = (float)(Math.random()*range);
             //create a bar for each category
             //calculation for expense in a week
-
             //Iterates through all expenses
             for(int b = 0; b<Expense.expenses.size();b++){
                 System.out.println(Expense.expenses.get(b).getWeek());
-
                 //if the expense type equals the category at i (food, utilities etc..) AND the expense falls within the current week
                 if(Expense.expenses.get(b).getType().toLowerCase().equals(categories[i]) && Expense.expenses.get(b).getWeek()==currentWeek){
 
@@ -132,22 +126,10 @@ private int leftoverSave;
             }
 
             BarEntryCategories.get(i).add(new BarEntry(i*spaceForBar,categoryValues[i]));
-            //BarEntry barD = new BarEntry(i*spaceForBar,categoryValues[i]);
-            //yValues.clear();
+
             chartBars.add(new BarDataSet(BarEntryCategories.get(i),categories[i]));
 
-            System.out.println("DOES THIS CRASH?? " + i);
-            //yValues.add(barD);
-            //
-            //dataSet.add(new BarDataSet(yValues,categories[i]));
-            //System.out.println("yvalues AT "  + i + yValues);
-
-
-            //name bar based on category
-            //yValues.add(bar);
-
         }
-        System.out.println("DOES THIS CRASH?? hereee " );
 
         for(BarDataSet b : chartBars){
             System.out.println(b.getLabel());
@@ -156,9 +138,12 @@ private int leftoverSave;
 
         //Bar Data contains Bar Data Sets, in this instance a Bar Data Set will contain a single value such as x=Miscellaneous Expense, y= $amount
         BarData data2 = new BarData(chartBars.get(0),chartBars.get(1),chartBars.get(2),chartBars.get(3),chartBars.get(4));
+
+        //bar data customizations
         data2.setHighlightEnabled(false);
+        data2.setBarWidth(barWidth);
 
-
+        //set the text size of colour of each respective bar in the graph
         chartBars.get(0).setColor(getResources().getColor(R.color.green));
         chartBars.get(0).setValueTextSize(20);
         chartBars.get(1).setColor(getResources().getColor(R.color.yellow));
@@ -170,22 +155,20 @@ private int leftoverSave;
         chartBars.get(4).setColor(getResources().getColor(R.color.colorAccent));
         chartBars.get(4).setValueTextSize(20);
 
-        data2.setBarWidth(barWidth);
 
         //Populating the chart with Bar Data
         chart.setData(data2);
+
+        //chart customizations
         chart.setFitBars(true);
         chart.setScaleEnabled(false);
-
         chart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
         chart.getLegend().setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         chart.getLegend().setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-
         chart.getLegend().setWordWrapEnabled(true);
         chart.setDrawBorders(false);
         YAxis yAxis = chart.getAxisLeft();
         yAxis.setAxisMinimum(0);
-        //yAxis.setDrawLabels(false);
         YAxis yAxis2 = chart.getAxisRight();
         yAxis2.setDrawGridLines(false);
         yAxis2.setDrawLabels(true);
@@ -201,10 +184,6 @@ private int leftoverSave;
         chart.setDrawGridBackground(true);
         chart.getLegend().setTextColor(Color.WHITE);
         chart.getLegend().setTextSize(15);
-
-
-
-
         chart.getDescription().setEnabled(false);
 
 
@@ -215,8 +194,7 @@ private int leftoverSave;
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment fragment = new ProgressFragment();
         transaction.replace(R.id.savingProgressBar,fragment);
-        transaction.commit(); // save the changes
-
+        transaction.commit();
 
     }
 }
