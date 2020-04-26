@@ -105,6 +105,7 @@ public class Expense implements Comparable<Expense>{
         expenses.add(new Expense(221.00, "Food", "29/04/2020"));
         expenses.add(new Expense(20.50, "Miscellaneous", "19/04/2020"));
         expenses.add(new Expense(5.50, "Personal", "30/04/2020"));
+
         Collections.sort(Expense.expenses);
         return expenses;
 

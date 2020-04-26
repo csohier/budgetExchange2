@@ -102,7 +102,7 @@ public class Goal {
     //dummy data for goals
     public static ArrayList<Goal> getGoals() {
         Students.goals = new ArrayList<>();
-        Students.goals.add(new Goal("z0000000", 350, 8000, "01/04/2020", "14/08/2020"));
+        Students.goals.add(new Goal("z0000000", 350, 8000, "01/03/2020", "14/08/2020"));
         Students.goals.add(new Goal("z5431234", 500, 7000, "22/09/2019", "22/12/2019"));
         return Students.goals;
     }
