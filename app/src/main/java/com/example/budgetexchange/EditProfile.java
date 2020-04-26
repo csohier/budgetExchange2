@@ -1,29 +1,22 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.budgetexchange.DataBase.AppDatabase;
 import com.example.budgetexchange.DataBase.Student.AsyncTaskStudentDelegate;
-import com.example.budgetexchange.DataBase.Student.GetAllZIDAsyncTask;
 import com.example.budgetexchange.DataBase.Student.Student;
 import com.example.budgetexchange.DataBase.Student.UpdateStudentByZIDAsyncTask;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDelegate {
@@ -87,8 +80,8 @@ public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDe
         }
 
         saveBtn.setOnClickListener(v -> {
-            //Checks if fields are empty
 
+            //Checks if fields are empty
             if (checkFieldsEmpty(fName) || checkFieldsEmpty(lName) ||
                     checkFieldsEmpty(zID) || checkFieldsEmpty(email) ||
                     checkFieldsEmpty(startDate) || checkFieldsEmpty(weeklyIncome) ||
@@ -128,6 +121,7 @@ public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDe
         return TextUtils.isEmpty(editText.getText());
     }
 
+    //Checks the date format
     public Boolean checkDateFormat(String date){
         if (date == null || !date.matches("^(1[0-9]|0[1-9]|3[0-1]|2[1-9])/(0[1-9]|1[0-2])/[0-9]{4}$"))
             return false;
@@ -140,17 +134,17 @@ public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDe
         }
     }
 
+    //Updates the Student in the database upon success
     @Override
     public void handleUpdateStudentByZID(String result) {
+        //checks whether all fields are filled
         if (!checkDateFormat(startDate.getText().toString()) || !checkDateFormat(goalStart.getText().toString()) || !checkDateFormat(goalEnd.getText().toString())) {
             invalidDates();
-
         } else if (Integer.parseInt(String.valueOf(goalStart)) > Integer.parseInt(String.valueOf(goalEnd))){
             invalidDates();
         } else {
 
             AppDatabase db = AppDatabase.getInstance(EditProfile.this);
-
             //Update this student to database
             UpdateStudentByZIDAsyncTask updateStudentByZIDAsyncTask = new UpdateStudentByZIDAsyncTask();
             updateStudentByZIDAsyncTask.setDatabase(db);

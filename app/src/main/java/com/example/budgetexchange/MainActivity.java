@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.budgetexchange.DataBase.AppDatabase;
 import com.example.budgetexchange.DataBase.Student.AsyncTaskStudentDelegate;
 import com.example.budgetexchange.DataBase.Student.GetAllZIDAsyncTask;
@@ -18,7 +16,6 @@ import com.example.budgetexchange.Social.Comments;
 import com.example.budgetexchange.Social.SocialFeed;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AsyncTaskStudentDelegate{
@@ -34,21 +31,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         userNameInput = findViewById(R.id.userNameInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginBtn = findViewById(R.id.loginBtn);
         signUpBtn = findViewById(R.id.signUpBtn);
 
         //Clicking SignUp button
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickSignUp();
-            }
-        });
+        signUpBtn.setOnClickListener(view -> ClickSignUp());
 
         //Clicking Login button
         ClickLogin();
@@ -57,68 +47,65 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     //This is method for doing operation of check login
     private void ClickLogin() {
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        loginBtn.setOnClickListener(view -> {
 
-                AppDatabase db = AppDatabase.getInstance(MainActivity.this);
+            AppDatabase db = AppDatabase.getInstance(MainActivity.this);
+            //Check if zID exists by getting all existing zIDs
+            //Get all the zIDs to check whether the same zID exists
+            GetAllZIDAsyncTask getAllZIDAsyncTask = new GetAllZIDAsyncTask();
+            getAllZIDAsyncTask.setDatabase(db);
+            getAllZIDAsyncTask.setDelegate(MainActivity.this);
+            getAllZIDAsyncTask.execute();
 
-                //Check if zID exists by getting all existing zIDs
-                //Get all the zIDs to check whether the same zID exists
-                GetAllZIDAsyncTask getAllZIDAsyncTask = new GetAllZIDAsyncTask();
-                getAllZIDAsyncTask.setDatabase(db);
-                getAllZIDAsyncTask.setDelegate(MainActivity.this);
-                getAllZIDAsyncTask.execute();
-
-                if (userNameInput.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    userNameInput.setError("Username should not be empty");
-                }
-
-                if (passwordInput.getText().toString().trim().isEmpty()) {
-                    Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    passwordInput.setError("Password should not be empty");
-                }
-
-                /*
-                Log.d(TAG, userNameInput.getText().toString());
-                Log.d(TAG, passwordInput.getText().toString());
-
-                System.out.println(userNameInput.getText().toString());
-                System.out.println(passwordInput.getText().toString());
-
-                List<Student> student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
-
-                if (student != null) {
-                    String username = String.valueOf(userNameInput.getText());
-                    Students.currUser=username;
-                    Students.goals = Goal.getGoals();
-                    Expense.getExpenses();
-                    Students.getStudents();
-                    SocialFeed.getSocialFeed();
-                    Comments.getComments();
-                    Achievements.getAchievements();
-
-                    openHomeActivity();
-
-                } else {
-                    Snackbar snackbar = Snackbar.make(view, "zID or Password incorrect", Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
-                    snackbar.show();
-                    userNameInput.setError("Check fields");
-                    passwordInput.setError("Check fields");
-                }
-
-                 */
+            //Checks whether the username is empty
+            if (userNameInput.getText().toString().trim().isEmpty()) {
+                Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                snackbar.show();
+                userNameInput.setError("Username should not be empty");
             }
 
+            //Checks whether the password is empty
+            if (passwordInput.getText().toString().trim().isEmpty()) {
+                Snackbar snackbar = Snackbar.make(view, "Please fill out these fields", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                snackbar.show();
+                passwordInput.setError("Password should not be empty");
+            }
+
+            /*
+            Log.d(TAG, userNameInput.getText().toString());
+            Log.d(TAG, passwordInput.getText().toString());
+
+            System.out.println(userNameInput.getText().toString());
+            System.out.println(passwordInput.getText().toString());
+
+            List<Student> student = studentDao.getStudent(userNameInput.getText().toString(), passwordInput.getText().toString());
+
+            if (student != null) {
+                String username = String.valueOf(userNameInput.getText());
+                Students.currUser=username;
+                Students.goals = Goal.getGoals();
+                Expense.getExpenses();
+                Students.getStudents();
+                SocialFeed.getSocialFeed();
+                Comments.getComments();
+                Achievements.getAchievements();
+
+                openHomeActivity();
+
+            } else {
+                Snackbar snackbar = Snackbar.make(view, "zID or Password incorrect", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
+                snackbar.show();
+                userNameInput.setError("Check fields");
+                passwordInput.setError("Check fields");
+            }
+
+             */
         });
     }
 
