@@ -6,15 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.ScrollView;
-
-import com.example.budgetexchange.Expenses.Expense;
-import com.example.budgetexchange.Expenses.ExpenseAdapter;
-
 import java.util.ArrayList;
 
 public class Mastery extends AppCompatActivity {
@@ -60,15 +54,11 @@ public class Mastery extends AppCompatActivity {
             }
         };
 
-
-
         mAdapter = new AchievementsAdapter(achievementsList,listener);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
     }
-
 
     private void loadFragment(){
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -77,14 +67,10 @@ public class Mastery extends AppCompatActivity {
         transaction.replace(R.id.wideView,fragment);
         transaction.commit();
 
-
     }
 
     public int imageSetterMethod(int masteryID){
         int res1 = getResources().getIdentifier("mas_" + masteryID, "drawable", getPackageName());
         return res1;
     }
-
-
-
 }

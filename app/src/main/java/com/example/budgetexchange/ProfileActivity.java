@@ -1,11 +1,8 @@
 package com.example.budgetexchange;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,7 +19,6 @@ public class ProfileActivity extends AppCompatActivity {
     private Button editBtn;
     private Students user;
     private Goal goal;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    //Switch Activity to Edit Profile Activity
     private void openEditProfileActivity(String indicator,String goalAmt, String goalSt, String glEnd) {
         Intent intent = new Intent(this, EditProfile.class);
         intent.putExtra("i",indicator);
@@ -87,6 +84,5 @@ public class ProfileActivity extends AppCompatActivity {
         intent.putExtra("startDate",goalSt);
         intent.putExtra("endDate",glEnd);
         startActivity(intent);
-
     }
 }
