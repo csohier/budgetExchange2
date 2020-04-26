@@ -13,6 +13,9 @@ import com.example.budgetexchange.DataBase.Student.AsyncTaskStudentDelegate;
 import com.example.budgetexchange.DataBase.Student.GetAllZIDAsyncTask;
 import com.example.budgetexchange.DataBase.Student.GetStudentByZIDAsyncTask;
 import com.example.budgetexchange.DataBase.Student.Student;
+import com.example.budgetexchange.Expenses.Expense;
+import com.example.budgetexchange.Social.Comments;
+import com.example.budgetexchange.Social.SocialFeed;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -165,6 +168,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
 
         //Check if password matches:
         if(currUser.getPassword().equals(passwordInput.getText().toString())) {
+            Students.currUser=currUser.getZID();
+            Students.goals = Goal.getGoals();
+            Expense.getExpenses();
+            Students.getStudents();
+            SocialFeed.getSocialFeed();
+            Comments.getComments();
+            Achievements.getAchievements();
             //Switch pages
             openHomeActivity();
 
@@ -190,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     private void openHomeActivity() {
         Intent intent = new Intent (this, HomeActivity.class);
         intent.putExtra("Username", userNameInput.getText().toString());
+
         startActivity(intent);
     }
 
