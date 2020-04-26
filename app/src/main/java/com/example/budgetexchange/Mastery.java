@@ -22,16 +22,18 @@ public class Mastery extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mastery);
         wideView = findViewById(R.id.wideView);
-        System.out.println("show me this" + Goal.percentageSaved());
         achievementsList = new ArrayList<>();
+        //populating the percentage saved progress bar
+        loadFragment();
 
         //iterates through the achievements list which contains 5 mastery levels
         //the iteration checks whether the user is eligible for a mastery based on the
         // percentage towards of their savings goal has been achieved
         //if a mastery percent trigger matches the percent saved, it will populate the
         //relevant mastery in a recycler view
+        int total  = Goal.calculateTotalSaved(Students.currUser);
         for(int i=0; i<Achievements.achievementsList.size();i++){
-            if(Achievements.achievementsList.get(i).getPercentTrigger()>=Goal.percentageSaved()){
+            if(Achievements.achievementsList.get(i).getPercentTrigger()<=Goal.percentageSaved(total)){
                 achievementsList.add(Achievements.achievementsList.get(i));
                 if(achievementsList.get(i).getImageResource()==0){
                     int percent = achievementsList.get(i).getPercentTrigger();
@@ -42,8 +44,7 @@ public class Mastery extends AppCompatActivity {
             }
         }
 
-        //populating the percentage saved progress bar
-        loadFragment();
+
 
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
         recyclerView.setHasFixedSize(true);

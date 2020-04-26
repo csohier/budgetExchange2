@@ -27,10 +27,14 @@ public class ProgressFragment extends Fragment {
 
         //creates and populates progress bar with label
         //SOURCE: https://www.youtube.com/watch?v=2qkgqgeC5r4&t=322s
-        progressText.setText(String.valueOf(Students.searchGoals(Students.currUser).percentageSaved()) + "% saved");
+
+        //percentage of totals saved calculation
+        int total  = Goal.calculateTotalSaved(Students.currUser);
+        int percentage = Goal.percentageSaved(total);
+        progressText.setText(String.valueOf(percentage) + "% saved");
 
 
-        progressBar.setProgress(23);
+        progressBar.setProgress(percentage);
         return view;
 
     }

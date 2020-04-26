@@ -143,17 +143,21 @@ public class Goal {
     }
 
     //calculates the percentage that has been saved by the current user
-    public static int percentageSaved(){
+    public static int percentageSaved(int total){
         Goal user = Students.searchGoals(Students.currUser);
-        double percentage = (user.getTotalSaved()/user.getGoal())*100;
+        double percentage = ((double)total/(double)user.getGoal())*100;
         int castPercentage = (int)percentage;
         return castPercentage;
     }
 
-    public static int calculateSaved(String studentID){
+    public static int calculateTotalSaved(String studentID) {
         Goal user = Students.searchGoals(studentID);
-        totalSaved = (user.getIncome()*user.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
 
+        for (Goal a : Students.goals) {
+            if (a.getzID().equals(studentID)) {
+                totalSaved = (user.getIncome() * user.getWeeksIntoGoal()) - Expense.getSumOfExpenses(Expense.expenses);
+            }
+        }
         return totalSaved;
     }
 }
