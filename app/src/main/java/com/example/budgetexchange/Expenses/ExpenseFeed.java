@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.budgetexchange.Goal;
+import com.example.budgetexchange.HomeActivity;
 import com.example.budgetexchange.R;
 import com.example.budgetexchange.Students;
 import com.github.mikephil.charting.charts.BarChart;
@@ -35,6 +36,7 @@ public class ExpenseFeed extends AppCompatActivity {
     private int max;
     private int expenseTotal;
     private TextView spendInfo;
+    private Button backBtn;
 
 
     @Override
@@ -44,7 +46,7 @@ public class ExpenseFeed extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.rvList);
         recyclerView.setHasFixedSize(true);
         spendInfo = findViewById(R.id.spendInfo);
-
+        backBtn = findViewById(R.id.backBtn);
 
         ExpenseAdapter.RecyclerViewClickListener listener = new ExpenseAdapter.RecyclerViewClickListener() {
             @Override
@@ -68,6 +70,12 @@ public class ExpenseFeed extends AppCompatActivity {
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickHome();
+            }
+        });
         try {
             //populate a bar chart which shows the sum of expenses this week and max spend based on your savings goal
             //income, and weeks
@@ -84,6 +92,11 @@ public class ExpenseFeed extends AppCompatActivity {
 
     private void clickAddExpense() {
         Intent intent = new Intent(this, AddExpense.class);
+        startActivity(intent);
+    }
+
+    private void clickHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 

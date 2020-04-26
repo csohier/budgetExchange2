@@ -1,5 +1,7 @@
 package com.example.budgetexchange;
 
+import com.example.budgetexchange.Expenses.Expense;
+
 import org.joda.time.DateTime;
 import org.joda.time.Weeks;
 
@@ -19,8 +21,7 @@ public class Goal {
     private int weeks;
     private int weeksIntoGoal;
 
-    //changes to DB
-    private int totalSaved;
+    public static int totalSaved;
 
     public Goal(String zID, int income, int goal, String goalStartDate, String goalEndDate) {
         this.zID = zID;
@@ -30,7 +31,7 @@ public class Goal {
         this.goalEndDate = goalEndDate;
         weeks = getWeeks(goalStartDate,goalEndDate);
         weeksIntoGoal = getWeeksIn(goalStartDate);
-        totalSaved = 0;
+        //totalSaved=calculateSaved(zID);
     }
 
     public  int getTotalSaved() {
@@ -127,18 +128,17 @@ public class Goal {
         return week;
     }
 
-   //calculates how many weeks into a goal a particular date is
+    //calculates how many weeks into a goal a particular date is
     public int getWeeksIn(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week=0;
-
         try {
             Date startDate = formatter.parse(goalStartDate);
             Date currDate = new Date();
             DateTime dateTime1 = new DateTime(startDate);
             DateTime dateTime2 = new DateTime(currDate);
-            week = Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
-        } catch (ParseException e){ e.printStackTrace();}
+            week=Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
+        }catch(ParseException e){ e.printStackTrace(); }
         return week;
     }
 
@@ -148,5 +148,12 @@ public class Goal {
         double percentage = (user.getTotalSaved()/user.getGoal())*100;
         int castPercentage = (int)percentage;
         return castPercentage;
+    }
+
+    public static int calculateSaved(String studentID){
+        Goal user = Students.searchGoals(studentID);
+        totalSaved = (user.getIncome()*user.getWeeksIntoGoal())- Expense.getSumOfExpenses(Expense.expenses);
+
+        return totalSaved;
     }
 }

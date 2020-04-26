@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:layout_weight="1" />
+
     </LinearLayout>
 
     <ScrollView
@@ -46,20 +47,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <Button
-            android:id="@+id/AddButton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/enterbtn"
             android:elevation="5dp"
-            android:textSize="18sp"
+            android:text="back"
             android:textColor="@color/white"
-            android:text="Add Expense" />
+            android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/AddButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/enterbtn"
+                android:elevation="5dp"
+                android:text="Add Expense"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
     </ScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
+
+<androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/rvList"
         android:layout_width="match_parent"

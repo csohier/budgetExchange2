@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.example.budgetexchange.R;
 import com.google.android.material.snackbar.Snackbar;
+
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
 public class AddExpense extends AppCompatActivity {
     private EditText expAmt;
@@ -40,6 +43,23 @@ public class AddExpense extends AppCompatActivity {
         spinner.setAdapter(myAdapter);
 
         expEnter= findViewById(R.id.enter);
+
+        //Function to hide keyboard
+        description.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                boolean set = false;
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    UIUtil.hideKeyboard(AddExpense.this);
+                    set = true;
+                    return true;
+                } else {
+                    UIUtil.showKeyboard(AddExpense.this,description);
+                }
+                UIUtil.hideKeyboard(AddExpense.this);
+                return false;
+            }
+        });
 
         //Enter expense function which includes input validation
         expEnter.setOnClickListener(new View.OnClickListener() {

@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
             Comments.getComments();
             Achievements.getAchievements();
 
+
             //Switch pages
             openHomeActivity();
 
