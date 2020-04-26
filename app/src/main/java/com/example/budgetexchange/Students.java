@@ -100,9 +100,7 @@ public class Students {
 
     public static ArrayList<Students> getStudents() {
         students = new ArrayList<>();
-
-        students.add(new Students("Corona", "Virus", "COVID-19", "z0000000", "c.virus@student.unsw.edu.au", "Economics", "London School of Economics", "31/03/2020",1000f));
-
+        students.add(new Students("Corona", "Virus", "test", "z0000000", "z0000000@student.unsw.edu.au", "Economics", "London School of Economics", "31/03/2020",1000f));
         return students;
     }
 

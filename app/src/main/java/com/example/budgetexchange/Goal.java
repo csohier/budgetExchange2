@@ -30,7 +30,7 @@ public class Goal {
         this.goalEndDate = goalEndDate;
         weeks = getWeeks(goalStartDate,goalEndDate);
         weeksIntoGoal = getWeeksIn(goalStartDate);
-        totalSaved=0;
+        totalSaved = 0;
     }
 
     public  int getTotalSaved() {
@@ -127,13 +127,14 @@ public class Goal {
     public int getWeeksIn(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         int week=0;
+
         try {
             Date startDate = formatter.parse(goalStartDate);
             Date currDate = new Date();
             DateTime dateTime1 = new DateTime(startDate);
             DateTime dateTime2 = new DateTime(currDate);
-            week=Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
-        }catch(ParseException e){ e.printStackTrace(); }
+            week = Weeks.weeksBetween(dateTime1, dateTime2).getWeeks();
+        } catch (ParseException e){ e.printStackTrace();}
         return week;
     }
 

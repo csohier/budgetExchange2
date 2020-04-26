@@ -67,12 +67,8 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
                 //iterate through socialFeed array list to only return values that are category = budgeting tips or cheap eats
                 String filterText = spinner.getSelectedItem().toString();
 
-
-
             }
         });
-
-
 
         SocialFeedAdapter.RecyclerViewClickListener listener = new SocialFeedAdapter.RecyclerViewClickListener() {
             @Override
@@ -88,7 +84,6 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         //recyclerView.setAdapter(mAdapter);
 
         postBtn = findViewById(R.id.createPost);
-
     }
 
     //Passing position of clicked itemView to the DetailActivtiy through an intent:
@@ -206,4 +201,4 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         //set the adapter to GridView
         recyclerView.setAdapter(mAdapter);
     }
-    }
+}

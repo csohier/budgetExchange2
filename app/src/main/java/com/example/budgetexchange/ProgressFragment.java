@@ -25,8 +25,8 @@ public class ProgressFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar);
         progressText = view.findViewById(R.id.progressID);
         progressText.setText(String.valueOf(Students.searchGoals(Students.currUser).percentageSaved()) + "% saved");
-        progressBar.setProgress(23);
-        return view;
 
+        progressBar.setProgress(Students.searchGoals(Students.currUser).percentageSaved());
+        return view;
     }
 }

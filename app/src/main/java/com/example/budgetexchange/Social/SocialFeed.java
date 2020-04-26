@@ -102,7 +102,17 @@ public class SocialFeed {
 
     public static ArrayList<SocialFeed> getSocialFeed() {
         socialFeed = new ArrayList<>();
-        socialFeed.add(new SocialFeed("$5 Pasta Recipe", "content","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+        socialFeed.add(new SocialFeed("$5 Pasta Recipe", "This is how you make the pasta. First you buy the ingredients...","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+        socialFeed.add(new SocialFeed("Discounted products from Coles and Woolies this week", "Half price chicken at Coles! 30% discount for Milk from Woolies!","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+        socialFeed.add(new SocialFeed("Inexpensive Meals based on pantry goods", "So, to start, this will inspire you with some ideas on how to make cheap meals based on pantry goods for breakfast, lunch and dinner. How good aye.","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+        socialFeed.add(new SocialFeed("Here are the best food to stockpile during COVID-19", "Start with adding frozen fruits and vegetables to your list. Potatoes are also a good, low-cost food to stockpile...","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+        socialFeed.add(new SocialFeed("ALDI vs Coles this week", "Both giants have lowered their prices for the Sweets section this week. Let's take a look at it.","z0000000","Corona","Virus","03/04/2020", "Cheap Eats"));
+
+        socialFeed.add(new SocialFeed("Budgeting Tips and Tricks During COVID-19", "How to save money when there's coronavirus?", "z0000000", "Corona", "Virus", "10/04/2020", "Budgeting Tips"));
+        socialFeed.add(new SocialFeed("Quarantine Budgeting Tips", "Budgeting Mistake #1..., Budgeting Mistake #2... ", "z0000000", "Corona", "Virus", "12/04/2020", "Budgeting Tips"));
+        socialFeed.add(new SocialFeed("5 Budgeting Tips from a Financial Planner", "So, some financial exports offered some quick money and budgeting tips that might help you out now", "z0000000", "Corona", "Virus", "15/04/2020", "Budgeting Tips"));
+        socialFeed.add(new SocialFeed("Wanna save while spending? Here's how!", "Now saving while spending isn't really that hard tbh. All you have to do is...", "z0000000", "Corona", "Virus", "16/04/2020", "Budgeting Tips"));
+        socialFeed.add(new SocialFeed("How to cover your expenses when you lost your income due to COVID-19?", "Firstly, it feels bad to have lost your job due to COVID-19. However, to address your issue, this is what you should do...", "z0000000", "Corona", "Virus", "20/04/2020", "Budgeting Tips"));
 
         return socialFeed;
     }
