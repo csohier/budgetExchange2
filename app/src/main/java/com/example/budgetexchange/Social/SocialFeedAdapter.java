@@ -14,6 +14,7 @@ import com.example.budgetexchange.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.MyViewHolder> {
     private RecyclerViewClickListener mListener;
@@ -77,6 +78,13 @@ public class SocialFeedAdapter extends RecyclerView.Adapter<SocialFeedAdapter.My
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
         dateFormat.setCalendar(calendar);
         return dateFormat.format(calendar.getTime());
+    }
+
+    public void setPosts(SocialFeed sf){
+        //sf.clear();
+        socialFeed.add(sf);
+        notifyDataSetChanged();
+
     }
 
 

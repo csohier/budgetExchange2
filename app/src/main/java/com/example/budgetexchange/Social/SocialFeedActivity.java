@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.budgetexchange.Expenses.AddExpense;
+import com.example.budgetexchange.Expenses.Expense;
+import com.example.budgetexchange.Expenses.ExpenseFeed;
 import com.example.budgetexchange.R;
 import com.example.budgetexchange.Students;
 
@@ -48,7 +51,6 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         setContentView(R.layout.activity_social_feed);
 
         //Setting up recyclerView:
-        //ArrayList<SocialFeed> SocialFeedArrayList =
         recyclerView = (RecyclerView) findViewById(R.id.rView);
         recyclerView.setHasFixedSize(true);
         cal = Calendar.getInstance();
@@ -79,9 +81,7 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
 
         initialiseFilter(listener);
 
-        //mAdapter = new SocialFeedAdapter(SocialFeed.socialFeed, listener);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setAdapter(mAdapter);
 
         postBtn = findViewById(R.id.createPost);
     }
@@ -100,11 +100,6 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         subEditName = (EditText)subView.findViewById(R.id.dialogNameText);
 
 
-
-        /*final ImageView subImageView = (ImageView)subView.findViewById(R.id.image);
-        Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
-        subImageView.setImageDrawable(drawable); */
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Social Feed");
         builder.setMessage("New Feed");
@@ -113,23 +108,30 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
         //Build the AlertDialog.
         AlertDialog alertDialog = builder.create();
 
+        //SOURCE https://www.youtube.com/watch?v=d6KOiI6-Xts&t=2536s
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SocialFeed post = new SocialFeed();
+                System.out.println(Expense.expenses);
                 user = Students.searchStudents(Students.currUser);
-
-                post.setContent(subEditText.getText().toString());
-                post.setFirstName(user.getfName());
-                post.setLastName(user.getlName());
-                post.setTitle(subEditName.getText().toString());
-                post.setzID(user.getzID());
-                post.setPostDate(format(cal));
+                String content = subEditText.getText().toString();
+                post.setContent(content);
+                String fName = user.getfName();
+                post.setFirstName(fName);
+                String lName = user.getfName();
+                post.setLastName(lName);
+                String title = subEditName.getText().toString();
+                post.setTitle(title);
+                String zid = user.getzID();
+                post.setzID(zid);
+                String postDate = format(cal);
+                post.setPostDate(postDate);
 
                 //Add data to the list
                 SocialFeed.socialFeed.add(post);
                 //Notify the Adapter so that you can see the changes.
-                mAdapter.notifyDataSetChanged();
+                mAdapter.setPosts(post);
                 //Scroll the RecyclerView to the bottom.
                 recyclerView.smoothScrollToPosition(mAdapter.getItemCount());
 

@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ScrollView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class Mastery extends AppCompatActivity {
@@ -16,6 +18,7 @@ public class Mastery extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<Achievements> achievementsList;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,12 @@ public class Mastery extends AppCompatActivity {
                     achievementsList.get(i).setImageResource(imageSetterMethod(percent));
                 }
             }
+        }
+
+
+        if (achievementsList.isEmpty()){
+            title = findViewById(R.id.textGrid);
+            title.setText("No Achievements Yet");
         }
 
 

@@ -13,7 +13,7 @@ public class SocialFeed {
     private String postDate;
     private String firstName;
     private String lastName;
-    public static ArrayList<SocialFeed> socialFeed = new ArrayList<>();
+    public static ArrayList<SocialFeed> socialFeed;
 
     //List of posts, with comment and like option - potentially share
     //click on post should take you to post
