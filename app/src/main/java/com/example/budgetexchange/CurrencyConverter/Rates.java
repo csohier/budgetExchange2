@@ -1,10 +1,9 @@
 package com.example.budgetexchange.CurrencyConverter;
 
-import android.hardware.camera2.CameraDevice;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/*The rates class for the Currency API, where it consists of all possible rates*/
 public class Rates {
 
     @SerializedName("CAD")
@@ -107,6 +106,7 @@ public class Rates {
     @Expose
     private Double pLN;
 
+    //Getters and Setters
     public Double getCAD() {
         return cAD;
     }
@@ -371,6 +371,7 @@ public class Rates {
         this.pLN = pLN;
     }
 
+    //The method that gets the relevant rate of the Exchanged currency
     public double getRateFor (String currency) {
         if (currency.equals("CAD")) return cAD;
         if (currency.equals("HKD")) return hKD;

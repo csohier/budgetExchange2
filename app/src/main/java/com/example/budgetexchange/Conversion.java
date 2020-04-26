@@ -33,7 +33,8 @@ public class Conversion extends AppCompatActivity {
     Spinner baseSpinner, exSpinner;
     private String baseCurrency;
     private String exCurrency;
-private Call<Currency> call;
+    private Call<Currency> call;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,44 +46,65 @@ private Call<Currency> call;
         baseSpinner = findViewById(R.id.baseSpinner);
         exSpinner = findViewById(R.id.exSpinner);
 
-        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.currency));
+        //Initialise an adapter for the list of currencies students can choose from
+        ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.currency));
+
+        //Spinner uses the adapter
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         baseSpinner.setAdapter(myAdapter);
         exSpinner.setAdapter(myAdapter);
+
         exchange.setOnClickListener(v -> {
+            //To check whether the click works
             exAmount.setText("getting amount");
             Log.d(TAG, "getting amount" );
+
             baseCurrency = baseSpinner.getSelectedItem().toString();
             exCurrency = exSpinner.getSelectedItem().toString();
+
+            //Checks whether the base and the exchanged currency are the same
             if (baseCurrency.equals(exCurrency)) {
                 Snackbar snackbar = Snackbar.make(v, "Same Currency", Snackbar.LENGTH_LONG);
                 View snackbarView = snackbar.getView();
                 snackbarView.setBackgroundColor(getResources().getColor(R.color.red));
                 snackbar.show();
                 exAmount.setError("Same Currency");
-                //return;
             }
+
             double amount;
+
             try {
                 amount = Double.parseDouble(baseAmount.getText().toString());
             } catch (NumberFormatException e) {
-                Toast.makeText(Conversion.this, "Wrong amount input", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        Conversion.this,
+                        "Wrong amount input", Toast.LENGTH_SHORT).show();
                 return;
             }
             convertAmount (baseCurrency, exCurrency, amount);
         });
-
         searchRates.setOnClickListener(v -> search());
     }
 
+    //calls the Currency API and generates the exchanged amount in the TextView
     public void convertAmount(final String baseCurrency, final String exCurrency, final double amount){
+        //Retrofit is used to get the quote online from the API
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("https://api.exchangeratesapi.io")
                 .addConverterFactory(GsonConverterFactory.create());
+
         Retrofit retrofit = builder.build();
+
         CurrencyService service = retrofit.create(CurrencyService.class);
+        //Sets the API to get quotes under the designated "baseCurrency" and "exCurrency"
         call = service.getExchangeRates(baseCurrency,exCurrency);
+
         System.out.println(call.toString());
+
+        //Enqueue is used to manage Asynchronous responses
         call.enqueue(new Callback<Currency>() {
             @Override
             public void onResponse(Call<Currency> call, Response<Currency> response) {
@@ -92,9 +114,15 @@ private Call<Currency> call;
                 double convertedAmount = amount * exchangeRate;
                 String msg = exCurrency + " " + convertedAmount;
                 exAmount.setText(msg);
-                Toast.makeText(Conversion.this, String.valueOf(rate.getRates().getRateFor(exCurrency)), Toast.LENGTH_SHORT).show();
+
+                //Activates toast to indicate the request updated
+                Toast.makeText(
+                        Conversion.this,
+                                String.valueOf(rate.getRates().getRateFor(exCurrency)),
+                                Toast.LENGTH_SHORT).show();
             }
 
+            //Activates toast to indicate failure to retrieve the exchanged amount
             @Override
             public void onFailure(Call<Currency> call, Throwable t) {
                 Log.d(TAG, "in onFailure Method");
@@ -103,11 +131,14 @@ private Call<Currency> call;
         });
     }
 
+    //Enables Student to reference the actual exchange rates online
     private void search() {
         String url = "https://api.exchangeratesapi.io/api/latest?base="
                 + baseSpinner.getSelectedItem().toString()
                 + "&symbols="
                 + exSpinner.getSelectedItem().toString();
+
+        //Switches the page from budgetExchange to google
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);
     }

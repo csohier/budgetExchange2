@@ -3,6 +3,9 @@ package com.example.budgetexchange.CurrencyConverter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/*Model class for the Currency API, where it takes in the base rate
+  and returns the real-time conversion rate for all currencies*/
+
 public class Currency {
 
     @SerializedName("rates")
@@ -15,6 +18,7 @@ public class Currency {
     @Expose
     private String date;
 
+    //getters and setters
     public Rates getRates() {
         return rates;
     }

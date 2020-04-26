@@ -1,11 +1,10 @@
 package com.example.budgetexchange.DataBase.Student;
 
 import android.os.AsyncTask;
-
 import com.example.budgetexchange.DataBase.AppDatabase;
-
 import java.util.List;
 
+//This task returns all Students within the AppDatabase
 public class GetAllStudentAsyncTask extends AsyncTask<Void, Integer, List<Student>> {
 
     private AsyncTaskStudentDelegate delegate;

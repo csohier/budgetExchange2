@@ -168,20 +168,13 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
 
     @Override
     public void handleInsertStudentResult(String result) {
-        //This is executed when the Student has been successfully added to the Student datbase
+        //This is executed when the Student has been successfully added to the Student database
         completeSignUp();
         openLoginActivity();
     }
 
     @Override
-    public void handleGetStudentResult(Student student) {
-
-    }
-
-    @Override
-    public void handleGetAllStudentsResult(List<Student> student) {
-
-    }
+    public void handleGetAllStudentsResult(List<Student> student) { }
 
     @Override
     public void handleGetZIDResult(List<String> zIDs) {
@@ -235,12 +228,8 @@ public class SignUp extends AppCompatActivity implements AsyncTaskStudentDelegat
     }
 
     @Override
-    public void handleGetStudentByZID(Student zID) {
-
-    }
+    public void handleGetStudentByZID(Student zID) { }
 
     @Override
     public void handleUpdateStudentByZID(String result) { }
-
-    //Setup Mastery methods
 }

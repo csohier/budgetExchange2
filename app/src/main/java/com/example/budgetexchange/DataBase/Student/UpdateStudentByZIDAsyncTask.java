@@ -1,13 +1,11 @@
 package com.example.budgetexchange.DataBase.Student;
 
 import android.os.AsyncTask;
-
 import com.example.budgetexchange.DataBase.AppDatabase;
 
 public class UpdateStudentByZIDAsyncTask extends AsyncTask<Student, Integer, String> {
 
     private AsyncTaskStudentDelegate delegate;
-
     private AppDatabase db;
 
     public void setDelegate (AsyncTaskStudentDelegate delegate) {
@@ -25,19 +23,10 @@ public class UpdateStudentByZIDAsyncTask extends AsyncTask<Student, Integer, Str
 
     @Override
     protected String doInBackground(Student...students) {
-
         db.studentDao().update(students[0]);
-
-        // When the task is finished, it will return.
-        // You would normally want to return the result of your task.
-        // For example, if my task was to get books from DB, I would make this method return the list
-        // of books. The return value goes straight to onPostExecute.
         return "Successfully updated!";
     }
 
     @Override
-    protected void onPostExecute(String result) {
-
-        delegate.handleUpdateStudentByZID(result);
-    }
+    protected void onPostExecute(String result) { delegate.handleUpdateStudentByZID(result); }
 }

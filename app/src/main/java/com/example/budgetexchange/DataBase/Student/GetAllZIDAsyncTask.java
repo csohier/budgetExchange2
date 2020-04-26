@@ -1,11 +1,10 @@
 package com.example.budgetexchange.DataBase.Student;
 
 import android.os.AsyncTask;
-
 import com.example.budgetexchange.DataBase.AppDatabase;
-
 import java.util.List;
 
+//This task returns all zIDs within the AppDatabase
 public class GetAllZIDAsyncTask extends AsyncTask<Void, Integer, List<String>> {
 
     private AsyncTaskStudentDelegate delegate;

@@ -161,32 +161,17 @@ public class EditProfile extends AppCompatActivity implements AsyncTaskStudentDe
         }
     }
 
-    public void invalidDates() {
-        Toast.makeText(EditProfile.this, "Invalid Dates", Toast.LENGTH_SHORT).show();
-    }
+    public void invalidDates() { Toast.makeText(EditProfile.this, "Invalid Dates", Toast.LENGTH_SHORT).show(); }
 
     @Override
-    public void handleInsertStudentResult(String result) {
-
-    }
+    public void handleInsertStudentResult(String result) { }
 
     @Override
-    public void handleGetStudentResult(Student student) {}
+    public void handleGetAllStudentsResult(List<Student> student) { }
 
     @Override
-    public void handleGetAllStudentsResult(List<Student> student) {
-
-    }
+    public void handleGetZIDResult(List<String> zID) { }
 
     @Override
-    public void handleGetZIDResult(List<String> zID) {
-
-    }
-
-    @Override
-    public void handleGetStudentByZID(Student zID) {
-
-    }
-
-
+    public void handleGetStudentByZID(Student zID) { }
 }

@@ -129,19 +129,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     }
 
     @Override
-    public void handleInsertStudentResult(String result) {
-
-    }
+    public void handleInsertStudentResult(String result) { }
 
     @Override
-    public void handleGetStudentResult(Student student) {
-
-    }
-
-    @Override
-    public void handleGetAllStudentsResult(List<Student> student) {
-
-    }
+    public void handleGetAllStudentsResult(List<Student> student) { }
 
     public void handleGetZIDResult(List<String> zID) {
         existingStudents = zID;
@@ -205,7 +196,5 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskStudentD
     }
 
     @Override
-    public void handleUpdateStudentByZID(String result) {
-
-    }
+    public void handleUpdateStudentByZID(String result) { }
 }

@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+//This is the model class for Student
 @Entity (tableName = "student")
 public class Student {
 
@@ -38,10 +39,16 @@ public class Student {
 
     public static String currUser;
 
-    //Mastery Stuff
-    //private int points;
-
-    public Student (String ZID, String FName, String LName, String password, String email, String  university, String stDate, float wkIncome) {
+    //Constructor for Student
+    public Student (String ZID,
+                    String FName,
+                    String LName,
+                    String password,
+                    String email,
+                    String  university,
+                    String stDate,
+                    float wkIncome)
+    {
         this.ZID = ZID;
         this.FName = FName;
         this.LName = LName;
@@ -50,7 +57,6 @@ public class Student {
         this.university = university;
         this.stDate = stDate;
         this.wkIncome = wkIncome;
-
     }
 
     public String getZID() {
@@ -120,32 +126,6 @@ public class Student {
     public void setWkIncome(float wkIncome) {
         this.wkIncome = wkIncome;
     }
-
-    /*public static Student searchStudents(String zID) {
-        for(int i = 0; i < Student.students.size(); i++)
-            if(Student..get(i).zID.equals(zID)){
-                return Student.students.get(i);
-            }
-        return null;
-    }
-
-    public static Goals searchGoals(String zID) {
-        for(int i = 0; i < Student.goals.size(); i++)
-            if(Student.goals.get(i).getzID().equals(zID)){
-                return Student.goals.get(i);
-            }
-        return null;
-    }
-
-
-    public boolean goalExists(String zID){
-        for(Goals a: Student.goals){
-            if(a.getzID().equals(Student.currUser)){
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     public static String getCurrUser() { return currUser; }
 
