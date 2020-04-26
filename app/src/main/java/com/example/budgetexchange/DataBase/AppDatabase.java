@@ -24,7 +24,7 @@ import com.example.budgetexchange.DataBase.University.UniversityDao;
 
 @Database(entities = {Student.class, Expense.class, Social.class, Comment.class,
                       University.class, Goals.class, Achievements.class},
-                      exportSchema = false, version = 1)
+                      exportSchema = false, version = 8)
 
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -42,7 +42,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
         if (instance == null) {
             instance = Room.databaseBuilder(context, AppDatabase.class, "app_database")
-                //.fallbackToDestructiveMigration()
+                .fallbackToDestructiveMigration()
                 //.addCallback(roomCallback)
                 //.allowMainThreadQueries()
                 .build();
