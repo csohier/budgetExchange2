@@ -6,35 +6,19 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.budgetexchange.DataBase.Achievements.AcheivementsDao;
-import com.example.budgetexchange.DataBase.Achievements.Achievements;
-import com.example.budgetexchange.DataBase.Comments.Comment;
-import com.example.budgetexchange.DataBase.Comments.CommentDao;
-import com.example.budgetexchange.DataBase.Expense.Expense;
-import com.example.budgetexchange.DataBase.Expense.ExpenseDao;
-import com.example.budgetexchange.DataBase.Goals.Goals;
-import com.example.budgetexchange.DataBase.Goals.GoalsDao;
-import com.example.budgetexchange.DataBase.Social.Social;
-import com.example.budgetexchange.DataBase.Social.SocialDao;
+
 import com.example.budgetexchange.DataBase.Student.Student;
 import com.example.budgetexchange.DataBase.Student.StudentDao;
-import com.example.budgetexchange.DataBase.University.University;
-import com.example.budgetexchange.DataBase.University.UniversityDao;
 
 
-@Database(entities = {Student.class, Expense.class, Social.class, Comment.class,
-                      University.class, Goals.class, Achievements.class},
-                      exportSchema = false, version = 8)
+
+@Database(entities = {Student.class},
+                      exportSchema = false, version = 10)
 
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract StudentDao studentDao();
-    public abstract UniversityDao universityDao();
-    public abstract SocialDao socialDao();
-    public abstract ExpenseDao expenseDao();
-    public abstract CommentDao commentDao();
-    public abstract AcheivementsDao achievementsDao();
-    public abstract GoalsDao goalsDao();
+
 
     private static AppDatabase instance;
 

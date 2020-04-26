@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,8 +19,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.budgetexchange.R;
-import com.example.budgetexchange.Reddit.DataDetail;
-import com.example.budgetexchange.RedditService;
 import com.example.budgetexchange.Students;
 
 import java.text.SimpleDateFormat;
@@ -30,11 +27,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class SocialFeedActivity extends AppCompatActivity implements  Button.OnClickListener {
     private RecyclerView recyclerView;
@@ -53,6 +46,7 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_feed);
+
         //Setting up recyclerView:
         //ArrayList<SocialFeed> SocialFeedArrayList =
         recyclerView = (RecyclerView) findViewById(R.id.rView);
@@ -77,37 +71,8 @@ public class SocialFeedActivity extends AppCompatActivity implements  Button.OnC
 
             }
         });
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl("https://www.reddit.com").addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        RedditService service = retrofit.create(RedditService.class);
-        Call<List<DataDetail>> call = service.getFood();
-
-        call.enqueue(new Callback<List<DataDetail>>() {
-            @Override
-            public void onResponse(Call<List<DataDetail>> call, Response<List<DataDetail>>  response) {
-                if(!response.isSuccessful()){
-                    System.out.println(" PRINT THIS CHECK : " + response.code());
-                    return;
-                }
-
-                List<DataDetail> detail = response.body();
-                for (DataDetail d: detail){
-                    String content ="";
-                    content += "CHECK" + d.getAuthorFullname();
-
-                    System.out.println(content);
-                }
 
 
-            }
-
-            @Override
-            public void onFailure(Call<List<DataDetail>>  call, Throwable t) {
-
-                Log.d("Main Activity", "Failed to get quote");
-
-            }
-        });
 
         SocialFeedAdapter.RecyclerViewClickListener listener = new SocialFeedAdapter.RecyclerViewClickListener() {
             @Override
